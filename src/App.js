@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => (
+  <>
+      <Route render ={ () => {
+          if (localStorage.getItem("kennel_customer")) {
+              return (
+                  <>
+                  <Route render={props => <NavBar {...props} />} />
+                  <Route render={props => <ApplicationViews {...props} />} />
+                  </>
+              )
+          } else {
+              return <Redirect to="/login" />
+          }
+      }} />
+
+      <Route path="/login" render={props => <Login {...props} />} />
+      <Route path="/register" render={props => <Register {...props} />} />
+  </>
+)
 
 export default App;
