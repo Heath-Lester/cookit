@@ -1,15 +1,19 @@
 
-import React from "react"
+import { ApplicationViews } from "./components/ApplicationViews"
+import { Register } from "./components/auth/Register"
 import { Route, Redirect } from "react-router-dom"
+import { Login } from "./components/auth/Login"
+import React from "react"
 import './App.css';
+
 
 export const App = () => (
   <>
       <Route render ={ () => {
-          if (localStorage.getItem("kennel_customer")) {
+          if (localStorage.getItem("app_user_id")) {
               return (
                   <>
-                  <Route render={props => <NavBar {...props} />} />
+                  {/* <Route render={props => <NavBar {...props} />} /> */}
                   <Route render={props => <ApplicationViews {...props} />} />
                   </>
               )
