@@ -1,6 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
 import cookit_logo from "../images/cookit_logo.png"
+import { Link } from "react-router-dom"
+import { SearchBar } from "./search/SearchBar"
+import React from "react"
 import "./Home.css"
 
 export const HomeView = props => {
@@ -13,7 +14,9 @@ export const HomeView = props => {
             </header>
             <section className="container--left"></section>
             <section className="container--center">
-                <div className="searchBar"></div>
+                <div className="search">
+                    <SearchBar />
+                </div>
                 <div className="viewPort"></div>
             </section>
             <section className="container--right"></section>
