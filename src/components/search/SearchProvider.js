@@ -11,6 +11,8 @@ export const SearchProvider = props => {
 
     const [searchResults, setResults] = useState([])
 
+    const [autoResults, setAutoResults] = useState([])
+
 
     const searchRecipeByKeyword = keyword => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=100&instructionsRequired=true`, {
@@ -25,7 +27,8 @@ export const SearchProvider = props => {
             })
             .catch(err => {
                 console.error(err);
-            });
+            })
+            .then(setResults);
     }
 
 
@@ -42,7 +45,8 @@ export const SearchProvider = props => {
             })
             .catch(err => {
                 console.error(err);
-            });
+            })
+            .then(setResults);
     }
 
 
@@ -59,11 +63,13 @@ export const SearchProvider = props => {
             })
             .catch(err => {
                 console.error(err);
-            });
+            })
+            .then(setResults);
     }
 
 
     const recipeAutocomplete = RecipeTerm => {
+        // debugger
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/autocomplete?query=${RecipeTerm}&number=25`, {
             "method": "GET",
             "headers": {
@@ -71,35 +77,32 @@ export const SearchProvider = props => {
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+            .then(response => response.json())
+            .then(setAutoResults)
+            .then(console.log(autoResults))
+            .catch(err => console.error(err))
     }
 
 
     const ingredientAutocomplete = IngredientTerm => {
-        fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${IngredientTerm}&number=25`, {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${IngredientTerm}&number=25`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-key": "2cc3b10740msh0b17a753309ab3dp125266jsnec84fbbfd9bc",
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .then(setAutoResults)
+            .then(console.log(autoResults))
+            .catch(err => console.error(err))
     }
 
 
     return (
         <SearchContext.Provider value={{
-            searchTerms, setTerms, searchResults, setResults, searchRecipeByKeyword, searchRecipeDetailed, searchByIngredients, recipeAutocomplete, ingredientAutocomplete
+            searchTerms, setTerms, searchResults, setResults, autoResults, setAutoResults, searchRecipeByKeyword, searchRecipeDetailed, searchByIngredients, recipeAutocomplete, ingredientAutocomplete
         }}>
             {props.children}
         </SearchContext.Provider>

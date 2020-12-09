@@ -8,23 +8,24 @@ import './App.css';
 
 
 export const App = () => (
-  <>
-      <Route render ={ () => {
-          if (localStorage.getItem("app_user_id")) {
-              return (
-                  <>
-                  {/* <Route render={props => <NavBar {...props} />} /> */}
-                  <Route render={props => <ApplicationViews {...props} />} />
-                  </>
-              )
-          } else {
-              return <Redirect to="/login" />
-          }
-      }} />
+    <>
+        <title>Cookit!</title>
+        <Route render={() => {
+            if (localStorage.getItem("app_user_id")) {
+                return (
+                    <>
+                        {/* <Route render={props => <NavBar {...props} />} /> */}
+                        <Route render={props => <ApplicationViews {...props} />} />
+                    </>
+                )
+            } else {
+                return <Redirect to="/login" />
+            }
+        }} />
 
-      <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/register" render={props => <Register {...props} />} />
-  </>
+        <Route path="/login" render={props => <Login {...props} />} />
+        <Route path="/register" render={props => <Register {...props} />} />
+    </>
 )
 
 export default App;
