@@ -35,6 +35,7 @@ export const Login = props => {
 
     return (
         <main className="container--login">
+            <title>Cookit!:Login</title>
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
