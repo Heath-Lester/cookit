@@ -56,6 +56,7 @@ export const Register = (props) => {
 
     return (
         <main style={{ textAlign: "center" }}>
+            <title>Cookit!:Register</title>
 
             <dialog className="dialog dialog--password" ref={passwordDialog}>
                 <div>Passwords do not match</div>
