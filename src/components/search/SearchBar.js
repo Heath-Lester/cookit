@@ -1,7 +1,7 @@
 
 import React, { useContext, useRef, useEffect } from "react"
 import { SearchContext } from "./SearchProvider"
-import "./SearchBar.css"
+import "./Search.css"
 
 
 export const SearchBar = props => {
@@ -23,9 +23,6 @@ export const SearchBar = props => {
         }
     }, [searchTerms])
 
-    useEffect(() => {
-        console.log("autoResults", autoResults)
-    }, [autoResults])
 
     const keyword = useRef(null)
 
@@ -46,6 +43,7 @@ export const SearchBar = props => {
                 onClick={event => {
                     event.preventDefault()
                     searchRecipeByKeyword(keyword.current.value)
+                    .then(setTerms([]))
                 }}>Search
             </button>
 
