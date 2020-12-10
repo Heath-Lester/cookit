@@ -1,14 +1,27 @@
 
-import React, { useContext, Dangers } from "react"
+import React, { useContext, useRef } from "react"
+import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
 
 
 export const SelectedRecipe = props => {
+    console.log(localStorage.getItem("app_user_id"))
     // debugger
     const { detailedRecipe } = useContext(SearchContext)
 
+    // const { saveRecipe } = useContext(SavedRecipeContext)
+
     const imageUrl = `https://spoonacular.com/recipeImages/`
+
+    const id = useRef(null)
+
+
+    const constructRecipe = () => {
+        const userId = localStorage.getItem()
+        // const recipeId = 
+    }
+
 
 
 
@@ -20,19 +33,26 @@ export const SelectedRecipe = props => {
 
     } else {
         const summary = detailedRecipe.summary
-        
+
         // debugger
         return (
             <>
                 <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
-                    <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
+                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            constructRecipe()
+                        }}>
+                    </button>
+
+                    <h2> className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
                     <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
                     <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
                     <p className="detailedRecipe__dishTypes">{detailedRecipe.dishTypes}</p>
                     <p className="detailedRecipe__time">Serves {detailedRecipe.servings}</p>
                     <p className="detailedRecipe__time">Ready in {detailedRecipe.readyInMinutes} minutes</p>
-                    <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{__html: summary}}></p>
+                    <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: summary }}></p>
                     <ul className="detailedRecipe__ingredients">Ingredients
                         {
                             detailedRecipe.extendedIngredients.map(ingredient => {
