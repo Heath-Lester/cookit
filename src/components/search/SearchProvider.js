@@ -70,7 +70,8 @@ export const SearchProvider = props => {
     
     //// Recipe Requests ////
     const getRecipebyId = id => {
-        return fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information", {
+        debugger
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-key": `${apiKey}`,

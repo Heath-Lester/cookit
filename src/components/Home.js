@@ -1,7 +1,7 @@
-import cookit_logo from "../images/cookit_logo.png"
-import { Link } from "react-router-dom"
-import { SearchBar } from "./search/SearchBar"
 import { SearchResults } from "./search/SearchResults"
+import cookit_logo from "../images/cookit_logo.png"
+import { SearchBar } from "./search/SearchBar"
+import { Link } from "react-router-dom"
 import React from "react"
 import "./Home.css"
 

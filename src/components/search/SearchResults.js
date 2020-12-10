@@ -7,8 +7,9 @@ import "./Search.css"
 
 export const SearchResults = props => {
 
-    const { searchResults, setResults } = useContext(SearchContext)
+    const { searchResults, setResults, detailedRecipe, setRecipe } = useContext(SearchContext)
     console.log("SearchResults.js", searchResults)
+    console.log("SearchResults.js", detailedRecipe)
     // debugger
 
     return (
