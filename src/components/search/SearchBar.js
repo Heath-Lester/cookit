@@ -10,6 +10,7 @@ export const SearchBar = props => {
         setTerms,
         autoResults,
         setAutoResults,
+        setRecipe,
         recipeAutocomplete,
         ingredientAutocomplete,
         searchRecipeByKeyword
@@ -42,7 +43,8 @@ export const SearchBar = props => {
             <button type="submit" className="search--button"
                 onClick={event => {
                     event.preventDefault()
-                    searchRecipeByKeyword(keyword.current.value)
+                    .then(setRecipe({}))
+                    .then(searchRecipeByKeyword(keyword.current.value))
                     .then(setTerms([]))
                 }}>Search
             </button>
