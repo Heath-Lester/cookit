@@ -15,6 +15,10 @@ export const SearchProvider = props => {
     const [searchTerms, setTerms] = useState("")
     
     const [autoResults, setAutoResults] = useState([])
+    console.log("searchResults", searchResults)
+    console.log("detailedRecipe", detailedRecipe)
+    console.log("searchTerms", searchTerms)
+    console.log("autoResults", autoResults)
     
 
     //// Search Requests ////
@@ -70,7 +74,6 @@ export const SearchProvider = props => {
     
     //// Recipe Requests ////
     const getRecipebyId = id => {
-        debugger
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
             "method": "GET",
             "headers": {
@@ -80,7 +83,7 @@ export const SearchProvider = props => {
         })
         .then(response => response.json())
         .then(response => setRecipe(response))
-        .then(console.log(detailedRecipe))
+        .then(console.log("getRecipeById", detailedRecipe))
         .catch(err => console.error(err))
     }
 
