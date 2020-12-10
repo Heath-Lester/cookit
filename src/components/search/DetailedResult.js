@@ -6,24 +6,15 @@ import "./Search.css"
 
 
 export const SelectedRecipe = props => {
-    console.log(localStorage.getItem("app_user_id"))
     // debugger
     const { detailedRecipe } = useContext(SearchContext)
 
-    // const { saveRecipe } = useContext(SavedRecipeContext)
+    const { savedRecipes, saveRecipe, saveIngredients, saveInstructions, saveCookWear } = useContext(SavedRecipeContext)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
     const id = useRef(null)
-
-
-    const constructRecipe = () => {
-        const userId = localStorage.getItem()
-        // const recipeId = 
-    }
-
-
-
+    
 
     console.log(detailedRecipe)
 

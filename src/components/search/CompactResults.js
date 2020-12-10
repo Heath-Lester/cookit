@@ -7,7 +7,7 @@ import "./Search.css"
 export const CompactResults = props => {
     // debugger
 
-    const { setResults, searchResults, getRecipebyId, setRecipe } = useContext(SearchContext)
+    const { setResults, searchResults, getRecipebyId } = useContext(SearchContext)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
@@ -32,7 +32,3 @@ export const CompactResults = props => {
         </>
     )
 }
-
-// {
-//     <SelectedRecipe key={detailedRecipe.id} recipe={detailedRecipe}/>
-// }
