@@ -4,23 +4,24 @@ import React, { useState } from "react"
 
 export const SavedRecipeContext = React.createContext()
 
+const userId = parseInt(localStorage.getItem("app_user_id"))
 
 export const RecipeProvider = props => {
 
     const [savedRecipes, setSavedRecipes] = useState([])
-    console.log("Saved Recipe: Saved Recipe Provider", savedRecipes)
+
 
 
     /// Saved Recipe Requests ///
-    const getSavedRecipes = userId => {
-        return fetch(`http://localhost:8088/savedRecipes/userId=${userId}`)
+    const getSavedRecipes = () => {
+        return fetch(`http://localhost:8088/savedRecipes/?userId=${userId}`)
             .then(result => result.json())
             .then(setSavedRecipes)
     }
 
 
     const saveRecipe = recipeObj => {
-        return fetch(`http://localthost:8088/savedRecipes`, {
+        return fetch(`http://localhost:8088/savedRecipes`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(recipeObj)
@@ -31,13 +32,13 @@ export const RecipeProvider = props => {
 
     /// Saved Ingredients Requests ///
     const getIngredients = recipeId => {
-        return fetch(`http://localhost:8088/ingredients/recipeId=${recipeId}`)
+        return fetch(`http://localhost:8088/ingredientsJoin/?recipeId=${recipeId}`)
             .then(result => result.json())
     }
 
 
     const saveIngredients = ingredientsArray => {
-        return fetch(`http://localhost:8088/ingredients`, {
+        return fetch(`http://localhost:8088/ingredientsJoin`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(ingredientsArray)
@@ -47,7 +48,7 @@ export const RecipeProvider = props => {
 
     /// Saved Instructions Requests ///
     const getInstructions = recipeId => {
-        return fetch(`http://localhost:8088/instructions/recipeId=${recipeId}`)
+        return fetch(`http://localhost:8088/instructions/?recipeId=${recipeId}`)
             .then(result => result.json())
     }
 

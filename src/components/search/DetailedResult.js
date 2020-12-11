@@ -13,52 +13,40 @@ export const SelectedRecipe = props => {
 
     useEffect(() => {
         getRecipeById(props.selectedRecipeId)
+        .then(getSavedRecipes())
     }, [])
 
     const { savedRecipes,
         saveRecipe,
-        saveIngredients,
-        saveInstructions,
-        saveCookWear,
+        // saveIngredients,
+        // saveInstructions,
+        // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
-
         return <></>
 
     } else {
-        let recipeId
-        let title
-        let image
-
-
-        // debugger
-
-        // if (detailedRecipe.userId) {
 
         let ingredientsArray = []
         let equipmentArray = []
         let instructionsArray = []
 
-
         detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
 
-        // setIngredients(ingredientsArray)
-        // setEquipment(equipmentArray)
-        // setInstructions(instructionsArray)
 
-        // }
 
         const constructRecipe = () => {
+            console.log(savedRecipes)
 
-            debugger
-
-            if (savedRecipes.filter(r => r.recipeId === recipeId).length > 0) {
-                window.alert(`Recipe ID of ${recipeId} already exists for this user. (ID ${userId})`)
+            if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
+                window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
+            
             } else {
+
                 saveRecipe({
                     userId,
                     recipeId: detailedRecipe.id,
@@ -67,21 +55,27 @@ export const SelectedRecipe = props => {
                     favorite: false,
                     edited: false
                 })
-                    .then(saveIngredients({
-                        userId,
-                        recipeId,
-                        ingredients: ingredientsArray
-                    }))
-                    .then(saveCookWear({
-                        userId,
-                        recipeId,
-                        equipment: equipmentArray
-                    }))
-                    .then(saveInstructions({
-                        userId,
-                        recipeId,
-                        instructions: instructionsArray
-                    }))
+                // .then(ingredientsArray.map(i => saveIngredients({
+                //     userId,
+                //     recipeId: detailedRecipe.id,
+                //     ingredientId: i.id,
+                //     name: i.name,
+                //     unit: i.unit,
+                //     amount: i.unit,
+                //     aisle: i.aisle
+                // })))
+                // .then(equipmentArray.map(e => saveEquipment({
+                //     userId,
+                //     recipeId: detailedRecipe.id,
+                //     equipmentId: e.id,
+                //     name: e.name,
+                // })))
+                // .then(instructionArray.map(i => saveInstructions({
+                //     userId,
+                //     recipeId: detailedRecipe.id,
+                //     number: i.number,
+                //     step: i.step
+                // })))
             }
         }
 
@@ -95,8 +89,8 @@ export const SelectedRecipe = props => {
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
-                            getSavedRecipes(userId)
-                                .then(constructRecipe())
+                            getSavedRecipes()
+                            constructRecipe()
                         }}>Save Recipe
                     </button>
 
@@ -110,7 +104,7 @@ export const SelectedRecipe = props => {
                     <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             detailedRecipe.extendedIngredients.map(ingredient => {
-                                return <li className="ingredient" key={ingredient.id}>{ingredient.original}</li>
+                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>
@@ -119,7 +113,7 @@ export const SelectedRecipe = props => {
                             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => {
                                 if (item.hasOwnProperty("id") && parsedEquipment.filter(e => e.id === item.id).length === 0) {
                                     parsedEquipment.push(item)
-                                    return <li className="equipment" key={item.id}>{item.name}</li>
+                                    return <li className="equipment" key={"equipment--" + item.id}>{item.name}</li>
                                 }
                             })))
                         }
@@ -128,7 +122,7 @@ export const SelectedRecipe = props => {
                     <ol className="detailedRecipe__instructions" key="instructions">Instructions
                         {
                             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => {
-                                return <li className="instruction" key={step.number}>{step.step}</li>
+                                return <li className="instruction" key={"step--" + step.number}>{step.step}</li>
                             }))
                         }
                     </ol>

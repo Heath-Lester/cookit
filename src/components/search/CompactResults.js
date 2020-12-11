@@ -21,7 +21,7 @@ export const CompactResults = props => {
                             setResults([])
                             props.setSelectedRecipeId(result.id)
                         }}>
-                        <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe Image`}></img>
+                        <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe`}></img>
                         <h3 className="recipe__name">{result.title}</h3>
                         <dt>Ready in {result.readyInMinutes} minutes</dt>
                         <dt>Serves {result.servings}</dt>
