@@ -4,16 +4,25 @@ import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
 
+const ResultContext = React.createContext()
 
 export const SelectedRecipe = props => {
-    // debugger
+    debugger
     const { detailedRecipe } = useContext(SearchContext)
 
-    const { savedRecipes, saveRecipe, saveIngredients, saveInstructions, saveCookWear, getSavedRecipes } = useContext(SavedRecipeContext)
+
+    const { savedRecipes,
+        saveRecipe,
+        saveIngredients,
+        saveInstructions,
+        saveCookWear,
+        getSavedRecipes } = useContext(SavedRecipeContext)
+
 
     const [ingredients, setIngredients] = useState([])
     const [equipment, setEquipment] = useState([])
     const [instructions, setInstructions] = useState([])
+
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
 
@@ -22,20 +31,20 @@ export const SelectedRecipe = props => {
     } else {
 
         const constructRecipe = () => {
+
             debugger
-            const userId = parseInt(localStorage.getItem("app_user_id"))
-            const recipeId = parseInt(id.current.value)
-            const title = name.current.value
-            const image = picture.current.value
-            const sourceName = author.current.value
-            const sourceUrl = url.current.value
-            const servings = parseInt(serving.current.value)
-            const readyInMinutes = parseInt(time.current.value)
-            const summary = blurb.current.value
 
-            getSavedRecipes(userId)
+            let userId = parseInt(localStorage.getItem("app_user_id"))
+            let recipeId = detailedRecipe.id
+            let title = detailedRecipe.title
+            let image = detailedRecipe.image
+            let sourceName = detailedRecipe.sourceName
+            let sourceUrl = detailedRecipe.sourceUrl
+            let servings = detailedRecipe.servings
+            let readyInMinutes = detailedRecipe.readyInMinutes
+            let summary = detailedRecipe.summary
 
-            if (savedRecipes.filter(r.recipeId === recipeId).length > 0) {
+            if (savedRecipes.filter(r => r.recipeId === recipeId).length > 0) {
                 window.alert(`Recipe ID of ${recipeId} already exists for this user. (ID ${userId})`)
             } else {
                 saveRecipe({
@@ -65,7 +74,7 @@ export const SelectedRecipe = props => {
                         userId,
                         recipeId,
                         instructions
-                    })),
+                    }))
             }
         }
 
@@ -96,7 +105,8 @@ export const SelectedRecipe = props => {
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
-                            constructRecipe()
+                            getSavedRecipes(userId)
+                                .then(constructRecipe())
                         }}>Save Recipe
                     </button>
 
