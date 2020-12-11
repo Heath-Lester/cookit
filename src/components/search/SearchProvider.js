@@ -73,7 +73,7 @@ export const SearchProvider = props => {
     }
     
     //// Recipe Requests ////
-    const getRecipebyId = id => {
+    const getRecipeById = id => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
             "method": "GET",
             "headers": {
@@ -133,7 +133,7 @@ export const SearchProvider = props => {
             searchRecipeByKeyword, 
             searchRecipeDetailed, 
             searchByIngredients, 
-            getRecipebyId,
+            getRecipeById,
             recipeAutocomplete, 
             ingredientAutocomplete
         }}>

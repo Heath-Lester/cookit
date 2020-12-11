@@ -1,15 +1,19 @@
 
-import React, { useContext, useState } from "react"
+import React, { useContext, useRef, useEffect } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
 
-const ResultContext = React.createContext()
 
 export const SelectedRecipe = props => {
-    debugger
-    const { detailedRecipe } = useContext(SearchContext)
 
+    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
+
+    let userId = parseInt(localStorage.getItem("app_user_id"))
+
+    useEffect(() => {
+        getRecipeById(props.selectedRecipeId)
+    }, [])
 
     const { savedRecipes,
         saveRecipe,
@@ -19,85 +23,71 @@ export const SelectedRecipe = props => {
         getSavedRecipes } = useContext(SavedRecipeContext)
 
 
-    const [ingredients, setIngredients] = useState([])
-    const [equipment, setEquipment] = useState([])
-    const [instructions, setInstructions] = useState([])
-
-
     if (detailedRecipe.hasOwnProperty("id") === false) {
 
         return <></>
 
     } else {
+        let recipeId
+        let title
+        let image
+
+
+        // debugger
+
+        // if (detailedRecipe.userId) {
+
+        let ingredientsArray = []
+        let equipmentArray = []
+        let instructionsArray = []
+
+
+        detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
+
+        // setIngredients(ingredientsArray)
+        // setEquipment(equipmentArray)
+        // setInstructions(instructionsArray)
+
+        // }
 
         const constructRecipe = () => {
 
             debugger
-
-            let userId = parseInt(localStorage.getItem("app_user_id"))
-            let recipeId = detailedRecipe.id
-            let title = detailedRecipe.title
-            let image = detailedRecipe.image
-            let sourceName = detailedRecipe.sourceName
-            let sourceUrl = detailedRecipe.sourceUrl
-            let servings = detailedRecipe.servings
-            let readyInMinutes = detailedRecipe.readyInMinutes
-            let summary = detailedRecipe.summary
 
             if (savedRecipes.filter(r => r.recipeId === recipeId).length > 0) {
                 window.alert(`Recipe ID of ${recipeId} already exists for this user. (ID ${userId})`)
             } else {
                 saveRecipe({
                     userId,
-                    recipeId,
-                    title,
-                    image,
-                    sourceName,
-                    sourceUrl,
-                    servings,
-                    readyInMinutes,
-                    summary,
+                    recipeId: detailedRecipe.id,
+                    title: detailedRecipe.title,
+                    image: detailedRecipe.image,
                     favorite: false,
                     edited: false
                 })
                     .then(saveIngredients({
                         userId,
                         recipeId,
-                        ingredients
+                        ingredients: ingredientsArray
                     }))
                     .then(saveCookWear({
                         userId,
                         recipeId,
-                        equipment
+                        equipment: equipmentArray
                     }))
                     .then(saveInstructions({
                         userId,
                         recipeId,
-                        instructions
+                        instructions: instructionsArray
                     }))
             }
         }
 
-        debugger
-
-        if (!detailedRecipe.userId) {
-
-            let ingredientsArray = []
-            let equipmentArray = []
-            let instructionsArray = []
-
-
-            detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
-            detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
-            detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
-
-            setIngredients(ingredientsArray)
-            setEquipment(equipmentArray)
-            setInstructions(instructionsArray)
-        }
-
-
         console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
+
+        let parsedEquipment = []
 
         return (
             <>
@@ -119,24 +109,27 @@ export const SelectedRecipe = props => {
                     <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: detailedRecipe.summary }}></p>
                     <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients
                         {
-                            ingredientsArray.map(ingredient => {
+                            detailedRecipe.extendedIngredients.map(ingredient => {
                                 return <li className="ingredient" key={ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>
                     <ul className="detailedRecipe__equipment" key="equipment">Cook Ware
                         {
-                            equipmentArray.map(equipmentList => {
-                                return <li className="equipment" key={equipmentList.id}>{equipmentList.name}</li>
-                            })
+                            detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => {
+                                if (item.hasOwnProperty("id") && parsedEquipment.filter(e => e.id === item.id).length === 0) {
+                                    parsedEquipment.push(item)
+                                    return <li className="equipment" key={item.id}>{item.name}</li>
+                                }
+                            })))
                         }
 
                     </ul>
                     <ol className="detailedRecipe__instructions" key="instructions">Instructions
                         {
-                            instructionsArray.map(instruction => {
-                                return <li className="instruction" key={instruction.number}>{instruction.step}</li>
-                            })
+                            detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => {
+                                return <li className="instruction" key={step.number}>{step.step}</li>
+                            }))
                         }
                     </ol>
                 </section>

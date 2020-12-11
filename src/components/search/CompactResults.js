@@ -19,7 +19,7 @@ export const CompactResults = props => {
                         onClick={() => {
                             // setRecipe({})
                             setResults([])
-                            getRecipebyId(result.id)
+                            props.setSelectedRecipeId(result.id)
                         }}>
                         <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe Image`}></img>
                         <h3 className="recipe__name">{result.title}</h3>
