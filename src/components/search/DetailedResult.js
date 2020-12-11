@@ -43,7 +43,7 @@ export const SelectedRecipe = props => {
                         }}>
                     </button>
 
-                    <h2> className="detailedRecipe__name">{detailedRecipe.title}</h2>
+                    <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
                     <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
                     <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
@@ -51,26 +51,25 @@ export const SelectedRecipe = props => {
                     <p className="detailedRecipe__time">Serves {detailedRecipe.servings}</p>
                     <p className="detailedRecipe__time">Ready in {detailedRecipe.readyInMinutes} minutes</p>
                     <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: summary }}></p>
-                    <ul className="detailedRecipe__ingredients">Ingredients
+                    <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients
                         {
-                            detailedRecipe.extendedIngredients.map(ingredient => {
-                                return <li className="ingredient" key={ingredient.id}>{ingredient.name}</li>
+                            ingredientsArray.map(ingredient => {
+                                return <li className="ingredient" key={ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>
-                    <ul className="detailedRecipe__equipment">Cook Ware
+                    <ul className="detailedRecipe__equipment" key="equipment">Cook Ware
                         {
-                            detailedRecipe.analyzedInstructions[0].steps.map(step => {
-                                return step.equipment.map(equipmentList => {
-                                    return <li className="equipment" key={equipmentList.id}>{equipmentList.name}</li>
-                                })
+                            equipmentArray.map(equipmentList => {
+                                return <li className="equipment" key={equipmentList.id}>{equipmentList.name}</li>
                             })
                         }
+                        
                     </ul>
-                    <ol className="detailedRecipe__instructions">Instructions
+                    <ol className="detailedRecipe__instructions" key="instructions">Instructions
                         {
-                            detailedRecipe.analyzedInstructions[0].steps.map(instruction => {
-                                return <li className="instruction" key={instruction.id}>{instruction.step}</li>
+                            instructionsArray.map(instruction => {
+                                return <li className="instruction" key={instruction.number}>{instruction.step}</li>
                             })
                         }
                     </ol>
@@ -79,10 +78,3 @@ export const SelectedRecipe = props => {
         )
     }
 }
-
-
-// let ingredientsArray = detailedRecipe.extendedIngredients.map(ingredient => ingredient.original)
-
-// let equipmentArray = detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => item.name)))
-
-// let instructionsArray = detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(steps => steps.step))
