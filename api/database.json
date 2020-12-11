@@ -6,5 +6,19 @@
       "name": "Heath Lester",
       "id": 1
     }
-  ]
+  ],
+  "savedRecipes": [
+    {
+      "userId": 1,
+      "recipeId": 474597,
+      "title": "Orange Blondies",
+      "image": "https://spoonacular.com/recipeImages/474597-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 1
+    }
+  ],
+  "ingredientsJoin": [],
+  "instructions": [],
+  "cookWear": []
 }

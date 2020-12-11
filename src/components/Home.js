@@ -2,11 +2,16 @@ import { CompactResults } from "./search/CompactResults"
 import { SelectedRecipe } from "./search/DetailedResult"
 import cookit_logo from "../images/cookit_logo.png"
 import { SearchBar } from "./search/SearchBar"
-import { Link } from "react-router-dom"
-import React from "react"
+import React, { useState } from "react"
 import "./Home.css"
 
+
+
+
 export const HomeView = props => {
+
+    const [selectedRecipeId , setSelectedRecipeId] = useState(0)
+
     return (
         <main className="container--home">
             <title>Cookit!</title>
@@ -20,8 +25,8 @@ export const HomeView = props => {
                     <SearchBar />
                 </div>
                 <div className="results">
-                    <CompactResults />
-                    <SelectedRecipe />
+
+                    {selectedRecipeId === 0 ? <CompactResults setSelectedRecipeId={setSelectedRecipeId}/> : <SelectedRecipe selectedRecipeId={selectedRecipeId}/>}
                 </div>
 
             </section>

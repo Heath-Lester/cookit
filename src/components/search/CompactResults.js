@@ -7,7 +7,7 @@ import "./Search.css"
 export const CompactResults = props => {
     // debugger
 
-    const { setResults, searchResults, getRecipebyId, setRecipe } = useContext(SearchContext)
+    const { setResults, searchResults, getRecipebyId } = useContext(SearchContext)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
@@ -19,9 +19,9 @@ export const CompactResults = props => {
                         onClick={() => {
                             // setRecipe({})
                             setResults([])
-                            getRecipebyId(result.id)
+                            props.setSelectedRecipeId(result.id)
                         }}>
-                        <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe Image`}></img>
+                        <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe`}></img>
                         <h3 className="recipe__name">{result.title}</h3>
                         <dt>Ready in {result.readyInMinutes} minutes</dt>
                         <dt>Serves {result.servings}</dt>
@@ -32,7 +32,3 @@ export const CompactResults = props => {
         </>
     )
 }
-
-// {
-//     <SelectedRecipe key={detailedRecipe.id} recipe={detailedRecipe}/>
-// }

@@ -1,7 +1,7 @@
 
 import { SearchProvider } from "./search/SearchProvider"
+import { RecipeProvider } from "./savedRecipes/RecipeProvider"
 import { Route } from "react-router-dom"
-import { Link } from "react-router-dom"
 import { HomeView } from "./Home"
 import React from "react"
 
@@ -11,9 +11,11 @@ export const ApplicationViews = () => {
     return (
         <>
             <SearchProvider>
-                <Route exact path="/">
-                    <HomeView />
-                </Route>
+                <RecipeProvider>
+                    <Route exact path="/">
+                        <HomeView />
+                    </Route>
+                </RecipeProvider>
             </SearchProvider>
         </>
     )

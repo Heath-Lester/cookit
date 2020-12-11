@@ -9,10 +9,8 @@ export const SearchBar = props => {
     const { searchTerms,
         setTerms,
         autoResults,
-        setAutoResults,
         setRecipe,
         recipeAutocomplete,
-        ingredientAutocomplete,
         searchRecipeByKeyword
     } = useContext(SearchContext)
 
