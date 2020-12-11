@@ -26,9 +26,13 @@ export const SelectedRecipe = props => {
         let equipmentArray = []
         let instructionsArray = []
 
+        let parsedEquipmentArray = []
+
         detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
-        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id")) { equipmentArray.push(item) } })))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
+
+        
 
 
         console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)

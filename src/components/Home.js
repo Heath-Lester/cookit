@@ -2,7 +2,6 @@ import { CompactResults } from "./search/CompactResults"
 import { SelectedRecipe } from "./search/DetailedResult"
 import cookit_logo from "../images/cookit_logo.png"
 import { SearchBar } from "./search/SearchBar"
-import { Link } from "react-router-dom"
 import React from "react"
 import "./Home.css"
 
