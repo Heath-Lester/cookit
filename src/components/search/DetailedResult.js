@@ -1,5 +1,5 @@
 
-import React, { useContext, useRef } from "react"
+import React, { useContext, useEffect } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
@@ -11,28 +11,35 @@ export const SelectedRecipe = props => {
 
     const { savedRecipes, saveRecipe, saveIngredients, saveInstructions, saveCookWear } = useContext(SavedRecipeContext)
 
-    const imageUrl = `https://spoonacular.com/recipeImages/`
-
-    const id = useRef(null)
-    
-
     console.log(detailedRecipe)
+
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
 
         return <></>
 
     } else {
-        const summary = detailedRecipe.summary
 
-        // debugger
+        debugger
+        let summary = detailedRecipe.summary
+        let ingredientsArray = []
+        let equipmentArray = []
+        let instructionsArray = []
+
+        detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id")) { equipmentArray.push(item) } })))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
+
+
+        console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
+
         return (
             <>
                 <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
-                            constructRecipe()
+                            // constructRecipe()
                         }}>
                     </button>
 
@@ -72,3 +79,10 @@ export const SelectedRecipe = props => {
         )
     }
 }
+
+
+// let ingredientsArray = detailedRecipe.extendedIngredients.map(ingredient => ingredient.original)
+
+// let equipmentArray = detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => item.name)))
+
+// let instructionsArray = detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(steps => steps.step))
