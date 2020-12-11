@@ -1,5 +1,5 @@
 
-import React, { useContext, useRef } from "react"
+import React, { useContext, useState } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
@@ -11,65 +11,9 @@ export const SelectedRecipe = props => {
 
     const { savedRecipes, saveRecipe, saveIngredients, saveInstructions, saveCookWear, getSavedRecipes } = useContext(SavedRecipeContext)
 
-
-    const id = useRef(null)
-    const name = useRef(null)
-    const picture = useRef(null)
-    const author = useRef(null)
-    const url = useRef(null)
-    const serving = useRef(null)
-    const time = useRef(null)
-    const blurb = useRef(null)
-
-
-    const constructRecipe = () => {
-        debugger
-        const userId = parseInt(localStorage.getItem("app_user_id"))
-        const recipeId = parseInt(id.current.value)
-        const title = name.current.value
-        const image = picture.current.value
-        const sourceName = author.current.value
-        const sourceUrl = url.current.value
-        const servings = parseInt(serving.current.value)
-        const readyInMinutes = parseInt(time.current.value)
-        const summary = blurb.current.value
-
-        getSavedRecipes(userId)
-
-        if (savedRecipes.filter(r.recipeId === recipeId).length > 0) {
-            window.alert(`Recipe ID of ${recipeId} already exists for this user. (ID ${userId})`)
-        } else {
-            saveRecipe({
-                userId,
-                recipeId,
-                title,
-                image,
-                sourceName,
-                sourceUrl,
-                servings,
-                readyInMinutes,
-                summary,
-                favorite: false,
-                edited: false
-            }),
-                saveIngredients({
-                    userId,
-                    recipeId,
-                    ingredientsArray
-                }),
-                saveCookWear({
-                    userId,
-                    recipeId,
-                    equipmentArray
-                }),
-                saveInstructions({
-                    userId,
-                    recipeId,
-                    instructionsArray
-                })
-        }
-    }
-
+    const [ingredients, setIngredients] = useState([])
+    const [equipment, setEquipment] = useState([])
+    const [instructions, setInstructions] = useState([])
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
 
@@ -77,9 +21,57 @@ export const SelectedRecipe = props => {
 
     } else {
 
+        const constructRecipe = () => {
+            debugger
+            const userId = parseInt(localStorage.getItem("app_user_id"))
+            const recipeId = parseInt(id.current.value)
+            const title = name.current.value
+            const image = picture.current.value
+            const sourceName = author.current.value
+            const sourceUrl = url.current.value
+            const servings = parseInt(serving.current.value)
+            const readyInMinutes = parseInt(time.current.value)
+            const summary = blurb.current.value
+
+            getSavedRecipes(userId)
+
+            if (savedRecipes.filter(r.recipeId === recipeId).length > 0) {
+                window.alert(`Recipe ID of ${recipeId} already exists for this user. (ID ${userId})`)
+            } else {
+                saveRecipe({
+                    userId,
+                    recipeId,
+                    title,
+                    image,
+                    sourceName,
+                    sourceUrl,
+                    servings,
+                    readyInMinutes,
+                    summary,
+                    favorite: false,
+                    edited: false
+                })
+                    .then(saveIngredients({
+                        userId,
+                        recipeId,
+                        ingredients
+                    }))
+                    .then(saveCookWear({
+                        userId,
+                        recipeId,
+                        equipment
+                    }))
+                    .then(saveInstructions({
+                        userId,
+                        recipeId,
+                        instructions
+                    })),
+            }
+        }
+
         debugger
 
-        if (detailedRecipe.userId === false) {
+        if (!detailedRecipe.userId) {
 
             let ingredientsArray = []
             let equipmentArray = []
@@ -89,6 +81,10 @@ export const SelectedRecipe = props => {
             detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
+
+            setIngredients(ingredientsArray)
+            setEquipment(equipmentArray)
+            setInstructions(instructionsArray)
         }
 
 
