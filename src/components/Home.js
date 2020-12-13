@@ -1,6 +1,7 @@
 import { SavedRecipeList } from "./savedRecipes/SavedRecipeList"
-import { CompactResults } from "./search/CompactResults"
-import { SelectedRecipe } from "./search/DetailedResult"
+import { SearchResults } from "./viewport/SearchResults"
+import { DetailedResult } from "./viewport/DetailedResult"
+import { ViewPort } from "./viewport/ViewPort"
 import cookit_logo from "../images/cookit_logo.png"
 import { SearchBar } from "./search/SearchBar"
 import React, { useState } from "react"
@@ -26,10 +27,10 @@ export const HomeView = props => {
                 <div className="search">
                     <SearchBar />
                 </div>
-                <div className="results">
-                    {selectedRecipeId === 0 ? <CompactResults setSelectedRecipeId={setSelectedRecipeId}/> : <SelectedRecipe selectedRecipeId={selectedRecipeId}/>}
+                <div className="viewport">
+                    {/* {selectedRecipeId === 0 ? <SearchResults setSelectedRecipeId={setSelectedRecipeId}/> : <DetailedResult selectedRecipeId={selectedRecipeId}/>} */}
+                    <ViewPort />
                 </div>
-
             </section>
             <section className="container--right"></section>
         </main>

@@ -10,6 +10,7 @@ export const SearchBar = props => {
         setTerms,
         autoResults,
         setRecipe,
+        setResults,
         recipeAutocomplete,
         searchRecipeByKeyword
     } = useContext(SearchContext)
@@ -40,9 +41,11 @@ export const SearchBar = props => {
 
             <button type="submit" className="search--button"
                 onClick={event => {
+                    debugger
                     event.preventDefault()
-                    setRecipe({})
-                    setTerms([])
+                    // setResults([])
+                    // setRecipe({})
+                    // setTerms([])
                     searchRecipeByKeyword(keyword.current.value)
                 }}>Search
             </button>

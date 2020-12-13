@@ -1,11 +1,11 @@
 
 import React, { useContext, useEffect } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
-import { SearchContext } from "./SearchProvider"
-import "./Search.css"
+import { SearchContext } from "../search/SearchProvider"
+import "./ViewPort.css"
 
 
-export const SelectedRecipe = props => {
+export const DetailedResult = props => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
 
@@ -21,7 +21,7 @@ export const SelectedRecipe = props => {
 
     useEffect(() => {
         getRecipeById(props.selectedRecipeId)
-            .then(getSavedRecipes())
+            // .then(getSavedRecipes())
     }, [])
 
 

@@ -1,15 +1,19 @@
 
-import React, { useContext } from "react"
-import { SearchContext } from "./SearchProvider"
-import "./Search.css"
+import React, { useContext, useEffect } from "react"
+import { SearchContext } from "../search/SearchProvider"
+import "./ViewPort.css"
 
 
-export const CompactResults = props => {
+export const SearchResults = props => {
     // debugger
 
-    const { setResults, searchResults, getRecipebyId } = useContext(SearchContext)
+    const { setResults, searchResults, getRecipeById, setRecipe } = useContext(SearchContext)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
+
+    useEffect(() => {
+        getRecipeById(props.selectedRecipeId)
+    }, [])
 
     return (
         <>
