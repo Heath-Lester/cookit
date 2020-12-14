@@ -14,13 +14,15 @@ export const ViewPort = input => {
     console.log("viewport_input", input)
 
 
+
+
     if (typeof input === "string") {
-        return (ReactDOM.render(<SearchResults key={"searchResults--" + { input }} keyword={input} />, document.getElementById("viewport")))
-        // return <SearchResults key={"searchResults--"+{input}}  keyword={input} />
+        return (ReactDOM.render(document.getElementById("viewport"), < SearchResults key = "keyword" keyword = { input } />))
+        // return <SearchResults  keyword={input}/>
 
     } else if (typeof input === "number") {
-        return <DetailedResult recipeId={input} />
-        // return DetailedResult(input)
+        // return <DetailedResult  recipeId={input}/>
+        return DetailedResult(input)
 
     } else {
         return <h3>Nothing to Render</h3>
