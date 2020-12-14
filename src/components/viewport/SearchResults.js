@@ -4,17 +4,19 @@ import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
 
 
-export const SearchResults = keyword => {
-    // debugger
-
-    const { setResults, searchResults, getRecipeById, setRecipe, searchRecipeByKeyword } = useContext(SearchContext)
+export const SearchResults = ({keyword}) => {
+    
+    const { searchRecipeByKeyword, searchResults } = useContext(SearchContext)
+    debugger
+    
+    searchRecipeByKeyword(keyword)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
-    useEffect(() => {
-        // getRecipeById(props.selectedRecipeId)
-        searchRecipeByKeyword(keyword)
-    }, [])
+    // useEffect(() => {
+    //     // getRecipeById(props.selectedRecipeId)
+    //     searchRecipeByKeyword(keyword)
+    // }, [])
 
     return (
         <>

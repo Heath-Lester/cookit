@@ -20,13 +20,15 @@ export const SearchBar = props => {
         }
     }, [searchTerms])
 
-
+    const passToViewPort = () => {
+        ViewPort(keyword.current.value)
+    }
     const keyword = useRef(null)
 
     return (
-        <>
+        <form className="searchBar">
             Search Recipes:
-            <input type="text" className="search--bar" ref={keyword} required autoFocus
+            <input type="text" className="searchBar--input" ref={keyword} required autoFocus
                 onKeyUp={
                     (keyEvent) => {
                         setTerms(keyEvent.target.value)
@@ -36,19 +38,20 @@ export const SearchBar = props => {
                 placeholder="Search Recipes using a Keyword...">
             </input>
 
-            <button type="submit" className="search--button"
+            <button type="submit" className="searchBar--button"
                 onClick={event => {
                     // debugger
                     event.preventDefault()
                     // searchRecipeByKeyword(keyword.current.value)
                     console.log(keyword.current.value)
-                    ViewPort(keyword.current.value)
+                    // ViewPort(keyword.current.value)
+                    passToViewPort()
                     // return <ViewPort input={keyword.current.value}></ViewPort>
 
                 }}>Search
             </button>
 
-            <div className="search--autocomplete">
+            <div className="searchBar--autocomplete">
                 {
                     autoResults.map(result => {
                         return <dt key={result.id} value={result.id}>
@@ -57,6 +60,6 @@ export const SearchBar = props => {
                     })
                 }
             </div>
-        </>
+        </form>
     )
 }

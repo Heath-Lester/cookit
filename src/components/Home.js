@@ -27,8 +27,9 @@ export const HomeView = props => {
                 <div className="search">
                     <SearchBar />
                 </div>
-                <div className="viewport">
+                <div id="viewport">
                     {/* {selectedRecipeId === 0 ? <SearchResults setSelectedRecipeId={setSelectedRecipeId}/> : <DetailedResult selectedRecipeId={selectedRecipeId}/>} */}
+                    
                     <ViewPort />
                 </div>
             </section>

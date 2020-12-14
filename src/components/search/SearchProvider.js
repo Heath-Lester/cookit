@@ -7,7 +7,7 @@ export const SearchContext = React.createContext()
 
 
 export const SearchProvider = props => {
-
+    // debugger
     const [searchResults, setResults] = useState([])
 
     const [detailedRecipe, setRecipe] = useState({})
