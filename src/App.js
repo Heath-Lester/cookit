@@ -9,7 +9,6 @@ import './App.css';
 
 export const App = () => (
     <>
-        <title>Cookit!</title>
         <Route render={() => {
             if (localStorage.getItem("app_user_id")) {
                 return (

@@ -1,5 +1,5 @@
 
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "./SearchProvider"
 import "./Search.css"
@@ -7,14 +7,9 @@ import "./Search.css"
 
 export const SelectedRecipe = props => {
 
-    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
-
     let userId = parseInt(localStorage.getItem("app_user_id"))
 
-    useEffect(() => {
-        getRecipeById(props.selectedRecipeId)
-        .then(getSavedRecipes())
-    }, [])
+    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
 
     const { savedRecipes,
         saveRecipe,
@@ -22,6 +17,13 @@ export const SelectedRecipe = props => {
         // saveInstructions,
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
+
+
+    useEffect(() => {
+        getRecipeById(props.selectedRecipeId)
+            .then(getSavedRecipes())
+    }, [])
+
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
@@ -38,13 +40,12 @@ export const SelectedRecipe = props => {
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
 
 
-
         const constructRecipe = () => {
             console.log(savedRecipes)
 
             if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
-            
+
             } else {
 
                 saveRecipe({
@@ -79,9 +80,11 @@ export const SelectedRecipe = props => {
             }
         }
 
-        console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
+        // console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
+
 
         let parsedEquipment = []
+
 
         return (
             <>

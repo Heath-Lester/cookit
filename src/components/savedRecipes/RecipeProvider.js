@@ -4,12 +4,13 @@ import React, { useState } from "react"
 
 export const SavedRecipeContext = React.createContext()
 
-const userId = parseInt(localStorage.getItem("app_user_id"))
+
 
 export const RecipeProvider = props => {
-
+    
     const [savedRecipes, setSavedRecipes] = useState([])
-
+    
+    const userId = parseInt(localStorage.getItem("app_user_id"))
 
 
     /// Saved Recipe Requests ///
@@ -63,19 +64,19 @@ export const RecipeProvider = props => {
 
 
     /// Saved Cook Wear Requests ///
-    const getCookWear = recipeId => {
-        return fetch(`http://localhost:8088/cookWear/recipeId=${recipeId}`)
-            .then(result => result.json())
-    }
+    // const getCookWear = recipeId => {
+    //     return fetch(`http://localhost:8088/cookWear/recipeId=${recipeId}`)
+    //         .then(result => result.json())
+    // }
 
 
-    const saveCookWear = cookWearArray => {
-        return fetch(`http://localhost:8088/cookWear`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(cookWearArray)
-        })
-    }
+    // const saveCookWear = cookWearArray => {
+    //     return fetch(`http://localhost:8088/cookWear`, {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(cookWearArray)
+    //     })
+    // }
 
 
     return (
@@ -88,8 +89,8 @@ export const RecipeProvider = props => {
             saveIngredients,
             getInstructions,
             saveInstructions,
-            getCookWear,
-            saveCookWear
+            // getCookWear,
+            // saveCookWear
         }}>
             {props.children}
         </SavedRecipeContext.Provider>
