@@ -4,15 +4,16 @@ import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
 
 
-export const SearchResults = props => {
+export const SearchResults = keyword => {
     // debugger
 
-    const { setResults, searchResults, getRecipeById, setRecipe } = useContext(SearchContext)
+    const { setResults, searchResults, getRecipeById, setRecipe, searchRecipeByKeyword } = useContext(SearchContext)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
     useEffect(() => {
-        getRecipeById(props.selectedRecipeId)
+        // getRecipeById(props.selectedRecipeId)
+        searchRecipeByKeyword(keyword)
     }, [])
 
     return (
@@ -22,8 +23,8 @@ export const SearchResults = props => {
                     return <section className="recipe" id={result.id} autoFocus key={result.id}
                         onClick={() => {
                             // setRecipe({})
-                            setResults([])
-                            props.setSelectedRecipeId(result.id)
+                            // setResults([])
+                            // props.setSelectedRecipeId(result.id)
                         }}>
                         <img className="recipe__image" src={imageUrl + result.image} alt={`Recipe`}></img>
                         <h3 className="recipe__name">{result.title}</h3>

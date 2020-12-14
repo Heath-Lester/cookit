@@ -6,34 +6,26 @@ import { SearchContext } from "../search/SearchProvider"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import "./ViewPort.css"
 
-export const ViewPort = props => {
 
-    const [selectedRecipeId , setSelectedRecipeId] = useState(0)
+export const ViewPort = input => {
+    // const { searchResults, setRecipe } = useContext(SearchContext)
+    debugger
+    console.log("viewport_input", input)
 
-    const { setResults,
-        searchResults,
-        getRecipebyId,
-        setRecipe } = useContext(SearchContext)
+  
 
-    const { savedRecipes,
-        saveRecipe,
-        // saveIngredients,
-        // saveInstructions,
-        // saveCookWear,
-        getSavedRecipes } = useContext(SavedRecipeContext)
-        
 
-    if ( searchResults !== [] && setRecipe === {} ) {
-        return <SearchResults setSelectedRecipeId={setSelectedRecipeId} />
+    if ( typeof input === "string" ) {
+        SearchResults(input)
+        // return <SearchResults  keyword={input}/>
 
-    } else if (searchResults === [] && setRecipe !== {} ) {
-        return <DetailedResult selectedRecipeId={selectedRecipeId} />
-
-    } else if ( searchResults === [] && setRecipe === {} ) {
-       return <></>
+    } else if ( typeof input === "number" ) {
+        // return <DetailedResult  recipeId={input}/>
+        DetailedResult(input)
 
     } else {
         return <h3>Nothing to Render</h3>
     }
 
 }
+

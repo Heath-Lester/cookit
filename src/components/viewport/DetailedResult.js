@@ -5,7 +5,7 @@ import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
 
 
-export const DetailedResult = props => {
+export const DetailedResult = recipeId => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
 
@@ -20,7 +20,7 @@ export const DetailedResult = props => {
 
 
     useEffect(() => {
-        getRecipeById(props.selectedRecipeId)
+        // getRecipeById(props.selectedRecipeId)
             // .then(getSavedRecipes())
     }, [])
 

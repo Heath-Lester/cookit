@@ -12,7 +12,7 @@ import "./Home.css"
 
 export const HomeView = props => {
 
-    const [selectedRecipeId , setSelectedRecipeId] = useState(0)
+    // const [selectedRecipeId , setSelectedRecipeId] = useState(0)
 
     return (
         <main className="container--home">

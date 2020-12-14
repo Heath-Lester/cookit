@@ -1,6 +1,7 @@
 
 import React, { useContext, useRef, useEffect } from "react"
 import { SearchContext } from "./SearchProvider"
+import { ViewPort } from "../viewport/ViewPort"
 import "./Search.css"
 
 
@@ -9,16 +10,12 @@ export const SearchBar = props => {
     const { searchTerms,
         setTerms,
         autoResults,
-        setRecipe,
-        setResults,
         recipeAutocomplete,
         searchRecipeByKeyword
     } = useContext(SearchContext)
 
-
     useEffect(() => {
         if (searchTerms !== "") {
-            // debugger
             recipeAutocomplete(searchTerms)
         }
     }, [searchTerms])
@@ -41,12 +38,13 @@ export const SearchBar = props => {
 
             <button type="submit" className="search--button"
                 onClick={event => {
-                    debugger
+                    // debugger
                     event.preventDefault()
-                    // setResults([])
-                    // setRecipe({})
-                    // setTerms([])
-                    searchRecipeByKeyword(keyword.current.value)
+                    // searchRecipeByKeyword(keyword.current.value)
+                    console.log(keyword.current.value)
+                    ViewPort(keyword.current.value)
+                    // return <ViewPort input={keyword.current.value}></ViewPort>
+
                 }}>Search
             </button>
 

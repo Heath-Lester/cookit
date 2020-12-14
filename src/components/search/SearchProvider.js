@@ -15,6 +15,8 @@ export const SearchProvider = props => {
     const [searchTerms, setTerms] = useState("")
     
     const [autoResults, setAutoResults] = useState([])
+
+
     console.log("searchResults", searchResults)
     console.log("detailedRecipe", detailedRecipe)
     console.log("searchTerms", searchTerms)
@@ -37,40 +39,32 @@ export const SearchProvider = props => {
     }
 
 
-    const searchRecipeDetailed = searchObj => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${searchObj.keyword}&diet=${searchObj.diet}&excludeIngredients=${searchObj.excludedIngredients}&intolerances=${searchObj.intolerances}&number=${searchObj.numberOfResults}&offset=${searchObj.SkipResults}&type=${searchObj.TypeOfCourse}&instructionsRequired=${searchObj.includeInstruction}`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": `${apiKey}`,
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-            }
-        })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            })
-            .then(setResults);
-    }
+    // const searchRecipeDetailed = searchObj => {
+    //     return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${searchObj.keyword}&diet=${searchObj.diet}&excludeIngredients=${searchObj.excludedIngredients}&intolerances=${searchObj.intolerances}&number=${searchObj.numberOfResults}&offset=${searchObj.SkipResults}&type=${searchObj.TypeOfCourse}&instructionsRequired=${searchObj.includeInstruction}`, {
+    //         "method": "GET",
+    //         "headers": {
+    //             "x-rapidapi-key": `${apiKey}`,
+    //             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    //         }
+    //     })
+    //     .then(response => console.log(response))
+    //     .catch(err => console.error(err))
+    //     .then(setResults)
+    // }
 
     
-    const searchByIngredients = ingredient => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredient}&number=100&ranking=1&ignorePantry=false`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": `${apiKey}`,
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-            }
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(err => {
-            console.error(err);
-        })
-        .then(setResults);
-    }
+    // const searchByIngredients = ingredient => {
+    //     return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredient}&number=100&ranking=1&ignorePantry=false`, {
+    //         "method": "GET",
+    //         "headers": {
+    //             "x-rapidapi-key": `${apiKey}`,
+    //             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    //         }
+    //     })
+    //     .then(response => console.log(response))
+    //     .catch(err => console.error(err))
+    //     .then(setResults)
+    // }
     
     //// Recipe Requests ////
     const getRecipeById = id => {
@@ -131,8 +125,8 @@ export const SearchProvider = props => {
             autoResults, 
             setAutoResults, 
             searchRecipeByKeyword, 
-            searchRecipeDetailed, 
-            searchByIngredients, 
+            // searchRecipeDetailed, 
+            // searchByIngredients, 
             getRecipeById,
             recipeAutocomplete, 
             ingredientAutocomplete
