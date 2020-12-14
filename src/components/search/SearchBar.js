@@ -44,6 +44,7 @@ export const SearchBar = props => {
                     setRecipe({})
                     setTerms([])
                     searchRecipeByKeyword(keyword.current.value)
+                    props.setSelectedRecipeId(0)
                 }}>Search
             </button>
 

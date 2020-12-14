@@ -24,7 +24,7 @@ export const HomeView = props => {
             </section>
             <section className="container--center">
                 <div className="search">
-                    <SearchBar />
+                    <SearchBar setSelectedRecipeId={setSelectedRecipeId}/>
                 </div>
                 <div className="results">
                     {selectedRecipeId === 0 ? <CompactResults setSelectedRecipeId={setSelectedRecipeId}/> : <SelectedRecipe selectedRecipeId={selectedRecipeId}/>}
