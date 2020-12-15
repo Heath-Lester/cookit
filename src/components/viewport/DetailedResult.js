@@ -134,3 +134,4 @@ export const DetailedResult = recipeId => {
         )
     }
 }
+

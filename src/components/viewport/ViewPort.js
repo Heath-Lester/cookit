@@ -6,20 +6,21 @@ import { SearchResults } from "./SearchResults"
 import { SearchContext } from "../search/SearchProvider"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import "./ViewPort.css"
+import { ViewPortContext } from "./ViewPortContext"
 
 
-export const ViewPort = ({props}) => {
-    // const { searchResults, setRecipe } = useContext(SearchContext)
+export const ViewPort = props => {
+    
+    const {viewPort} = useContext(ViewPortContext)
+    
     console.log("props", props)
-    // debugger
 
-
-
-
-    if (typeof props === "string") {
+    console.log("ViewPort", viewPort)
+    
+    if ( viewPort === 1 ) {
         return <SearchResults  {...props}/>
 
-    } else if (typeof props === "number") {
+    } else if ( viewPort === 2 ) {
         return <DetailedResult  {...props}/>
 
     } else {

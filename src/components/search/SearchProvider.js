@@ -17,14 +17,15 @@ export const SearchProvider = props => {
     const [autoResults, setAutoResults] = useState([])
 
 
-    console.log("searchResults", searchResults)
-    console.log("detailedRecipe", detailedRecipe)
-    console.log("searchTerms", searchTerms)
-    console.log("autoResults", autoResults)
+    // console.log("searchResults", searchResults)
+    // console.log("detailedRecipe", detailedRecipe)
+    // console.log("searchTerms", searchTerms)
+    // console.log("autoResults", autoResults)
     
 
     //// Search Requests ////
     const searchRecipeByKeyword = keyword => {
+        // debugger
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=10&instructionsRequired=true`, {
             "method": "GET",
             "headers": {
@@ -34,7 +35,7 @@ export const SearchProvider = props => {
         })
             .then(response => response.json())
             .then(response => setResults(response.results))
-            .then(console.log(searchResults))
+            .then(console.log("search results", searchResults))
             .catch(err => console.error(err))
     }
 

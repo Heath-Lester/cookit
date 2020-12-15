@@ -1,6 +1,7 @@
 
 import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
+import { ViewPortDisplay } from "./viewport/ViewPortContext"
 import { Route } from "react-router-dom"
 import { AllSavedRecipes } from "./savedRecipes/AllSavedRecipes"
 import { HomeView } from "./Home"
@@ -16,16 +17,18 @@ export const ApplicationViews = () => {
             <SearchProvider>
                 <RecipeProvider>
                     <Route path="/savedRecipes/" render={
-                        props => <AllSavedRecipes {...props}/>
+                        props => <AllSavedRecipes {...props} />
                     } />
                 </RecipeProvider>
             </SearchProvider>
 
             <SearchProvider>
                 <RecipeProvider>
-                    <Route exact path="/">
-                        <HomeView />
-                    </Route>
+                    <ViewPortDisplay>
+                        <Route exact path="/">
+                            <HomeView />
+                        </Route>
+                    </ViewPortDisplay>
                 </RecipeProvider>
             </SearchProvider>
         </>

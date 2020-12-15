@@ -6,7 +6,7 @@ export const ViewPortContext = React.createContext()
 
 export const ViewPortDisplay = props => {
 
-    const [viewPort, setViewPort] = useState()
+    const [viewPort, setViewPort] = useState(0)
 
     console.log("View Port Context", viewPort)
 
