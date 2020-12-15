@@ -9,9 +9,9 @@ export const SelectedSavedRecipe = recipeId => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
     // debugger
-    const { detailedRecipe, getRecipeById, deleteRecipe } = useContext(SearchContext)
+    const { detailedRecipe, getRecipeById, setRecipe } = useContext(SearchContext)
 
-    const { selectedRecipe } = useContext(SavedRecipeContext)
+    const { selectedRecipe, deleteRecipe} = useContext(SavedRecipeContext)
 
 
     useEffect(() => {
@@ -88,10 +88,12 @@ export const SelectedSavedRecipe = recipeId => {
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
 
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
+                    <button className="detailedRecipe__deleteButton" id={`Delete--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
-                            deleteRecipe(detailedRecipe.id)
+                            console.log(recipeId.recipeId)
+                            deleteRecipe(recipeId.recipeId)
+                            setRecipe({})
                         }}>Delete Recipe
                     </button>
                     

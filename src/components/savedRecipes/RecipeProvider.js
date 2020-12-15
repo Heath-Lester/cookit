@@ -34,11 +34,20 @@ export const RecipeProvider = props => {
 
     const deleteRecipe = recipeId => {
         return fetch(`http://localhost:8088/savedRecipes/${recipeId}`, {
-            method: "DELETE"
+            method: "DELETE",
         })
             .then(getSavedRecipes)
     }
 
+    //// Favorite/Unfavorite Request ////
+    const favorite = (savedRecipeId, favorite) => {
+        return fetch(`http://localhost:8088/savedRecipes/${savedRecipeId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(favorite)
+        })
+            .then(getSavedRecipes)
+    }
 
     /// Saved Ingredients Requests ///
     const getIngredients = recipeId => {
@@ -69,6 +78,7 @@ export const RecipeProvider = props => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(instructionsArray)
         })
+
     }
 
 
@@ -97,6 +107,7 @@ export const RecipeProvider = props => {
             getSavedRecipes,
             saveRecipe,
             deleteRecipe,
+            favorite,
             getIngredients,
             saveIngredients,
             getInstructions,

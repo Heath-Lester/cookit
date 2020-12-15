@@ -1,21 +1,27 @@
 
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SearchContext } from "../search/SearchProvider"
+import star_icon from "../../images/star_icon.png"
 import "./SavedRecipes.css"
 import { Link } from "react-router-dom"
 
 
 export const AllSavedRecipes = props => {
 
-    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe } = useContext(SavedRecipeContext)
+    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite } = useContext(SavedRecipeContext)
 
     const { getRecipeById } = useContext(SearchContext)
 
+    const [recipeId, setRecipeId] = useState()
+
+    let alphabetical = savedRecipes.sort((a, b) => (b.title > a.title) ? 1 : -1)
+    let sortedRecipes = alphabetical.sort((a, b) => (b.favorite > a.favorite) ? 1 : -1)
+
     useEffect(() => {
         getSavedRecipes()
-    }, [])
+    }, [selectedRecipe])
 
     // const clickedRecipe = () => {
     //     return recipe.id
@@ -23,29 +29,44 @@ export const AllSavedRecipes = props => {
 
     return (
         <>
-        <header className="savedRecipe--header"><h1>All Recipes</h1></header>
-        <h3><Link to={'/'}>Back</Link></h3>
-        <section className="container--left">
-            {
-                savedRecipes.map(recipe => {
-                    return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
-                    onClick={() => {
-                        // clickedRecipe(recipe.id)
-                        console.log(recipe.recipeId)
-                        setSelectedRecipe(recipe.recipeId)
-                        console.log("selectedRecipe", selectedRecipe)
+            <header className="savedRecipe--header"><h1>All Recipes</h1></header>
+            <h3><Link to={'/'}>Back</Link></h3>
+            <section className="container--left">
+                {
+                    sortedRecipes.map(recipe => {
+                        return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
+                            onClick={() => {
+                                // clickedRecipe(recipe.id)
+                                setRecipeId(recipe.id)
+                                console.log("Recipe Id", recipeId)
+                                setSelectedRecipe(recipe.recipeId)
+                                console.log("selectedRecipe", selectedRecipe)
 
-                    }}>
-                        <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
-                        <h3 className="recipe__name">{recipe.title}</h3>
-                    </section>
+                            }}>
+                            <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
+                            {recipe.favorite ? <h3 className="recipe__name">{recipe.title}<img src={star_icon} /></h3> :
+                                <h3 className="recipe__name">{recipe.title}</h3>}
+                            {recipe.favorite ? <button className="recipe__favorite"
+                                onClick={() => {
+                                    favorite(recipe.id, { "favorite": false })
+                                    getSavedRecipes()
+                                    setSelectedRecipe(recipe.recipeId)
+                                }}>Unfavorite</button> : <button className="recipe__favorite"
+                                    onClick={() => {
+                                        favorite(recipe.id, { "favorite": true })
+                                        getSavedRecipes()
+                                        setSelectedRecipe(recipe.recipeId)
+                                    }}>Favorite</button>
+                            }
+
+                        </section>
+                    }
+
+                    )
                 }
-                
-                )
-            }
             </section>
             <section className="container--right">
-                {<SelectedSavedRecipe {...props}/>}
+                {<SelectedSavedRecipe recipeId={recipeId} {...props} />}
             </section>
         </>
     )
