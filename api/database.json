@@ -37,39 +37,21 @@
     },
     {
       "userId": 1,
-      "recipeId": 485365,
-      "title": "Chicken Spinoccoli – Breaded Stuffed Chicken Breast With Spinach, Broccoli and Cheese",
-      "image": "https://spoonacular.com/recipeImages/485365-556x370.jpg",
+      "recipeId": 828455,
+      "title": "Loaded Twice Baked Potatoes",
+      "image": "https://spoonacular.com/recipeImages/828455-556x370.jpg",
       "favorite": false,
       "edited": false,
       "id": 4
     },
     {
       "userId": 1,
-      "recipeId": 492560,
-      "title": "Quick and Easy St. Louis-Style Pizza",
-      "image": "https://spoonacular.com/recipeImages/492560-556x370.jpg",
+      "recipeId": 595654,
+      "title": "Perfect Pan-Seared Steak",
+      "image": "https://spoonacular.com/recipeImages/595654-556x370.jpg",
       "favorite": false,
       "edited": false,
       "id": 5
-    },
-    {
-      "userId": 1,
-      "recipeId": 822254,
-      "title": "Vietnamese Chicken Sandwich with Pickled Vegetables (Bánh Mì)",
-      "image": "https://spoonacular.com/recipeImages/822254-556x370.jpg",
-      "favorite": false,
-      "edited": false,
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "recipeId": 537208,
-      "title": "Rhubarb Strawberry Smoothie",
-      "image": "https://spoonacular.com/recipeImages/537208-556x370.jpg",
-      "favorite": false,
-      "edited": false,
-      "id": 7
     }
   ],
   "ingredientsJoin": [],

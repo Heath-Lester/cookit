@@ -12,7 +12,7 @@ import "./Home.css"
 
 export const HomeView = props => {
 
-    // const [selectedRecipeId , setSelectedRecipeId] = useState(0)
+    const [selectedRecipeId , setSelectedRecipeId] = useState(0)
 
     return (
         <main className="container--home">
@@ -25,7 +25,7 @@ export const HomeView = props => {
             </section>
             <section className="container--center">
                 <div className="search">
-                    <SearchBar />
+                    <SearchBar setSelectedRecipeId={setSelectedRecipeId}/>
                 </div>
                 <div id="viewport">
                     {/* {selectedRecipeId === 0 ? <SearchResults setSelectedRecipeId={setSelectedRecipeId}/> : <DetailedResult selectedRecipeId={selectedRecipeId}/>} */}

@@ -10,6 +10,7 @@ export const SearchBar = props => {
     const { searchTerms,
         setTerms,
         autoResults,
+        setRecipe,
         recipeAutocomplete,
         searchRecipeByKeyword
     } = useContext(SearchContext)
@@ -42,12 +43,10 @@ export const SearchBar = props => {
                 onClick={event => {
                     // debugger
                     event.preventDefault()
-                    // searchRecipeByKeyword(keyword.current.value)
-                    console.log(keyword.current.value)
-                    // ViewPort(keyword.current.value)
-                    passToViewPort()
-                    // return <ViewPort input={keyword.current.value}></ViewPort>
-
+                    setRecipe({})
+                    setTerms([])
+                    searchRecipeByKeyword(keyword.current.value)
+                    props.setSelectedRecipeId(0)
                 }}>Search
             </button>
 

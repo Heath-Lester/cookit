@@ -8,21 +8,19 @@ import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import "./ViewPort.css"
 
 
-export const ViewPort = input => {
+export const ViewPort = ({props}) => {
     // const { searchResults, setRecipe } = useContext(SearchContext)
-    debugger
-    console.log("viewport_input", input)
+    console.log("props", props)
+    // debugger
 
 
 
 
-    if (typeof input === "string") {
-        return (ReactDOM.render(document.getElementById("viewport"), < SearchResults key = "keyword" keyword = { input } />))
-        // return <SearchResults  keyword={input}/>
+    if (typeof props === "string") {
+        return <SearchResults  {...props}/>
 
-    } else if (typeof input === "number") {
-        // return <DetailedResult  recipeId={input}/>
-        return DetailedResult(input)
+    } else if (typeof props === "number") {
+        return <DetailedResult  {...props}/>
 
     } else {
         return <h3>Nothing to Render</h3>

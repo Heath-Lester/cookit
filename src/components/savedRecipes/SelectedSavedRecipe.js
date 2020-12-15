@@ -1,29 +1,24 @@
 
 import React, { useContext, useEffect } from "react"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { SavedRecipeContext } from "./RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
-import "./ViewPort.css"
+import "./SavedRecipes.css"
 
 
-export const DetailedResult = recipeId => {
+export const SelectedSavedRecipe = recipeId => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
+    // debugger
+    const { detailedRecipe, getRecipeById, setRecipe } = useContext(SearchContext)
 
-    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
-
-    const { savedRecipes,
-        saveRecipe,
-        // saveIngredients,
-        // saveInstructions,
-        // saveCookWear,
-        getSavedRecipes } = useContext(SavedRecipeContext)
+    const { selectedRecipe, deleteRecipe} = useContext(SavedRecipeContext)
 
 
     useEffect(() => {
-        // getRecipeById(props.selectedRecipeId)
-            // .then(getSavedRecipes())
-    }, [])
-
+        if (typeof selectedRecipe === "number") {
+            getRecipeById(selectedRecipe)
+        }
+    }, [selectedRecipe])
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
@@ -40,45 +35,45 @@ export const DetailedResult = recipeId => {
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
 
 
-        const constructRecipe = () => {
-            console.log(savedRecipes)
+        // const EditRecipe = () => {
+        //     console.log(savedRecipes)
 
-            if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
-                window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
+        //     if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
+        //         window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
 
-            } else {
+        //     } else {
 
-                saveRecipe({
-                    userId,
-                    recipeId: detailedRecipe.id,
-                    title: detailedRecipe.title,
-                    image: detailedRecipe.image,
-                    favorite: false,
-                    edited: false
-                })
-                // .then(ingredientsArray.map(i => saveIngredients({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     ingredientId: i.id,
-                //     name: i.name,
-                //     unit: i.unit,
-                //     amount: i.unit,
-                //     aisle: i.aisle
-                // })))
-                // .then(equipmentArray.map(e => saveEquipment({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     equipmentId: e.id,
-                //     name: e.name,
-                // })))
-                // .then(instructionArray.map(i => saveInstructions({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     number: i.number,
-                //     step: i.step
-                // })))
-            }
-        }
+        //         saveRecipe({
+        //             userId,
+        //             recipeId: detailedRecipe.id,
+        //             title: detailedRecipe.title,
+        //             image: detailedRecipe.image,
+        //             favorite: false,
+        //             edited: false
+        //         })
+        // .then(ingredientsArray.map(i => saveIngredients({
+        //     userId,
+        //     recipeId: detailedRecipe.id,
+        //     ingredientId: i.id,
+        //     name: i.name,
+        //     unit: i.unit,
+        //     amount: i.unit,
+        //     aisle: i.aisle
+        // })))
+        // .then(equipmentArray.map(e => saveEquipment({
+        //     userId,
+        //     recipeId: detailedRecipe.id,
+        //     equipmentId: e.id,
+        //     name: e.name,
+        // })))
+        // .then(instructionArray.map(i => saveInstructions({
+        //     userId,
+        //     recipeId: detailedRecipe.id,
+        //     number: i.number,
+        //     step: i.step
+        // })))
+
+
 
         // console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
 
@@ -89,16 +84,19 @@ export const DetailedResult = recipeId => {
         return (
             <>
                 <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
-                        onClick={event => {
-                            event.preventDefault()
-                            getSavedRecipes()
-                            constructRecipe()
-                        }}>Save Recipe
-                    </button>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
+
+                    <button className="detailedRecipe__deleteButton" id={`Delete--${detailedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            console.log(recipeId.recipeId)
+                            deleteRecipe(recipeId.recipeId)
+                            setRecipe({})
+                        }}>Delete Recipe
+                    </button>
+                    
                     <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
                     <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
                     <p className="detailedRecipe__time">Serves {detailedRecipe.servings}</p>
@@ -134,3 +132,4 @@ export const DetailedResult = recipeId => {
         )
     }
 }
+
