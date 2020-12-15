@@ -1,5 +1,6 @@
 
 import React, { useEffect, useContext } from "react"
+import { Link } from "react-router-dom"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
 
@@ -16,6 +17,9 @@ export const SavedRecipeList = props => {
 
     return (
         <article className="savedRecipes">
+            <header className="allSavedRecipes">
+                <Link to={`/savedRecipes/`}>Saved Recipes</Link>
+                </header> 
 
             {
                 savedRecipes.map(recipe => {

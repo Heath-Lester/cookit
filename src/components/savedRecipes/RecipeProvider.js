@@ -9,6 +9,8 @@ export const SavedRecipeContext = React.createContext()
 export const RecipeProvider = props => {
     
     const [savedRecipes, setSavedRecipes] = useState([])
+
+    const [selectedRecipe, setSelectedRecipe] = useState({})
     
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
@@ -83,6 +85,8 @@ export const RecipeProvider = props => {
         <SavedRecipeContext.Provider value={{
             savedRecipes,
             setSavedRecipes,
+            selectedRecipe, 
+            setSelectedRecipe,
             getSavedRecipes,
             saveRecipe,
             getIngredients,
