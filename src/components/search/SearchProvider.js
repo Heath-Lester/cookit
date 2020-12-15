@@ -1,6 +1,6 @@
 
 import React, { useState } from "react"
-import { apiKey } from "../.api_key.js"
+import { apiKey } from "../../.api_key.js"
 
 
 export const SearchContext = React.createContext()
