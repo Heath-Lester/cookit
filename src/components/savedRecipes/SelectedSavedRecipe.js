@@ -8,8 +8,8 @@ import "./SavedRecipes.css"
 export const SelectedSavedRecipe = recipeId => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
-    debugger
-    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
+    // debugger
+    const { detailedRecipe, getRecipeById, deleteRecipe } = useContext(SearchContext)
 
     const { selectedRecipe } = useContext(SavedRecipeContext)
 
@@ -84,14 +84,17 @@ export const SelectedSavedRecipe = recipeId => {
         return (
             <>
                 <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
-                        onClick={event => {
-                            event.preventDefault()
-                        }}>Delete Recipe
-                    </button>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
+
+                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            deleteRecipe(detailedRecipe.id)
+                        }}>Delete Recipe
+                    </button>
+                    
                     <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
                     <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
                     <p className="detailedRecipe__time">Serves {detailedRecipe.servings}</p>

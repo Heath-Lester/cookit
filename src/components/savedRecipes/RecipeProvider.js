@@ -7,11 +7,11 @@ export const SavedRecipeContext = React.createContext()
 
 
 export const RecipeProvider = props => {
-    
+
     const [savedRecipes, setSavedRecipes] = useState([])
 
     const [selectedRecipe, setSelectedRecipe] = useState({})
-    
+
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
 
@@ -28,6 +28,13 @@ export const RecipeProvider = props => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(recipeObj)
+        })
+            .then(getSavedRecipes)
+    }
+
+    const deleteRecipe = recipeId => {
+        return fetch(`http://localhost:8088/savedRecipes/${recipeId}`, {
+            method: "DELETE"
         })
             .then(getSavedRecipes)
     }
@@ -85,10 +92,11 @@ export const RecipeProvider = props => {
         <SavedRecipeContext.Provider value={{
             savedRecipes,
             setSavedRecipes,
-            selectedRecipe, 
+            selectedRecipe,
             setSelectedRecipe,
             getSavedRecipes,
             saveRecipe,
+            deleteRecipe,
             getIngredients,
             saveIngredients,
             getInstructions,
