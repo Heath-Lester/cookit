@@ -34,7 +34,7 @@ export const RecipeProvider = props => {
 
     const deleteRecipe = recipeId => {
         return fetch(`http://localhost:8088/savedRecipes/${recipeId}`, {
-            method: "DELETE"
+            method: "DELETE",
         })
             .then(getSavedRecipes)
     }

@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SearchContext } from "../search/SearchProvider"
@@ -13,9 +13,11 @@ export const AllSavedRecipes = props => {
 
     const { getRecipeById } = useContext(SearchContext)
 
+    const [ recipeId, setRecipeId ] = useState()
+
     useEffect(() => {
         getSavedRecipes()
-    }, [])
+    }, [selectedRecipe])
 
     // const clickedRecipe = () => {
     //     return recipe.id
@@ -31,7 +33,8 @@ export const AllSavedRecipes = props => {
                     return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
                     onClick={() => {
                         // clickedRecipe(recipe.id)
-                        console.log(recipe.recipeId)
+                        setRecipeId(recipe.id)
+                        console.log("Recipe Id", recipeId)
                         setSelectedRecipe(recipe.recipeId)
                         console.log("selectedRecipe", selectedRecipe)
 
@@ -45,7 +48,7 @@ export const AllSavedRecipes = props => {
             }
             </section>
             <section className="container--right">
-                {<SelectedSavedRecipe {...props}/>}
+                {<SelectedSavedRecipe recipeId={recipeId} {...props}/>}
             </section>
         </>
     )
