@@ -34,6 +34,24 @@
       "favorite": false,
       "edited": false,
       "id": 3
+    },
+    {
+      "userId": 1,
+      "recipeId": 828455,
+      "title": "Loaded Twice Baked Potatoes",
+      "image": "https://spoonacular.com/recipeImages/828455-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "recipeId": 595654,
+      "title": "Perfect Pan-Seared Steak",
+      "image": "https://spoonacular.com/recipeImages/595654-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 5
     }
   ],
   "ingredientsJoin": [],
