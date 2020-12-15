@@ -52,6 +52,15 @@
       "favorite": false,
       "edited": false,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": 1149769,
+      "title": "Eggnog Recipe",
+      "image": "https://spoonacular.com/recipeImages/1149769-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 6
     }
   ],
   "ingredientsJoin": [],

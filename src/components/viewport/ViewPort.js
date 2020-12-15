@@ -16,6 +16,8 @@ export const ViewPort = props => {
     console.log("props", props)
 
     console.log("ViewPort", viewPort)
+
+    
     
     if ( viewPort === 1 ) {
         return <SearchResults  {...props}/>

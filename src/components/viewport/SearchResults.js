@@ -26,7 +26,7 @@ export const SearchResults = (props) => {
                 searchResults.map(result => {
                     return <section className="recipe" id={result.id} autoFocus key={result.id}
                         onClick={() => {
-                            debugger
+                            // debugger
                             // setRecipe({})
                             // setResults([])
                             // props.setSelectedRecipeId(result.id)
