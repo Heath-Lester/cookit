@@ -127,7 +127,7 @@ export const SearchProvider = props => {
             detailedRecipe,
             setRecipe, 
             searchTerms, 
-            setTerms, 
+            setTerms,
             autoResults, 
             setAutoResults, 
             searchRecipeByKeyword, 
