@@ -1,11 +1,13 @@
 
 import React, { useContext, useEffect } from "react"
+import { MealContext } from "../meal/MealProvider"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
-import { SearchContext } from "./SearchProvider"
-import "./Search.css"
+import { MealBuilder } from "../meal/MealBuilder"
+import { SearchContext } from "../search/SearchProvider"
+import "./ViewPort.css"
 
 
-export const SelectedRecipe = props => {
+export const DetailedResult = recipeId => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
 
@@ -18,10 +20,10 @@ export const SelectedRecipe = props => {
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
+    const { addMeal, meals, getMeals } = useContext(MealContext)
 
     useEffect(() => {
-        getRecipeById(props.selectedRecipeId)
-            .then(getSavedRecipes())
+        // getMeals()
     }, [])
 
 
@@ -88,13 +90,25 @@ export const SelectedRecipe = props => {
 
         return (
             <>
-                <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
+                <section className="detailedRecipe" id={detailedRecipe.id} key={detailedRecipe.id}>
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
                             getSavedRecipes()
                             constructRecipe()
                         }}>Save Recipe
+                    </button>
+
+                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
+                                addMeal({ userId, recipeId: detailedRecipe.id, title: detailedRecipe.title, image: detailedRecipe.image, readyInMinutes: detailedRecipe.readyInMinutes })
+                                return <MealBuilder />
+                            } else {
+                                window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
+                            }
+                        }}>Add to Meal
                     </button>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
@@ -134,3 +148,4 @@ export const SelectedRecipe = props => {
         )
     }
 }
+
