@@ -15,15 +15,18 @@ export const MealBuilder = props => {
 
     let mealsArray = []
 
+    useEffect(() => {
+        getMeals()
+    }, [])
 
-    getMeals()
-
-    meals.map(meal => {
-        debugger
-        getRecipe(meal.recipeId)
-        return mealsArray.push(currentMeal)
-    })
-
+    useEffect(() => {
+        meals.map(meal => {
+            debugger
+            getRecipe(meal.recipeId)
+            return mealsArray.push(currentMeal)
+        })
+    }, [meals])
+    
     setRecipeArray(mealsArray)
 
     return (
