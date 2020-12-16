@@ -9,29 +9,19 @@ export const MealBuilder = props => {
 
     // const { detailedRecipe, getRecipeById } = useContext(SearchContext)
 
-    const { meals, currentMeal, getRecipe, getMeals, setCurrentMeal } = useContext(MealContext)
-
-    const [recipeArray, setRecipeArray] = useState([])
-
-    let mealsArray = []
+    const { meals, getMeals } = useContext(MealContext)
 
 
-    getMeals()
-
-    meals.map(meal => {
-        debugger
-        getRecipe(meal.recipeId)
-        return mealsArray.push(currentMeal)
-    })
-
-    setRecipeArray(mealsArray)
+    useEffect(() => {
+        getMeals()
+    }, [])
 
     return (
         <>
             <h2>MealBuilder</h2>
             <article className="MealList">
                 {
-                    recipeArray.map(meal => {
+                    meals.map(meal => {
                         return <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
                             <img className="meal__image" src={meal.image} alt={`Meal Image`} />
                             <h4 className="meal__name">{meal.title}</h4>
