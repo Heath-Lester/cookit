@@ -27,12 +27,23 @@ export const MealProvider = props => {
             .then(getMeals)
     }
 
+    const getRecipe = id => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+    }
 
     return (
         <MealContext.Provider value={{
-            meals, 
-            setMeals, 
-            getMeals, 
+            meals,
+            setMeals,
+            getMeals,
+            getRecipe,
             addMeal
         }}>
             {props.children}

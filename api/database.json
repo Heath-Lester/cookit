@@ -10,15 +10,6 @@
   "savedRecipes": [
     {
       "userId": 1,
-      "recipeId": 474597,
-      "title": "Orange Blondies",
-      "image": "https://spoonacular.com/recipeImages/474597-556x370.jpg",
-      "favorite": false,
-      "edited": false,
-      "id": 1
-    },
-    {
-      "userId": 1,
       "recipeId": 972774,
       "title": "Pink Cookie Dragon Fruit Smoothie Bowl",
       "image": "https://spoonacular.com/recipeImages/972774-556x370.jpg",
@@ -81,6 +72,14 @@
       "image": "https://spoonacular.com/recipeImages/929046-556x370.jpg",
       "readyInMinutes": 25,
       "id": 2
+    },
+    {
+      "userId": 1,
+      "recipeId": 547698,
+      "title": "Key Lime Pie",
+      "image": "https://spoonacular.com/recipeImages/547698-556x370.jpg",
+      "readyInMinutes": 75,
+      "id": 3
     }
   ],
   "cookWear": []
