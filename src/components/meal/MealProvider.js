@@ -9,7 +9,6 @@ export const MealProvider = props => {
 
     const [meals, setMeals] = useState([])
 
-    const [currentMeal, setCurrentMeal] = useState({})
 
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
@@ -37,19 +36,15 @@ export const MealProvider = props => {
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
-        .then(response => response.json())
-        .then(response => setCurrentMeal(response))
-        .catch(err => console.error(err))
+            .then(response => response.json())
     }
 
     return (
         <MealContext.Provider value={{
-            meals, 
-            setMeals, 
-            getMeals, 
-            currentMeal, 
-            setCurrentMeal, 
-            getRecipe, 
+            meals,
+            setMeals,
+            getMeals,
+            getRecipe,
             addMeal
         }}>
             {props.children}
