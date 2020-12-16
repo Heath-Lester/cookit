@@ -19,11 +19,10 @@ export const DetailedResult = recipeId => {
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
-    const { addMeal } = useContext(MealContext)
+    const { addMeal, meals, getMeals } = useContext(MealContext)
 
     useEffect(() => {
-        // getRecipeById(props.selectedRecipeId)
-            // .then(getSavedRecipes())
+        getMeals()
     }, [])
 
 
@@ -90,7 +89,7 @@ export const DetailedResult = recipeId => {
 
         return (
             <>
-                <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
+                <section className="detailedRecipe" id={detailedRecipe.id} key={detailedRecipe.id}>
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
@@ -102,10 +101,11 @@ export const DetailedResult = recipeId => {
                     <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
-                            addMeal({
-                                userId,
-                                RecipeId: detailedRecipe.id
-                            })
+                            if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
+                                addMeal({ userId, recipeId: detailedRecipe.id })
+                            } else {
+                                window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
+                            }
                         }}>Add to Meal
                     </button>
 

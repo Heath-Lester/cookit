@@ -11,10 +11,12 @@ export const MealProvider = props => {
 
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
-    const getMeals = userId => {
+    const getMeals = () => {
+        debugger
         return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
             .then(result => result.json())
             .then(setMeals)
+            .then(console.log(meals))
     }
 
     const addMeal = recipeObj => {
