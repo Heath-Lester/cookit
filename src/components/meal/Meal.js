@@ -1,20 +1,19 @@
 
 import React, { useContext, useState, useEffect } from "react"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { MealContext } from "./MealProvider"
 import "./Meal.css"
 
 export const Meal = ({ meal }) => {
-    
-        
-    const {  getRecipe } = useContext(MealContext)
 
-    const [recipe, setRecipe] = useState({title: null, image: null, readyInMinutes: null})
+    const { getRecipe } = useContext(MealContext)
+
+    const [recipe, setRecipe] = useState({ title: null, image: null, readyInMinutes: null })
 
     useEffect(() => {
         getRecipe(meal.recipeId)
-        .then(setRecipe)
+            .then(setRecipe)
     }, [])
+
 
     return (
         <>

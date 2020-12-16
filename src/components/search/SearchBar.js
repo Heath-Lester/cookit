@@ -1,8 +1,8 @@
 
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef, useEffect, useState } from "react"
+import { ViewPortContext } from "../viewport/ViewPortContext"
 import { SearchContext } from "./SearchProvider"
 import { ViewPort } from "../viewport/ViewPort"
-import { ViewPortContext } from "../viewport/ViewPortContext"
 import "./Search.css"
 
 
@@ -13,10 +13,16 @@ export const SearchBar = props => {
         autoResults,
         setRecipe,
         recipeAutocomplete,
-        searchRecipeByKeyword
+        searchRecipeByKeyword,
+        extractRecipeByUrl
     } = useContext(SearchContext)
 
-    const { viewPort, setViewPort } = useContext(ViewPortContext)
+
+    const { setViewPort } = useContext(ViewPortContext)
+
+
+    const [bar, setBar] = useState("search")
+
 
     useEffect(() => {
         if (searchTerms !== "") {
@@ -24,47 +30,88 @@ export const SearchBar = props => {
         }
     }, [searchTerms])
 
-    // const passToViewPort = () => {
-    //     ViewPort(keyword.current.value)
-    // }
+
     const keyword = useRef(null)
+    const barType = useRef(null)
+    const url = useRef(null)
 
-    return (
-        <form className="searchBar">
-            Search Recipes:
-            <input type="text" className="searchBar--input" ref={keyword} required autoFocus
-                onKeyUp={
-                    (keyEvent) => {
-                        setTerms(keyEvent.target.value)
-                        // .then(recipeAutocomplete(searchTerms))
+
+    if (bar === "search") {
+        return (
+            <form className="searchBar">
+
+                <select className="selectSearchType" defaultValue="search" name="barType" useRef={barType}
+                    onChange={(c => {
+                        setBar(c.target.value)
+                        console.log()
+                    })}>
+                    <option value={"search"} useRef={barType}>Search Bar</option>
+                    <option value={"extract"} useRef={barType}>Extract Bar</option>
+                </select>
+
+                <input type="text" className="searchBar--input" ref={keyword} required autoFocus
+                    onKeyUp={
+                        (keyEvent) => {
+                            setTerms(keyEvent.target.value)
+                        }
                     }
-                }
-                placeholder="Search Recipes using a Keyword...">
-            </input>
+                    placeholder="Search Recipes using a Keyword...">
+                </input>
 
-            <button type="submit" className="searchBar--button"
-                onClick={event => {
-                    // debugger
-                    event.preventDefault()
-                    searchRecipeByKeyword(keyword.current.value)
-                    setRecipe({})
-                    setTerms([])
-                    setViewPort(1)
-                    // debugger
-                    return <ViewPort {...props} />
-                    
-                }}>Search
-            </button>
+                <button type="submit" className="searchBar--button"
+                    onClick={event => {
+                        event.preventDefault()
+                        searchRecipeByKeyword(keyword.current.value)
+                        setRecipe({})
+                        setTerms([])
+                        setViewPort(1)
+                        return <ViewPort {...props} />
 
-            <div className="searchBar--autocomplete">
-                {
-                    autoResults.map(result => {
-                        return <dt key={result.id} value={result.id}>
-                            {result.title}
-                        </dt>
-                    })
-                }
-            </div>
-        </form>
-    )
+                    }}>Search
+                </button>
+
+                <div className="searchBar--autocomplete">
+                    {
+                        autoResults.map(result => {
+                            return <dt key={result.id} value={result.id}>
+                                {result.title}
+                            </dt>
+                        })
+                    }
+                </div>
+            </form>
+        )
+    } else if (bar === "extract") {
+        return (
+            <form className="extractBar">
+
+                <select className="selectSearchType" defaultValue="search" name="barType" useRef={barType}
+                    onChange={(c => {
+                        setBar(c.target.value)
+                        console.log()
+                    })}>
+                    <option value={"search"} useRef={barType}>Search Bar</option>
+                    <option value={"extract"} useRef={barType}>Extract Bar</option>
+                </select>
+
+                <input type="text" className="extractBar--input" ref={url} required autoFocus
+                    placeholder="Paste in a Url...">
+                </input>
+
+                <button type="submit" className="extractBar--button"
+                    onClick={event => {
+                        event.preventDefault()
+                        extractRecipeByUrl(url.current.value)
+                        setRecipe({})
+                        setTerms([])
+                        setViewPort(2)
+                        return <ViewPort {...props} />
+
+                    }}>Extract
+                </button>
+            </form>
+        )
+    }
+
+
 }

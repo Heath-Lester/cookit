@@ -52,6 +52,24 @@
       "favorite": false,
       "edited": false,
       "id": 6
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "title": "Spiked Eggnog",
+      "image": "https://spoonacular.com/recipeImages/1156033-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "recipeId": 1057874,
+      "title": "Baked Ham (with Brown Sugar Glaze)",
+      "image": "https://spoonacular.com/recipeImages/1057874-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 8
     }
   ],
   "ingredientsJoin": [],

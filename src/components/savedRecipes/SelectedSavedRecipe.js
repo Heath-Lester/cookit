@@ -7,8 +7,8 @@ import "./SavedRecipes.css"
 
 export const SelectedSavedRecipe = recipeId => {
 
-    let userId = parseInt(localStorage.getItem("app_user_id"))
-    // debugger
+    // let userId = parseInt(localStorage.getItem("app_user_id"))
+
     const { detailedRecipe, getRecipeById, setRecipe } = useContext(SearchContext)
 
     const { selectedRecipe, deleteRecipe} = useContext(SavedRecipeContext)
@@ -72,10 +72,6 @@ export const SelectedSavedRecipe = recipeId => {
         //     number: i.number,
         //     step: i.step
         // })))
-
-
-
-        // console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
 
 
         let parsedEquipment = []

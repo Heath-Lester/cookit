@@ -13,7 +13,6 @@ export const App = () => (
             if (localStorage.getItem("app_user_id")) {
                 return (
                     <>
-                        {/* <Route render={props => <NavBar {...props} />} /> */}
                         <Route render={props => <ApplicationViews {...props} />} />
                     </>
                 )

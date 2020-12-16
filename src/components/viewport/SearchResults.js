@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { SearchContext } from "../search/SearchProvider"
 import { ViewPortContext } from "./ViewPortContext"
 import { ViewPort } from "./ViewPort"
@@ -8,28 +8,19 @@ import "./ViewPort.css"
 
 export const SearchResults = (props) => {
     
-    const { searchRecipeByKeyword, searchResults, getRecipeById } = useContext(SearchContext)
+    const { searchResults, getRecipeById } = useContext(SearchContext)
 
     const { setViewPort } = useContext(ViewPortContext)
-    // searchRecipeByKeyword(keyword)
 
     const imageUrl = `https://spoonacular.com/recipeImages/`
 
-    // useEffect(() => {
-    //     // getRecipeById(props.selectedRecipeId)
-    //     searchRecipeByKeyword(keyword)
-    // }, [])
-
+ 
     return (
         <>
             {
                 searchResults.map(result => {
                     return <section className="recipe" id={result.id} autoFocus key={result.id}
                         onClick={() => {
-                            // debugger
-                            // setRecipe({})
-                            // setResults([])
-                            // props.setSelectedRecipeId(result.id)
                             getRecipeById(result.id)
                             setViewPort(2)
                             return <ViewPort {...props} />
