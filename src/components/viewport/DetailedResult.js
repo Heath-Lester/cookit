@@ -84,7 +84,7 @@ export const DetailedResult = () => {
 
         return (
             <>
-                <section className="detailedRecipe" id={detailedRecipe.id} key={detailedRecipe.id}>
+                <section className="detailedRecipe" id={"detailedRecipe"+detailedRecipe.id} key={"detailedRecipe"+detailedRecipe.id}>
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()

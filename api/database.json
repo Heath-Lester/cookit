@@ -5,6 +5,12 @@
       "password": "12345",
       "name": "Heath Lester",
       "id": 1
+    },
+    {
+      "email": "hannah@gmail.com",
+      "password": "12345",
+      "name": "Hannah Bliss",
+      "id": 2
     }
   ],
   "savedRecipes": [
@@ -99,6 +105,5 @@
       "readyInMinutes": 75,
       "id": 3
     }
-  ],
-  "cookWear": []
+  ]
 }

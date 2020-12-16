@@ -19,7 +19,7 @@ export const SearchResults = (props) => {
         <>
             {
                 searchResults.map(result => {
-                    return <section className="recipe" id={result.id} autoFocus key={result.id}
+                    return <section className="recipe" id={"recipe"+result.id} autoFocus key={"recipe"+result.id}
                         onClick={() => {
                             getRecipeById(result.id)
                             setViewPort(2)
