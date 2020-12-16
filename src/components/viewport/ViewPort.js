@@ -1,12 +1,9 @@
 
 import React, { useState, useEffect, useContext } from "react"
-import ReactDOM from "react-dom"
+import { ViewPortContext } from "./ViewPortContext"
 import { DetailedResult } from "./DetailedResult"
 import { SearchResults } from "./SearchResults"
-import { SearchContext } from "../search/SearchProvider"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import "./ViewPort.css"
-import { ViewPortContext } from "./ViewPortContext"
 
 
 export const ViewPort = props => {

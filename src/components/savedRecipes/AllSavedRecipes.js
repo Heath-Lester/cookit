@@ -1,18 +1,16 @@
 
 import React, { useContext, useEffect, useState } from "react"
-import { SavedRecipeContext } from "./RecipeProvider"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SearchContext } from "../search/SearchProvider"
+import { SavedRecipeContext } from "./RecipeProvider"
 import star_icon from "../../images/star_icon.png"
-import "./SavedRecipes.css"
 import { Link } from "react-router-dom"
+import "./SavedRecipes.css"
 
 
 export const AllSavedRecipes = props => {
 
     const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite } = useContext(SavedRecipeContext)
-
-    const { getRecipeById } = useContext(SearchContext)
 
     const [recipeId, setRecipeId] = useState()
 
@@ -23,9 +21,6 @@ export const AllSavedRecipes = props => {
         getSavedRecipes()
     }, [selectedRecipe])
 
-    // const clickedRecipe = () => {
-    //     return recipe.id
-    // }
 
     return (
         <>

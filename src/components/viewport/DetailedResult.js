@@ -1,17 +1,17 @@
 
+import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { SearchContext } from "../search/SearchProvider"
 import React, { useContext, useEffect } from "react"
 import { MealContext } from "../meal/MealProvider"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { MealBuilder } from "../meal/MealBuilder"
-import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
 
 
-export const DetailedResult = recipeId => {
+export const DetailedResult = () => {
 
     let userId = parseInt(localStorage.getItem("app_user_id"))
 
-    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
+    const { detailedRecipe } = useContext(SearchContext)
 
     const { savedRecipes,
         saveRecipe,
@@ -20,11 +20,7 @@ export const DetailedResult = recipeId => {
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
-    const { addMeal, meals, getMeals } = useContext(MealContext)
-
-    useEffect(() => {
-        // getMeals()
-    }, [])
+    const { addMeal, meals } = useContext(MealContext)
 
 
 
@@ -81,8 +77,6 @@ export const DetailedResult = recipeId => {
                 // })))
             }
         }
-
-        // console.log("ingredientsArray", ingredientsArray, "equipmentArray", equipmentArray, "instructionsArray", instructionsArray)
 
 
         let parsedEquipment = []

@@ -1,20 +1,17 @@
 
-import React, { useContext, useState, useEffect } from "react"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
-import { SearchContext } from "../search/SearchProvider"
-import { Meal } from "./Meal"
+import React, { useContext, useEffect } from "react"
 import { MealContext } from "./MealProvider"
+import { Meal } from "./Meal"
 import "./Meal.css"
 
 export const MealBuilder = props => {
 
-
     const { meals, getMeals } = useContext(MealContext)
-
 
     useEffect(() => {
         getMeals()
     }, [])
+
 
     return (
         <>
@@ -22,7 +19,7 @@ export const MealBuilder = props => {
             <article className="MealList">
                 {
                     meals.map(meal => {
-                        return <Meal meal={meal}/>
+                        return <Meal meal={meal} />
                     })
                 }
             </article>

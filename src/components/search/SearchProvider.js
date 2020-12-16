@@ -7,25 +7,20 @@ export const SearchContext = React.createContext()
 
 
 export const SearchProvider = props => {
-    // debugger
+
     const [searchResults, setResults] = useState([])
 
     const [detailedRecipe, setRecipe] = useState({})
-    
+
     const [searchTerms, setTerms] = useState("")
-    
+
     const [autoResults, setAutoResults] = useState([])
 
+    const [extracedRecipe, setExtracedRecipe] = useState({})
 
-    // console.log("searchResults", searchResults)
-    // console.log("detailedRecipe", detailedRecipe)
-    // console.log("searchTerms", searchTerms)
-    // console.log("autoResults", autoResults)
-    
 
     //// Search Requests ////
     const searchRecipeByKeyword = keyword => {
-        // debugger
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=10&instructionsRequired=true`, {
             "method": "GET",
             "headers": {
@@ -38,7 +33,7 @@ export const SearchProvider = props => {
             .then(console.log("search results", searchResults))
             .catch(err => console.error(err))
     }
-   
+
 
     //// Recipe Requests ////
     const getRecipeById = id => {
@@ -49,10 +44,10 @@ export const SearchProvider = props => {
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
-        .then(response => response.json())
-        .then(response => setRecipe(response))
-        .then(console.log("getRecipeById", detailedRecipe))
-        .catch(err => console.error(err))
+            .then(response => response.json())
+            .then(response => setRecipe(response))
+            .then(console.log("getRecipeById", detailedRecipe))
+            .catch(err => console.error(err))
     }
 
 
@@ -65,8 +60,22 @@ export const SearchProvider = props => {
             }
         })
             .then(response => response.json())
-        }
+    }
 
+    const extractRecipeByUrl = url => {
+
+        fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${url}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+            .then(response => setRecipe(response))
+            .then(console.log("extracted recipe", detailedRecipe))
+            .catch(err => console.error(err))
+    }
 
     //// Autocomplete Requests ////
     const recipeAutocomplete = RecipeTerm => {
@@ -102,18 +111,21 @@ export const SearchProvider = props => {
 
     return (
         <SearchContext.Provider value={{
-            searchResults, 
+            searchResults,
             setResults,
             detailedRecipe,
-            setRecipe, 
-            searchTerms, 
+            setRecipe,
+            searchTerms,
             setTerms,
-            autoResults, 
-            setAutoResults, 
-            searchRecipeByKeyword, 
+            autoResults,
+            setAutoResults,
+            extracedRecipe,
+            setExtracedRecipe,
+            searchRecipeByKeyword,
             getRecipeById,
             getMultipleRecipesById,
-            recipeAutocomplete, 
+            extractRecipeByUrl,
+            recipeAutocomplete,
             ingredientAutocomplete
         }}>
             {props.children}

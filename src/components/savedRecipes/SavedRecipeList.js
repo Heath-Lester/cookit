@@ -10,7 +10,7 @@ import star_icon from "../../images/star_icon.png"
 
 export const SavedRecipeList = props => {
 
-    const { savedRecipes, setSavedRecipe, getSavedRecipes } = useContext(SavedRecipeContext)
+    const { savedRecipes, getSavedRecipes } = useContext(SavedRecipeContext)
 
     const { getRecipeById } = useContext(SearchContext)
 
@@ -33,10 +33,6 @@ export const SavedRecipeList = props => {
                 sortedRecipes.map(recipe => {
                     return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
                         onClick={() => {
-                            // debugger
-                            // setRecipe({})
-                            // setResults([])
-                            // props.setSelectedRecipeId(result.id)
                             getRecipeById(recipe.recipeId)
                             setViewPort(2)
                             return <ViewPort {...props} />
