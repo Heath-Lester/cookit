@@ -1,6 +1,7 @@
 
 import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
+import { MealProvider } from "./meal/MealProvider"
 import { ViewPortDisplay } from "./viewport/ViewPortContext"
 import { Route } from "react-router-dom"
 import { AllSavedRecipes } from "./savedRecipes/AllSavedRecipes"
@@ -24,11 +25,13 @@ export const ApplicationViews = () => {
 
             <SearchProvider>
                 <RecipeProvider>
-                    <ViewPortDisplay>
-                        <Route exact path="/">
-                            <HomeView />
-                        </Route>
-                    </ViewPortDisplay>
+                    <MealProvider>
+                        <ViewPortDisplay>
+                            <Route exact path="/">
+                                <HomeView />
+                            </Route>
+                        </ViewPortDisplay>
+                    </MealProvider>
                 </RecipeProvider>
             </SearchProvider>
         </>

@@ -1,5 +1,6 @@
 
 import React, { useContext, useEffect } from "react"
+import { MealContext } from "../meal/MealProvider"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
@@ -18,6 +19,7 @@ export const DetailedResult = recipeId => {
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
+    const { addMeal } = useContext(MealContext)
 
     useEffect(() => {
         // getRecipeById(props.selectedRecipeId)
@@ -95,6 +97,16 @@ export const DetailedResult = recipeId => {
                             getSavedRecipes()
                             constructRecipe()
                         }}>Save Recipe
+                    </button>
+
+                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            addMeal({
+                                userId,
+                                RecipeId: detailedRecipe.id
+                            })
+                        }}>Add to Meal
                     </button>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>

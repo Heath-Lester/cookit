@@ -2,19 +2,19 @@
 import React, { useState } from "react"
 
 
-const MealContext = React.createContext()
+export const MealContext = React.createContext()
 
 
-const MealProvider = () => {
+export const MealProvider = props => {
 
-    const [meal, setMeal] = useState([])
+    const [meals, setMeals] = useState([])
 
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
     const getMeals = userId => {
         return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
             .then(result => result.json())
-            .then(setMeal)
+            .then(setMeals)
     }
 
     const addMeal = recipeObj => {
@@ -28,9 +28,9 @@ const MealProvider = () => {
 
     return (
         <MealContext.Provider value={{
-            meal, setMeal, getMeals, addMeal
+            meals, setMeals, getMeals, addMeal
         }}>
-            {props.childer}
+            {props.children}
         </MealContext.Provider>
     )
 }

@@ -65,6 +65,12 @@
   ],
   "ingredientsJoin": [],
   "instructions": [],
-  "mealsToPrep": [],
+  "mealsToPrep": [
+    {
+      "userId": 1,
+      "RecipeId": 595654,
+      "id": 1
+    }
+  ],
   "cookWear": []
 }

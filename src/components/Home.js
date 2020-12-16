@@ -2,6 +2,7 @@ import { SavedRecipeList } from "./savedRecipes/SavedRecipeList"
 import { SearchResults } from "./viewport/SearchResults"
 import { DetailedResult } from "./viewport/DetailedResult"
 import { ViewPort } from "./viewport/ViewPort"
+import { MealBuilder } from "./meal/MealBuilder"
 import cookit_logo from "../images/cookit_logo.png"
 import { SearchBar } from "./search/SearchBar"
 import React, { useState } from "react"
@@ -23,6 +24,7 @@ export const HomeView = props => {
             <section className="container--left">
                 <SavedRecipeList />
             </section>
+            
             <section className="container--center">
                 <div className="search">
                     <SearchBar setSelectedRecipeId={setSelectedRecipeId}/>
@@ -32,7 +34,10 @@ export const HomeView = props => {
                     <ViewPort />
                 </div>
             </section>
-            <section className="container--right"></section>
+
+            <section className="container--right">
+                <MealBuilder {...props}/>
+            </section>
         </main>
     )
 }
