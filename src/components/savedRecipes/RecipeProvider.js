@@ -17,7 +17,6 @@ export const RecipeProvider = props => {
 
     /// Saved Recipe Requests ///
     const getSavedRecipes = () => {
-        debugger
         return fetch(`http://localhost:8088/savedRecipes/?userId=${userId}`)
             .then(result => result.json())
             .then(setSavedRecipes)

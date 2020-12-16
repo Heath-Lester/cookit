@@ -84,7 +84,6 @@ export const SearchProvider = props => {
 
     //// Autocomplete Requests ////
     const recipeAutocomplete = RecipeTerm => {
-        // debugger
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/autocomplete?query=${RecipeTerm}&number=5`, {
             "method": "GET",
             "headers": {

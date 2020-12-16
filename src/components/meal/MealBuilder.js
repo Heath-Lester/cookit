@@ -7,16 +7,26 @@ import "./Meal.css"
 
 export const MealBuilder = props => {
 
-    const { detailedRecipe, getRecipeById } = useContext(SearchContext)
+    // const { detailedRecipe, getRecipeById } = useContext(SearchContext)
 
-    const { meals } = useContext(MealContext)
+    const { meals, currentMeal, getRecipe, getMeals, setCurrentMeal } = useContext(MealContext)
 
+    const [light, setLight] = useState("green")
+    
     let mealsArray = []
 
-    useEffect(() => {
+
+    if (light === "green") {
         debugger
-        meals.map(meal => getRecipeById(meal.recipeId).then( mealsArray.push(detailedRecipe) ))
-    }, [meals])
+        const populateArray = () => {
+            getMeals()
+            meals.map(meal => {
+                setCurrentMeal(getRecipe(meal.recipeId))
+                return mealsArray.push(currentMeal)
+            })
+            setLight("red")
+        }
+    }
 
 
     return (
@@ -25,7 +35,7 @@ export const MealBuilder = props => {
             <article className="MealList">
                 {
                     mealsArray.map(meal => {
-                        return <div className="meal" id={meal.id} key={meal.id}>
+                        return <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
                             <img className="meal__image" src={meal.image} alt={`Meal Image`} />
                             <h4 className="meal__name">{meal.title}</h4>
                             <dt>Ready in {meal.readyInMinutes} minutes</dt>

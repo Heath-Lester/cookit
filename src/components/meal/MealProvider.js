@@ -1,6 +1,6 @@
 
 import React, { useState } from "react"
-
+import { apiKey } from "../../.api_key.js"
 
 export const MealContext = React.createContext()
 
@@ -9,10 +9,11 @@ export const MealProvider = props => {
 
     const [meals, setMeals] = useState([])
 
+    const [currentMeal, setCurrentMeal] = useState({})
+
     const userId = parseInt(localStorage.getItem("app_user_id"))
 
     const getMeals = () => {
-        debugger
         return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
             .then(result => result.json())
             .then(setMeals)
@@ -28,9 +29,28 @@ export const MealProvider = props => {
             .then(getMeals)
     }
 
+    const getRecipe = id => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+        .then(response => response.json())
+        .then(response => setCurrentMeal(response))
+        .catch(err => console.error(err))
+    }
+
     return (
         <MealContext.Provider value={{
-            meals, setMeals, getMeals, addMeal
+            meals, 
+            setMeals, 
+            getMeals, 
+            currentMeal, 
+            setCurrentMeal, 
+            getRecipe, 
+            addMeal
         }}>
             {props.children}
         </MealContext.Provider>

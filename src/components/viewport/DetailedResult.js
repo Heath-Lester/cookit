@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react"
 import { MealContext } from "../meal/MealProvider"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { MealBuilder } from "../meal/MealBuilder"
 import { SearchContext } from "../search/SearchProvider"
 import "./ViewPort.css"
 
@@ -22,7 +23,7 @@ export const DetailedResult = recipeId => {
     const { addMeal, meals, getMeals } = useContext(MealContext)
 
     useEffect(() => {
-        getMeals()
+        // getMeals()
     }, [])
 
 
@@ -103,6 +104,7 @@ export const DetailedResult = recipeId => {
                             event.preventDefault()
                             if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
                                 addMeal({ userId, recipeId: detailedRecipe.id })
+                                return <MealBuilder />
                             } else {
                                 window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
                             }
