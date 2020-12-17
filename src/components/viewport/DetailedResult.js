@@ -39,7 +39,6 @@ export const DetailedResult = () => {
 
 
         const constructRecipe = () => {
-            console.log(savedRecipes)
 
             if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
@@ -97,7 +96,7 @@ export const DetailedResult = () => {
                         onClick={event => {
                             event.preventDefault()
                             if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                addMeal({ userId, recipeId: detailedRecipe.id, title: detailedRecipe.title, image: detailedRecipe.image, readyInMinutes: detailedRecipe.readyInMinutes })
+                                addMeal({ userId, recipeId: detailedRecipe.id })
                                 return <MealBuilder />
                             } else {
                                 window.alert(`Recipe ${detailedRecipe.id} has already beed added`)

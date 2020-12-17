@@ -30,8 +30,6 @@ export const SearchProvider = props => {
         })
             .then(response => response.json())
             .then(response => setResults(response.results))
-            .then(console.log("search results", searchResults))
-            .catch(err => console.error(err))
     }
 
 
@@ -46,8 +44,6 @@ export const SearchProvider = props => {
         })
             .then(response => response.json())
             .then(response => setRecipe(response))
-            .then(console.log("getRecipeById", detailedRecipe))
-            .catch(err => console.error(err))
     }
 
 
@@ -73,8 +69,6 @@ export const SearchProvider = props => {
         })
             .then(response => response.json())
             .then(response => setRecipe(response))
-            .then(console.log("extracted recipe", detailedRecipe))
-            .catch(err => console.error(err))
     }
 
     //// Autocomplete Requests ////
@@ -88,8 +82,6 @@ export const SearchProvider = props => {
         })
             .then(response => response.json())
             .then(setAutoResults)
-            .then(console.log(autoResults))
-            .catch(err => console.error(err))
     }
 
 
@@ -104,8 +96,6 @@ export const SearchProvider = props => {
             .then(response => response.json())
             .then(response => console.log(response))
             .then(setAutoResults)
-            .then(console.log(autoResults))
-            .catch(err => console.error(err))
     }
 
 

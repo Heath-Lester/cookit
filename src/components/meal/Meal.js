@@ -18,7 +18,7 @@ export const Meal = ({ meal }) => {
     return (
         <>
             <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
-                <img className="meal__image" src={recipe.image} alt={`Meal Image`} />
+                <img className="meal__image" src={recipe.image} alt={`Meal`} />
                 <h4 className="meal__name">{recipe.title}</h4>
                 <dt>Ready in {recipe.readyInMinutes} minutes</dt>
             </div>

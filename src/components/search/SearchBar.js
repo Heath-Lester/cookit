@@ -32,7 +32,6 @@ export const SearchBar = props => {
 
 
     const keyword = useRef(null)
-    const barType = useRef(null)
     const url = useRef(null)
 
 
@@ -40,13 +39,13 @@ export const SearchBar = props => {
         return (
             <form className="searchBar">
 
-                <select className="selectSearchType" defaultValue="search" name="barType" useRef={barType}
+                <select className="selectSearchType" defaultValue="search" name="barType"
                     onChange={(c => {
                         setBar(c.target.value)
                         console.log()
                     })}>
-                    <option value={"search"} useRef={barType}>Search Bar</option>
-                    <option value={"extract"} useRef={barType}>Extract Bar</option>
+                    <option value={"search"}>Search Bar</option>
+                    <option value={"extract"}>Extract Bar</option>
                 </select>
 
                 <input type="text" className="searchBar--input" ref={keyword} required autoFocus
@@ -85,13 +84,13 @@ export const SearchBar = props => {
         return (
             <form className="extractBar">
 
-                <select className="selectSearchType" defaultValue="search" name="barType" useRef={barType}
+                <select className="selectSearchType" defaultValue="search" name="barType"
                     onChange={(c => {
                         setBar(c.target.value)
                         console.log()
                     })}>
-                    <option value={"search"} useRef={barType}>Search Bar</option>
-                    <option value={"extract"} useRef={barType}>Extract Bar</option>
+                    <option value={"search"}>Search Bar</option>
+                    <option value={"extract"}>Extract Bar</option>
                 </select>
 
                 <input type="text" className="extractBar--input" ref={url} required autoFocus
