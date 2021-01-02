@@ -163,6 +163,15 @@
       "favorite": false,
       "edited": false,
       "id": 21
+    },
+    {
+      "userId": 1,
+      "recipeId": 438665,
+      "title": "Spicy Sausage Sandwiches",
+      "image": "https://spoonacular.com/recipeImages/438665-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 22
     }
   ],
   "ingredientsJoin": [],
@@ -177,6 +186,16 @@
       "userId": 1,
       "recipeId": 1075271,
       "id": 4
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "id": 6
     }
   ]
 }

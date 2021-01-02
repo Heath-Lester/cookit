@@ -1,9 +1,9 @@
+import React from "react"
 import { SavedRecipeList } from "./savedRecipes/SavedRecipeList"
-import cookit_logo from "../images/cookit_logo.png"
 import { MealBuilder } from "./meal/MealBuilder"
 import { ViewPort } from "./viewport/ViewPort"
 import { SearchBar } from "./search/SearchBar"
-import React from "react"
+import cookit_logo from "../images/cookit_logo.png"
 import "./Home.css"
 
 

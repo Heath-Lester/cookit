@@ -2,8 +2,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { ViewPortContext } from "../viewport/ViewPortContext"
 import { SearchContext } from "../search/SearchProvider"
-import { ViewPort } from "../viewport/ViewPort"
 import { MealContext } from "./MealProvider"
+import { ViewPort } from "../viewport/ViewPort"
 import "./Meal.css"
 
 export const Meal = ({ meal }) => {

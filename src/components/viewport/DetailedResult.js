@@ -1,7 +1,7 @@
 
+import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
-import React, { useContext } from "react"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
 import "./ViewPort.css"
@@ -88,7 +88,7 @@ export const DetailedResult = () => {
         return (
             <>
                 <section className="detailedRecipe" id={"detailedRecipe"+detailedRecipe.id} key={"detailedRecipe"+detailedRecipe.id}>
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
+                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
                         onClick={event => {
                             event.preventDefault()
                             getSavedRecipes()
@@ -96,7 +96,7 @@ export const DetailedResult = () => {
                         }}>Save Recipe
                     </button>
 
-                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`}
+                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
                         onClick={event => {
                             event.preventDefault()
                             if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {

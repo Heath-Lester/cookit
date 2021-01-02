@@ -1,10 +1,10 @@
 
 import React, { useContext, useEffect, useState } from "react"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
-import cookit_logo from "../../images/cookit_logo.png"
 import { SavedRecipeContext } from "./RecipeProvider"
-import star_icon from "../../images/star_icon.png"
 import { Link } from "react-router-dom"
+import cookit_logo from "../../images/cookit_logo.png"
+import star_icon from "../../images/star_icon.png"
 import "./SavedRecipes.css"
 
 
