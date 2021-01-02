@@ -21,7 +21,7 @@ export const SearchProvider = props => {
 
     //// Search Requests ////
     const searchRecipeByKeyword = keyword => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=10&instructionsRequired=true`, {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=100&instructionsRequired=true`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-key": `${apiKey}`,
@@ -73,7 +73,7 @@ export const SearchProvider = props => {
 
     //// Autocomplete Requests ////
     const recipeAutocomplete = RecipeTerm => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/autocomplete?query=${RecipeTerm}&number=5`, {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/autocomplete?query=${RecipeTerm}&number=4`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-key": `${apiKey}`,

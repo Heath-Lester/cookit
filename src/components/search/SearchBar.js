@@ -37,39 +37,45 @@ export const SearchBar = props => {
 
     if (bar === "search") {
         return (
-            <form className="searchBar">
+            <>
+                <form className="searchBar">
 
-                <select className="selectSearchType" defaultValue="search" name="barType"
-                    onChange={(c => {
-                        setBar(c.target.value)
-                        console.log()
-                    })}>
-                    <option value={"search"}>Search Bar</option>
-                    <option value={"extract"}>Extract Bar</option>
-                </select>
+                    <select className="selectSearchType" defaultValue="search" name="barType"
+                        onChange={(c => {
+                            setBar(c.target.value)
+                            console.log()
+                        })}>
+                        <option value={"search"}>Search Bar</option>
+                        <option value={"extract"}>Extract Bar</option>
+                    </select>
 
-                <input type="text" className="searchBar--input" ref={keyword} required autoFocus
-                    onKeyUp={
-                        (keyEvent) => {
-                            setTerms(keyEvent.target.value)
+                    <input type="text" className="searchBar--input" ref={keyword} required autoFocus autoComplete
+                        onKeyUp={
+                            (keyEvent) => {
+                                setTerms(keyEvent.target.value)
+                            }
                         }
-                    }
-                    placeholder="Search Recipes using a Keyword...">
-                </input>
+                        placeholder="Search Recipes using a Keyword...">
 
-                <button type="submit" className="searchBar--button"
-                    onClick={event => {
-                        event.preventDefault()
-                        searchRecipeByKeyword(keyword.current.value)
-                        setRecipe({})
-                        setTerms([])
-                        setViewPort(1)
-                        return <ViewPort {...props} />
+                        {/* <AutoComplete className="searchBar--autocomplete" 
+                            suggestions={autoResults}
+                            /> */}
+                    </input>
 
-                    }}>Search
+                    <button type="submit" className="searchBar--button"
+                        onClick={event => {
+                            event.preventDefault()
+                            searchRecipeByKeyword(keyword.current.value)
+                            setRecipe({})
+                            setTerms(" ")
+                            setViewPort(1)
+                            return <ViewPort {...props} />
+
+                        }}>Search
                 </button>
+                </form>
 
-                <div className="searchBar--autocomplete">
+                {/* <div className="searchBar--autocomplete">
                     {
                         autoResults.map(result => {
                             return <dt key={result.id} value={result.id}>
@@ -77,8 +83,8 @@ export const SearchBar = props => {
                             </dt>
                         })
                     }
-                </div>
-            </form>
+                </div> */}
+            </>
         )
     } else if (bar === "extract") {
         return (

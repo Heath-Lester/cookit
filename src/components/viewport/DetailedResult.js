@@ -1,7 +1,7 @@
 
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
 import "./ViewPort.css"
@@ -43,6 +43,10 @@ export const DetailedResult = () => {
             if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
 
+            } else if (detailedRecipe.id < 0){
+            
+                window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
+            
             } else {
 
                 saveRecipe({

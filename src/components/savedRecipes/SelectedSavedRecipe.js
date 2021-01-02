@@ -79,9 +79,10 @@ export const SelectedSavedRecipe = recipeId => {
 
         return (
             <>
+                <header className="detailedRecipe__title"><h2 className="detailedRecipe__name">{detailedRecipe.title}</h2></header>
                 <section className="detailedRecipe" id={detailedRecipe.id} autoFocus key={detailedRecipe.id}>
 
-                    <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
+                    {/* <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2> */}
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
 
                     <button className="detailedRecipe__deleteButton" id={`Delete--${detailedRecipe.id}`}
