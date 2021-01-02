@@ -1,7 +1,7 @@
 
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
 import "./ViewPort.css"
@@ -39,11 +39,14 @@ export const DetailedResult = () => {
 
 
         const constructRecipe = () => {
-            console.log(savedRecipes)
 
             if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
 
+            } else if (detailedRecipe.id < 0){
+            
+                window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
+            
             } else {
 
                 saveRecipe({
@@ -84,7 +87,7 @@ export const DetailedResult = () => {
 
         return (
             <>
-                <section className="detailedRecipe" id={detailedRecipe.id} key={detailedRecipe.id}>
+                <section className="detailedRecipe" id={"detailedRecipe"+detailedRecipe.id} key={"detailedRecipe"+detailedRecipe.id}>
                     <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
                         onClick={event => {
                             event.preventDefault()
@@ -97,7 +100,7 @@ export const DetailedResult = () => {
                         onClick={event => {
                             event.preventDefault()
                             if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                addMeal({ userId, recipeId: detailedRecipe.id, title: detailedRecipe.title, image: detailedRecipe.image, readyInMinutes: detailedRecipe.readyInMinutes })
+                                addMeal({ userId, recipeId: detailedRecipe.id })
                                 return <MealBuilder />
                             } else {
                                 window.alert(`Recipe ${detailedRecipe.id} has already beed added`)

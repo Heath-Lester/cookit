@@ -24,28 +24,31 @@ export const SavedRecipeList = props => {
     }, [])
 
     return (
-        <article className="savedRecipes">
-            <header className="allSavedRecipes">
-                <h3><Link to={`/savedRecipes/`}>Saved Recipes</Link></h3>
-                </header> 
+        <>
+            <header className="allSavedRecipes--header">
+                <h2><Link to={`/savedRecipes/`}>Saved Recipes</Link></h2>
+            </header>
 
-            {
-                sortedRecipes.map(recipe => {
-                    return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
-                        onClick={() => {
-                            getRecipeById(recipe.recipeId)
-                            setViewPort(2)
-                            return <ViewPort {...props} />
-                        }}>
-                        <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
-                        {recipe.favorite ? <h3 className="recipe__name">{recipe.title}<img src={star_icon} /></h3> :
-                                <h3 className="recipe__name">{recipe.title}</h3>}
-                    </section>
+            <article className="savedRecipes">
+
+                {
+                    sortedRecipes.map(recipe => {
+                        return <div className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
+                            onClick={() => {
+                                getRecipeById(recipe.recipeId)
+                                setViewPort(2)
+                                return <ViewPort {...props} />
+                            }}>
+                            <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
+                            {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
+                                <h4 className="recipe__name">{recipe.title}</h4>}
+                        </div>
+                    }
+
+                    )
                 }
-
-                )
-            }
-        </article>
+            </article>
+        </>
 
     )
 }

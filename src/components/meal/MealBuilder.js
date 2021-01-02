@@ -19,7 +19,7 @@ export const MealBuilder = props => {
             <article className="MealList">
                 {
                     meals.map(meal => {
-                        return <Meal meal={meal} />
+                        return <Meal meal={meal} key={"mealKey--"+meal.id}/>
                     })
                 }
             </article>

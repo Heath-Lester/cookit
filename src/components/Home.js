@@ -12,27 +12,29 @@ import "./Home.css"
 export const HomeView = props => {
 
     return (
-        <main className="container--home">
+        <>
             <header className="cookit header">
-                <img src={cookit_logo} alt={"Logo"} />
-                <h1 className="title">Cookit!</h1>
+                <img className="logo" src={cookit_logo} alt={"Logo"} />
             </header>
-            <section className="container--left">
-                <SavedRecipeList />
-            </section>
 
-            <section className="container--center">
-                <div className="search">
-                    <SearchBar />
-                </div>
-                <div id="viewport">
-                    <ViewPort />
-                </div>
-            </section>
+            <main className="container--home">
+                <section className="container--left">
+                    <SavedRecipeList />
+                </section>
 
-            <section className="container--right">
-                <MealBuilder {...props} />
-            </section>
-        </main>
+                <section className="container--center">
+                    <div className="search">
+                        <SearchBar />
+                    </div>
+                    <div id="viewport">
+                        <ViewPort />
+                    </div>
+                </section>
+
+                <section className="container--right">
+                    <MealBuilder {...props} />
+                </section>
+            </main>
+        </>
     )
 }
