@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Meal } from "./Meal"
 import "./Meal.css"
 
-export const MealBuilder = props => {
+export const MealBuilder = (props) => {
 
     const { meals, getMeals } = useContext(MealContext)
 
@@ -17,10 +17,10 @@ export const MealBuilder = props => {
     return (
         <>
             <h2>MealBuilder</h2>
-            <button className="groceryList--button" type="submit"
-                onClick={ event => {
-                    event.preventDefault()
-                    return <Link to={`/groceryList/`} />
+            <button className="groceryList--button" 
+                onClick={ () => {
+                    console.log("Grocery Button", props)
+                    props.history.push(`/groceryList`)
                 }}>Create Grocery List</button>
             <article className="MealList">
                 {

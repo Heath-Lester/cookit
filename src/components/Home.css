@@ -43,7 +43,7 @@
 }
 .savedRecipes {
     overflow: auto;
-    max-height: 850px; 
+    max-height: 1500px; 
 }
 
 .savedRecipe {

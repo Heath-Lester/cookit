@@ -9,7 +9,7 @@ import "./Home.css"
 
 
 
-export const HomeView = props => {
+export const HomeView = (props) => {
 
     return (
         <>

@@ -12,13 +12,13 @@ import React from "react"
 
 
 
-export const ApplicationViews = () => {
+export const ApplicationViews = (props) => {
     return (
         <>
 
             <RecipeProvider>
                 <SearchProvider>
-                    <Route path="/savedRecipes/" render={
+                    <Route path="/savedRecipes" render={
                         props => <AllSavedRecipes {...props} />
                     } />
                 </SearchProvider>
@@ -29,7 +29,7 @@ export const ApplicationViews = () => {
                     <MealProvider>
                         <ViewPortDisplay>
                             <Route exact path="/">
-                                <HomeView />
+                                <HomeView {...props}/>
                             </Route>
                         </ViewPortDisplay>
                     </MealProvider>
@@ -38,7 +38,7 @@ export const ApplicationViews = () => {
 
             <MealProvider>
                 <SearchProvider>
-                    <Route path="/groceryList/" render={
+                    <Route exact path="/groceryList" render={
                         props => <GroceryList {...props} />
                     } />
                 </SearchProvider>
