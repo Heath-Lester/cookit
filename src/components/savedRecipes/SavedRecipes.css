@@ -28,8 +28,8 @@
 }
 
 .detailedRecipe {
-    overflow: auto;
-    max-height: 800px;
+    /* overflow: auto; */
+    /* max-height: 800px; */
     display: flex;
     flex-flow: column nowrap;
 }

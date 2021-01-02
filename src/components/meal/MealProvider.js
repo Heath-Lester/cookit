@@ -30,6 +30,14 @@ export const MealProvider = props => {
     }
 
 
+    const deleteMeal = mealId => {
+        return fetch(`http://localhost:8088/mealsToPrep/${mealId}`, {
+            method: "DELETE",
+        })
+            .then(getMeals)
+    }
+
+
     const getRecipe = id => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
             "method": "GET",
@@ -41,12 +49,13 @@ export const MealProvider = props => {
             .then(response => response.json())
     }
 
-
+    
     return (
         <MealContext.Provider value={{
             meals,
             setMeals,
             getMeals,
+            deleteMeal,
             getRecipe,
             addMeal
         }}>
