@@ -40,8 +40,8 @@ export const MealProvider = props => {
 
     const getRecipe = id => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-            "method": "GET",
-            "headers": {
+            method: "GET",
+            headers: {
                 "x-rapidapi-key": `${apiKey}`,
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }

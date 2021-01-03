@@ -1,6 +1,7 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { GroceryContext } from "../groceryList/GroceryProvider"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
@@ -13,14 +14,16 @@ export const DetailedResult = () => {
 
     const { detailedRecipe } = useContext(SearchContext)
 
+    const { addMeal, meals } = useContext(MealContext)
+
+    const { addGroceryRecipe } = useContext(GroceryContext)
+
     const { savedRecipes,
         saveRecipe,
         // saveIngredients,
         // saveInstructions,
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
-
-    const { addMeal, meals } = useContext(MealContext)
 
 
 

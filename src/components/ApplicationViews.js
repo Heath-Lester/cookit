@@ -2,6 +2,7 @@
 import React from "react"
 import { ViewPortDisplay } from "./viewport/ViewPortContext"
 import { AllSavedRecipes } from "./savedRecipes/AllSavedRecipes"
+import { GroceryProvider } from "./groceryList/GroceryProvider"
 import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
 import { MealProvider } from "./meal/MealProvider"
@@ -27,22 +28,26 @@ export const ApplicationViews = (props) => {
             <SearchProvider>
                 <RecipeProvider>
                     <MealProvider>
-                        <ViewPortDisplay>
-                            <Route exact path="/">
-                                <HomeView {...props}/>
-                            </Route>
-                        </ViewPortDisplay>
+                        <GroceryProvider>
+                            <ViewPortDisplay>
+                                <Route exact path="/">
+                                    <HomeView {...props} />
+                                </Route>
+                            </ViewPortDisplay>
+                        </GroceryProvider>
                     </MealProvider>
                 </RecipeProvider>
             </SearchProvider>
 
-            <MealProvider>
-                <SearchProvider>
-                    <Route exact path="/groceryList" render={
-                        props => <GroceryList {...props} />
-                    } />
-                </SearchProvider>
-            </MealProvider>
+            <GroceryProvider>
+                <MealProvider>
+                    <SearchProvider>
+                        <Route path="/groceryList" render={
+                            props => <GroceryList {...props} />
+                        } />
+                    </SearchProvider>
+                </MealProvider>
+            </GroceryProvider>
         </>
     )
 }
