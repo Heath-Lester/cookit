@@ -24,8 +24,12 @@ export const AllSavedRecipes = props => {
 
     return (
         <>
-            <header className="savedRecipe--header"><img className="logo" src={cookit_logo} alt={"Logo"} /><h1 className="title" >All Recipes</h1><h3 className="link"><Link to={'/'}>Back</Link></h3></header>
-            
+            <header className="savedRecipe--header">
+                <img className="logo" src={cookit_logo} alt={"Logo"} />
+                <h1 className="title" >All Recipes</h1>
+                <h3 className="link"><Link to={'/'}>Back</Link></h3>
+            </header>
+
             <main className="container--main">
 
                 <section className="savedContainer--left">

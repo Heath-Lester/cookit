@@ -18,6 +18,8 @@ export const SearchProvider = props => {
 
     const [extracedRecipe, setExtracedRecipe] = useState({})
 
+    const [ingredient, setIngredient] = useState({})
+
 
     //// Search Requests ////
     const searchRecipeByKeyword = keyword => {
@@ -71,6 +73,21 @@ export const SearchProvider = props => {
             .then(response => setRecipe(response))
     }
 
+
+    //// Ingredient Requests ////
+    const getIngredientById = id => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/${id}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+            .then(response => setIngredient(response))
+    }
+
+
     //// Autocomplete Requests ////
     const recipeAutocomplete = RecipeTerm => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/autocomplete?query=${RecipeTerm}&number=4`, {
@@ -111,10 +128,13 @@ export const SearchProvider = props => {
             setAutoResults,
             extracedRecipe,
             setExtracedRecipe,
+            ingredient,
+            setIngredient,
             searchRecipeByKeyword,
             getRecipeById,
             getMultipleRecipesById,
             extractRecipeByUrl,
+            getIngredientById,
             recipeAutocomplete,
             ingredientAutocomplete
         }}>
