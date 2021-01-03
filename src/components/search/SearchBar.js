@@ -24,11 +24,11 @@ export const SearchBar = props => {
     const [bar, setBar] = useState("search")
 
 
-    useEffect(() => {
-        if (searchTerms !== "") {
-            recipeAutocomplete(searchTerms)
-        }
-    }, [searchTerms])
+    // useEffect(() => {
+    //     if (searchTerms !== "") {
+    //         recipeAutocomplete(searchTerms)
+    //     }
+    // }, [searchTerms])
 
 
     const keyword = useRef(null)
@@ -49,7 +49,7 @@ export const SearchBar = props => {
                         <option value={"extract"}>Extract Bar</option>
                     </select>
 
-                    <input type="text" className="searchBar--input" ref={keyword} required autoFocus autoComplete
+                    <input type="text" className="searchBar--input" ref={keyword} required autoFocus
                         onKeyUp={
                             (keyEvent) => {
                                 setTerms(keyEvent.target.value)

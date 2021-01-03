@@ -1,6 +1,7 @@
 
 import React, { useContext, useState, useEffect } from "react"
 import { ViewPortContext } from "../viewport/ViewPortContext"
+import { GroceryContext } from "../groceryList/GroceryProvider"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "./MealProvider"
 import { ViewPort } from "../viewport/ViewPort"
@@ -14,7 +15,10 @@ export const Meal = ({ meal }) => {
 
     const { setViewPort } = useContext(ViewPortContext)
 
+    const { ingredientsList, setIngredientsList, getRecipeList, deleteGroceryItem, deleteGroceryRecipe } = useContext(GroceryContext)
+
     const [recipe, setRecipe] = useState({ title: null, image: null, readyInMinutes: null })
+    
 
     useEffect(() => {
         getRecipe(meal.recipeId)
@@ -24,18 +28,18 @@ export const Meal = ({ meal }) => {
 
     return (
         <>
-            <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}
+            <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
+                <img className="meal__image" src={recipe.image} alt={`Meal`}                 
                 onClick={() => {
                     getRecipeById(recipe.id)
                     setViewPort(2)
                     return <ViewPort />
-                }}>
-                <img className="meal__image" src={recipe.image} alt={`Meal`} />
+                }} />
                 <h4 className="meal__name">{recipe.title}</h4>
                 <dt>Ready in {recipe.readyInMinutes} minutes</dt>
                 <button className="meal--delete_button"
-                    onClick={event => {
-                        event.preventDefault()
+                    onClick={() => {
+                        deleteGroceryRecipe(meal.recipeId)
                         deleteMeal(meal.id)
                     }}>Remove</button>
             </div>

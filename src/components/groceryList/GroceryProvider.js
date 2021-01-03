@@ -1,6 +1,5 @@
 
 import React, { useState } from "react"
-import { apiKey } from "../../.api_key.js"
 
 
 export const GroceryContext = React.createContext()
@@ -10,8 +9,11 @@ export const GroceryProvider = props => {
 
     const [groceryList, setGroceryList] = useState([])
 
-    const userId = parseInt(localStorage.getItem("app_user_id"))
+    const [ingredientsList, setIngredientsList] = useState([])
 
+    const userId = parseInt(localStorage.getItem("app_user_id"))
+    
+    console.log("GroceryProvider", ingredientsList)
 
     const getGroceryList = () => {
         return fetch(`http://localhost:8088/groceryItems/?userId=${userId}`)
@@ -21,6 +23,7 @@ export const GroceryProvider = props => {
 
 
     const addGroceryRecipe = groceryObj => {
+        // debugger
         return fetch(`http://localhost:8088/groceryItems`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -30,20 +33,23 @@ export const GroceryProvider = props => {
     }
 
 
-    const deleteGroceryItem = itemId => {
-        return fetch(`http://localhost:8088/groceryItems/${itemId}`, {
-            method: "DELETE",
-        })
-            .then(getGroceryList)
-    }
+    const getRecipeList = recipeId => {
+        // debugger
+        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
+        .then(result => result.json())
+        .then(result => setIngredientsList(result))
+}
 
-
-    const deleteGroceryList = () => {
-        return fetch(`http://localhost:8088/groceryItems/?userId=${userId}`, {
-            method: "DELETE",
-        })
-            .then(getGroceryList)
-    }
+    const deleteGroceryRecipe= recipeId => {
+        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
+        .then(result => result.json())
+        .then(result => result.map(item => {
+            // debugger
+            return fetch(`http://localhost:8088/groceryItems/${item.id}`, {
+                method: "DELETE",
+            })
+        }))
+        }
 
 
     const ingredientAquired = (ingredientId, aquired) => {
@@ -61,9 +67,11 @@ export const GroceryProvider = props => {
         <GroceryContext.Provider value={{
             groceryList,
             setGroceryList,
+            ingredientsList,
+            setIngredientsList,
             addGroceryRecipe,
-            deleteGroceryItem,
-            deleteGroceryList,
+            getRecipeList,
+            deleteGroceryRecipe,
             ingredientAquired
         }}>
             {props.children}

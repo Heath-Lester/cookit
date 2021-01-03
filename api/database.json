@@ -176,27 +176,6 @@
   ],
   "ingredientsJoin": [],
   "instructions": [],
-  "mealsToPrep": [
-    {
-      "userId": 1,
-      "recipeId": 1156033,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "recipeId": 1075271,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "recipeId": 136995,
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "recipeId": 485365,
-      "id": 6
-    }
-  ], 
+  "mealsToPrep": [],
   "groceryItems": []
 }

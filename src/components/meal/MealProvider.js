@@ -14,6 +14,7 @@ export const MealProvider = props => {
 
 
     const getMeals = () => {
+        // debugger
         return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
             .then(result => result.json())
             .then(setMeals)
@@ -21,6 +22,7 @@ export const MealProvider = props => {
 
 
     const addMeal = recipeObj => {
+        // debugger
         return fetch(`http://localhost:8088/mealsToPrep`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
