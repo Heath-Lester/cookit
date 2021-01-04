@@ -1,0 +1,30 @@
+
+.GroceryList {}
+
+.recipe {
+    display: flex;
+    max-height: min-content;
+}
+
+.recipe__information {
+    display: flex;
+    flex-flow: column nowrap;
+    /* justify-content: center; */
+    flex: 1
+}
+
+.grocery--recipe__image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+    height: auto;
+    /* max-width: 80%; */
+}
+
+.recipe__ingredients {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    flex: 1
+}

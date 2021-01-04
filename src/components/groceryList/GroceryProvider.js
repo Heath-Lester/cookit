@@ -23,7 +23,6 @@ export const GroceryProvider = props => {
 
 
     const addGroceryRecipe = groceryObj => {
-        // debugger
         return fetch(`http://localhost:8088/groceryItems`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,7 +43,6 @@ export const GroceryProvider = props => {
         return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
         .then(result => result.json())
         .then(result => result.map(item => {
-            // debugger
             return fetch(`http://localhost:8088/groceryItems/${item.id}`, {
                 method: "DELETE",
             })

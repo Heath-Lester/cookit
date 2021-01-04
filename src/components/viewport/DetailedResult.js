@@ -92,6 +92,8 @@ export const DetailedResult = () => {
                     userId,
                     recipeId: detailedRecipe.id,
                     ingredientId: ingredient.id,
+                    amount: ingredient.amount,
+                    unit: ingredient.measures.us.unitLong,
                     aquired: false
                 })
             })

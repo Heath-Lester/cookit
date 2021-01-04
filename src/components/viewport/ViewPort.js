@@ -18,7 +18,7 @@ export const ViewPort = props => {
         return <DetailedResult  {...props}/>
 
     } else {
-        return <h3>Nothing to Render</h3>
+        return <></>
     }
 
 }

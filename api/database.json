@@ -176,6 +176,370 @@
   ],
   "ingredientsJoin": [],
   "instructions": [],
-  "mealsToPrep": [],
-  "groceryItems": []
+  "mealsToPrep": [
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "id": 4
+    }
+  ],
+  "groceryItems": [
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 1123,
+      "amount": 12,
+      "unit": "",
+      "aquired": false,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 19335,
+      "amount": 1.5,
+      "unit": "cups",
+      "aquired": false,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 2050,
+      "amount": 1,
+      "unit": "teaspoon",
+      "aquired": false,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 2011,
+      "amount": 1,
+      "unit": "Tbsp",
+      "aquired": false,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 1053,
+      "amount": 1,
+      "unit": "quart",
+      "aquired": false,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 2025,
+      "amount": 1,
+      "unit": "Tbsp",
+      "aquired": false,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 10014037,
+      "amount": 1,
+      "unit": "cup",
+      "aquired": false,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 10414037,
+      "amount": 1,
+      "unit": "cup",
+      "aquired": false,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "recipeId": 1156033,
+      "ingredientId": 14037,
+      "amount": 1,
+      "unit": "cup",
+      "aquired": false,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 98970,
+      "amount": 16,
+      "unit": "",
+      "aquired": false,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 20081,
+      "amount": 0.5,
+      "unit": "cups",
+      "aquired": false,
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 20027,
+      "amount": 0.25,
+      "unit": "cups",
+      "aquired": false,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 1123,
+      "amount": 2,
+      "unit": "",
+      "aquired": false,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 4513,
+      "amount": 2,
+      "unit": "Tbsps",
+      "aquired": false,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 18079,
+      "amount": 0.75,
+      "unit": "cups",
+      "aquired": false,
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 10018079,
+      "amount": 0.5,
+      "unit": "cups",
+      "aquired": false,
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "recipeId": 1075271,
+      "ingredientId": 4582,
+      "amount": 1,
+      "unit": "serving",
+      "aquired": false,
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "ingredientId": 10123,
+      "amount": 12,
+      "unit": "",
+      "aquired": false,
+      "id": 18
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "ingredientId": 11028,
+      "amount": 4,
+      "unit": "servings",
+      "aquired": false,
+      "id": 19
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "ingredientId": 5143,
+      "amount": 6,
+      "unit": "",
+      "aquired": false,
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "recipeId": 136995,
+      "ingredientId": 1082047,
+      "amount": 4,
+      "unit": "servings",
+      "aquired": false,
+      "id": 21
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 11090,
+      "amount": 2,
+      "unit": "cups",
+      "aquired": false,
+      "id": 22
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1017,
+      "amount": 4,
+      "unit": "ounces",
+      "aquired": false,
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1001,
+      "amount": 1,
+      "unit": "Tbsp",
+      "aquired": false,
+      "id": 24
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1123,
+      "amount": 2,
+      "unit": "",
+      "aquired": false,
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1019,
+      "amount": 0.25,
+      "unit": "cups",
+      "aquired": false,
+      "id": 26
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 20081,
+      "amount": 0.5,
+      "unit": "cups",
+      "aquired": false,
+      "id": 27
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 11215,
+      "amount": 2,
+      "unit": "",
+      "aquired": false,
+      "id": 28
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 11282,
+      "amount": 1,
+      "unit": "",
+      "aquired": false,
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 4582,
+      "amount": 0.75,
+      "unit": "cups",
+      "aquired": false,
+      "id": 30
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 2047,
+      "amount": 4,
+      "unit": "servings",
+      "aquired": false,
+      "id": 31
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 10018079,
+      "amount": 1.25,
+      "unit": "cups",
+      "aquired": false,
+      "id": 32
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 2047,
+      "amount": 4,
+      "unit": "servings",
+      "aquired": false,
+      "id": 33
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1001026,
+      "amount": 1,
+      "unit": "cup",
+      "aquired": false,
+      "id": 34
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 1055062,
+      "amount": 4,
+      "unit": "",
+      "aquired": false,
+      "id": 35
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 10011457,
+      "amount": 2,
+      "unit": "cups",
+      "aquired": false,
+      "id": 36
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 11955,
+      "amount": 4,
+      "unit": "Tbsps",
+      "aquired": false,
+      "id": 37
+    },
+    {
+      "userId": 1,
+      "recipeId": 485365,
+      "ingredientId": 14106,
+      "amount": 2,
+      "unit": "Tbsps",
+      "aquired": false,
+      "id": 38
+    }
+  ]
 }

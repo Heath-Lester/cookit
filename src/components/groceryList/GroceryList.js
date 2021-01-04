@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect } from "react"
 import { SearchContext } from "../search/SearchProvider"
-import { GroceryItem } from "./GroceryItem"
+import { GroceryRecipe } from "./GroceryRecipe"
 import { MealContext } from "../meal/MealProvider"
 import { Link } from "react-router-dom"
 import cookit_logo from "../../images/cookit_logo.png"
@@ -27,7 +27,7 @@ export const GroceryList = props => {
             <article className="GroceryList">
                 {
                     meals.map(meal => {
-                        return <GroceryItem meal={meal} key={"groceryItem--"+meal.recipeId}/>
+                        return <GroceryRecipe meal={meal} key={"groceryItem--"+meal.recipeId}/>
                     })
                 }
             </article>

@@ -15,7 +15,7 @@ export const Meal = ({ meal }) => {
 
     const { setViewPort } = useContext(ViewPortContext)
 
-    const { ingredientsList, setIngredientsList, getRecipeList, deleteGroceryItem, deleteGroceryRecipe } = useContext(GroceryContext)
+    const { deleteGroceryRecipe } = useContext(GroceryContext)
 
     const [recipe, setRecipe] = useState({ title: null, image: null, readyInMinutes: null })
     

@@ -24,11 +24,11 @@ export const SearchBar = props => {
     const [bar, setBar] = useState("search")
 
 
-    // useEffect(() => {
-    //     if (searchTerms !== "") {
-    //         recipeAutocomplete(searchTerms)
-    //     }
-    // }, [searchTerms])
+    useEffect(() => {
+        if (searchTerms !== "") {
+            recipeAutocomplete(searchTerms)
+        }
+    }, [searchTerms])
 
 
     const keyword = useRef(null)
