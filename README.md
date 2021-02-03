@@ -71,22 +71,22 @@ json-server -p 8088 -w database.json
 
 
 ### Login to Your Account
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/login.gif?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/login.gif?raw=true)
 
 ### Search and Save Recipes
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/search_and_save.gif?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/search_and_save.gif?raw=true)
 
 ### Favorite and Removed Saved Recipes
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/edit_and_delete.gif?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/edit_and_delete.gif?raw=true)
 
 ### Extract Recipes from other Websites
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/extract_and_save.gif?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/extract_and_save.gif?raw=true)
 
 ### Build a Grocery List
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/grocery_list.gif?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/grocery_list.gif?raw=true)
 
 ### Entity Relationship Diagram
-![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/cookit_erd.png?raw=true)
+![alt text](https://github.com/Heath-Lester/cookit/blob/main/src/images/cookit_erd.png?raw=true)
 
 
 ## Built With
