@@ -1,8 +1,6 @@
 # Cookit!
 
-Cookit! is a single page application that allows user to save andreference recipes from a database and 3rd party websites.Cut out the fluff by extracting a recipe you like and savingit to your user database. A user can also select a set ofrecipes and build a grocery list for a dinner of their choice
-
-## Installations
+Cookit! is a single page application that allows user to save and reference recipes from a database and 3rd party websites. This application allows users to cut out the fluff by extracting only the information you need.
 
 The following instructions will get you a copy of the project up and running on your local machine for demonstration and testing purposes.
 
@@ -29,7 +27,7 @@ npm install -g json-server
 
 7. Navigate to the project folder. In the ```src``` directory. Within that directory, create a file ```.api_key.js```
 
-8. In said file, copy/paste ```export const apiKey = `paste_your_api_key_here` ```. This will prevent you from accidentally sharing your API key with other people.
+8. In said file, copy/paste ```export const apiKey = `paste_your_api_key_here` ```. This will prevent you from accidentally sharing your API key with other people and allow you to access the API database.
 
 
 ### Usage
@@ -101,4 +99,4 @@ This project has been planned, developed, and tested exclusively by myself over 
 
 ## Acknowledgments
 
-* Thank you to the creator of [Spoonacular API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details//), which provided all the recipes for this application.
+* Thank you to the creator of [Spoonacular API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details//), which provided all the recipes for this application as well as additional functionality.
