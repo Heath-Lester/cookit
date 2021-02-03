@@ -26,7 +26,7 @@ export const SavedRecipeList = props => {
     return (
         <>
             <header className="allSavedRecipes--header">
-                <h2><Link to={`/savedRecipes/`}>Saved Recipes</Link></h2>
+                <h2><Link className="savedRecipe--link" to={`/savedRecipes/`}>Saved Recipes</Link></h2>
             </header>
 
             <article className="savedRecipes">

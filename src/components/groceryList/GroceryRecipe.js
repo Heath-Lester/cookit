@@ -34,9 +34,11 @@ export const GroceryRecipe = ({ meal }) => {
         <>
             <section className="recipe">
 
-                <div className="recipe__information">
-                    <h2 className="recipe__name">{recipe.title}</h2>
-                    <img className="grocery--recipe__image" src={recipe.image} alt={`Meal`} />
+                <div className="recipe__leftSide">
+                    <div className="recipe__information">
+                        <h2 className="recipe__name">{recipe.title}</h2>
+                        <img className="grocery--recipe__image" src={recipe.image} alt={`Meal`} />
+                    </div>
                 </div>
 
                 <ul className="recipe__ingredients">

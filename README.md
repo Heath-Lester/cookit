@@ -88,10 +88,6 @@ json-server -p 8088 -w database.json
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 * [Spoonacular API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details//) - 
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/TheTechTravis/strain-brain/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Version Control
 
 I use [Git](https://git-scm.com/) for version control.
@@ -100,11 +96,7 @@ I use [Git](https://git-scm.com/) for version control.
 
 * **Heath Lester** - *Original Creator* - [Heath-Lester](https://github.com/Heath-Lester)
 
-As of thus far, this project has been planned, developed, and tested exclusively by myself, though I cannot guarantee that I won't receive contributions in the future, so I will provide a list of all [contributors](https://github.com/TheTechTravis/strain-brain/graphs/contributors) to be completely transparent.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/TheTechTravis/strain-brain/blob/main/LICENSE.md) file for details
+As of thus far, this project has been planned, developed, and tested exclusively by myself over the course of a two-week sprint.
 
 ## Acknowledgments
 

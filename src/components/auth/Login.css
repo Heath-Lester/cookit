@@ -1,0 +1,10 @@
+.form--login {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.link--register {
+    display: flex;
+    justify-content: center;
+}

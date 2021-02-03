@@ -108,26 +108,28 @@ export const DetailedResult = () => {
         return (
             <>
                 <section className="detailedRecipe" id={"detailedRecipe" + detailedRecipe.id} key={"detailedRecipe" + detailedRecipe.id}>
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
-                        onClick={event => {
-                            event.preventDefault()
-                            getSavedRecipes()
-                            constructRecipe()
-                        }}>Save Recipe
-                    </button>
+                    <div className="buttons">
+                        <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                getSavedRecipes()
+                                constructRecipe()
+                            }}>Save Recipe
+                        </button>
 
-                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
-                        onClick={event => {
-                            event.preventDefault()
-                            if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                constructIngredientList()
-                                addMeal({ userId, recipeId: detailedRecipe.id })
-                                return <MealBuilder />
-                            } else {
-                                window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
-                            }
-                        }}>Add to Meal
-                    </button>
+                        <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
+                                    constructIngredientList()
+                                    addMeal({ userId, recipeId: detailedRecipe.id })
+                                    return <MealBuilder />
+                                } else {
+                                    window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
+                                }
+                            }}>Add to Meal
+                        </button>
+                    </div>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>

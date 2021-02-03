@@ -18,7 +18,7 @@ export const Meal = ({ meal }) => {
     const { deleteGroceryRecipe } = useContext(GroceryContext)
 
     const [recipe, setRecipe] = useState({ title: null, image: null, readyInMinutes: null })
-    
+
 
     useEffect(() => {
         getRecipe(meal.recipeId)
@@ -29,14 +29,18 @@ export const Meal = ({ meal }) => {
     return (
         <>
             <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
-                <img className="meal__image" src={recipe.image} alt={`Meal`}                 
-                onClick={() => {
-                    getRecipeById(recipe.id)
-                    setViewPort(2)
-                    return <ViewPort />
-                }} />
-                <h4 className="meal__name">{recipe.title}</h4>
-                <dt>Ready in {recipe.readyInMinutes} minutes</dt>
+                <div className="meal__content">
+                    <img className="meal__image" src={recipe.image} alt={`Meal`}
+                        onClick={() => {
+                            getRecipeById(recipe.id)
+                            setViewPort(2)
+                            return <ViewPort />
+                        }} />
+                    <div className="meal__details">
+                        <h4 className="meal__name">{recipe.title}</h4>
+                        <dt className="meal__prepTime">Ready in {recipe.readyInMinutes} minutes</dt>
+                    </div>
+                </div>
                 <button className="meal--delete_button"
                     onClick={() => {
                         deleteGroceryRecipe(meal.recipeId)
