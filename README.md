@@ -97,7 +97,7 @@ json-server -p 8088 -w database.json
 
 * **Heath Lester** - *Original Creator* - [Heath-Lester](https://github.com/Heath-Lester)
 
-As of thus far, this project has been planned, developed, and tested exclusively by myself over the course of a two-week sprint.
+This project has been planned, developed, and tested exclusively by myself over the course of a two-week sprint.
 
 ## Acknowledgments
 
