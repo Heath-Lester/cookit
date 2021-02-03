@@ -172,6 +172,15 @@
       "favorite": false,
       "edited": false,
       "id": 22
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "title": "Double-Dipped Strawberries",
+      "image": "https://spoonacular.com/recipeImages/58294-556x370.jpg",
+      "favorite": false,
+      "edited": false,
+      "id": 23
     }
   ],
   "ingredientsJoin": [],
@@ -196,6 +205,16 @@
       "userId": 1,
       "recipeId": 485365,
       "id": 4
+    },
+    {
+      "userId": 1,
+      "recipeId": 1417619,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "id": 7
     }
   ],
   "groceryItems": [
@@ -540,6 +559,42 @@
       "unit": "Tbsps",
       "aquired": false,
       "id": 38
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "ingredientId": 10018166,
+      "amount": 1,
+      "unit": "cup",
+      "aquired": false,
+      "id": 39
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "ingredientId": 19903,
+      "amount": 4,
+      "unit": "ounces",
+      "aquired": false,
+      "id": 40
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "ingredientId": 9316,
+      "amount": 10,
+      "unit": "",
+      "aquired": false,
+      "id": 41
+    },
+    {
+      "userId": 1,
+      "recipeId": 58294,
+      "ingredientId": 9316,
+      "amount": 10,
+      "unit": "",
+      "aquired": false,
+      "id": 42
     }
   ]
 }
