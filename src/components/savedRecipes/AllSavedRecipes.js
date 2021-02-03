@@ -1,10 +1,10 @@
 
 import React, { useContext, useEffect, useState } from "react"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
-import cookit_logo from "../../images/cookit_logo.png"
 import { SavedRecipeContext } from "./RecipeProvider"
-import star_icon from "../../images/star_icon.png"
 import { Link } from "react-router-dom"
+import cookit_logo from "../../images/cookit_logo.png"
+import star_icon from "../../images/star_icon.png"
 import "./SavedRecipes.css"
 
 
@@ -24,8 +24,12 @@ export const AllSavedRecipes = props => {
 
     return (
         <>
-            <header className="savedRecipe--header"><img className="logo" src={cookit_logo} alt={"Logo"} /><h1 className="title" >All Recipes</h1><h3 className="link"><Link to={'/'}>Back</Link></h3></header>
-            
+            <header className="savedRecipe--header">
+                <img className="logo" src={cookit_logo} alt={"Logo"} />
+                <h1 className="title" >All Recipes</h1>
+                <h3 className="link"><Link to={'/'}>Back</Link></h3>
+            </header>
+
             <main className="container--main">
 
                 <section className="savedContainer--left">

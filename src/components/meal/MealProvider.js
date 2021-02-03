@@ -14,6 +14,7 @@ export const MealProvider = props => {
 
 
     const getMeals = () => {
+        // debugger
         return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
             .then(result => result.json())
             .then(setMeals)
@@ -21,6 +22,7 @@ export const MealProvider = props => {
 
 
     const addMeal = recipeObj => {
+        // debugger
         return fetch(`http://localhost:8088/mealsToPrep`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -30,10 +32,18 @@ export const MealProvider = props => {
     }
 
 
+    const deleteMeal = mealId => {
+        return fetch(`http://localhost:8088/mealsToPrep/${mealId}`, {
+            method: "DELETE",
+        })
+            .then(getMeals)
+    }
+
+
     const getRecipe = id => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-            "method": "GET",
-            "headers": {
+            method: "GET",
+            headers: {
                 "x-rapidapi-key": `${apiKey}`,
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
@@ -41,12 +51,13 @@ export const MealProvider = props => {
             .then(response => response.json())
     }
 
-
+    
     return (
         <MealContext.Provider value={{
             meals,
             setMeals,
             getMeals,
+            deleteMeal,
             getRecipe,
             addMeal
         }}>

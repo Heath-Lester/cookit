@@ -1,0 +1,20 @@
+.selectSearchType {
+    color: #97D8B2;
+    background-color: #531253;
+    border: none;
+    border-radius: 7% 0% 0% 7%;
+}
+
+.searchBar--button {
+    color: #97D8B2;
+    background-color: #531253;
+    border: none;
+    border-radius: 0% 7% 7% 0%;
+}
+
+.extractBar--button {
+    color: #97D8B2;
+    background-color: #531253;
+    border: none;
+    border-radius: 0% 7% 7% 0%;
+}

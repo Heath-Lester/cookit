@@ -1,10 +1,10 @@
 
 import React, { useEffect, useContext } from "react"
-import { Link } from "react-router-dom"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { ViewPortContext } from "../viewport/ViewPortContext"
-import { ViewPort } from "../viewport/ViewPort"
 import { SearchContext } from "../search/SearchProvider"
+import { ViewPort } from "../viewport/ViewPort"
+import { Link } from "react-router-dom"
 import star_icon from "../../images/star_icon.png"
 
 
@@ -26,7 +26,7 @@ export const SavedRecipeList = props => {
     return (
         <>
             <header className="allSavedRecipes--header">
-                <h2><Link to={`/savedRecipes/`}>Saved Recipes</Link></h2>
+                <h2><Link className="savedRecipe--link" to={`/savedRecipes/`}>Saved Recipes</Link></h2>
             </header>
 
             <article className="savedRecipes">

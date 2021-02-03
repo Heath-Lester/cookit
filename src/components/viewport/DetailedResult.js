@@ -1,7 +1,8 @@
 
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
-import { SearchContext } from "../search/SearchProvider"
 import React, { useContext } from "react"
+import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { GroceryContext } from "../groceryList/GroceryProvider"
+import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
 import "./ViewPort.css"
@@ -13,6 +14,10 @@ export const DetailedResult = () => {
 
     const { detailedRecipe } = useContext(SearchContext)
 
+    const { addMeal, meals } = useContext(MealContext)
+
+    const { addGroceryRecipe } = useContext(GroceryContext)
+
     const { savedRecipes,
         saveRecipe,
         // saveIngredients,
@@ -20,15 +25,13 @@ export const DetailedResult = () => {
         // saveCookWear,
         getSavedRecipes } = useContext(SavedRecipeContext)
 
-    const { addMeal, meals } = useContext(MealContext)
-
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
         return <></>
 
     } else {
-        console.log(detailedRecipe)
+
         let ingredientsArray = []
         let equipmentArray = []
         let instructionsArray = []
@@ -43,10 +46,10 @@ export const DetailedResult = () => {
             if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
 
-            } else if (detailedRecipe.id < 0){
-            
+            } else if (detailedRecipe.id < 0) {
+
                 window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
-            
+
             } else {
 
                 saveRecipe({
@@ -81,44 +84,65 @@ export const DetailedResult = () => {
             }
         }
 
+        const constructIngredientList = () => {
+            console.log("Detailed Result", ingredientsArray)
+            ingredientsArray.map(ingredient => {
+                // debugger
+                return addGroceryRecipe({
+                    userId,
+                    recipeId: detailedRecipe.id,
+                    ingredientId: ingredient.id,
+                    amount: ingredient.amount,
+                    unit: ingredient.measures.us.unitLong,
+                    aquired: false
+                })
+            })
+        }
+
 
         let parsedEquipment = []
+
+        let i = 0
 
 
         return (
             <>
-                <section className="detailedRecipe" id={"detailedRecipe"+detailedRecipe.id} key={"detailedRecipe"+detailedRecipe.id}>
-                    <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`}
-                        onClick={event => {
-                            event.preventDefault()
-                            getSavedRecipes()
-                            constructRecipe()
-                        }}>Save Recipe
-                    </button>
+                <section className="detailedRecipe" id={"detailedRecipe" + detailedRecipe.id} key={"detailedRecipe" + detailedRecipe.id}>
+                    <div className="buttons">
+                        <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                getSavedRecipes()
+                                constructRecipe()
+                            }}>Save Recipe
+                        </button>
 
-                    <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`}
-                        onClick={event => {
-                            event.preventDefault()
-                            if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                addMeal({ userId, recipeId: detailedRecipe.id })
-                                return <MealBuilder />
-                            } else {
-                                window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
-                            }
-                        }}>Add to Meal
-                    </button>
+                        <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
+                                    constructIngredientList()
+                                    addMeal({ userId, recipeId: detailedRecipe.id })
+                                    return <MealBuilder />
+                                } else {
+                                    window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
+                                }
+                            }}>Add to Meal
+                        </button>
+                    </div>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
                     <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
                     <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
-                    <p className="detailedRecipe__time">Serves {detailedRecipe.servings}</p>
+                    <p className="detailedRecipe__servings">Serves {detailedRecipe.servings}</p>
                     <p className="detailedRecipe__time">Ready in {detailedRecipe.readyInMinutes} minutes</p>
                     <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: detailedRecipe.summary }}></p>
                     <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             detailedRecipe.extendedIngredients.map(ingredient => {
-                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.original}</li>
+                                i++
+                                return <li className="ingredient" key={"ingredient--" + ingredient.id + "--" + i}>{ingredient.original}</li>
                             })
                         }
                     </ul>

@@ -1,9 +1,9 @@
 
-import { ApplicationViews } from "./components/ApplicationViews"
-import { Register } from "./components/auth/Register"
-import { Route, Redirect } from "react-router-dom"
-import { Login } from "./components/auth/Login"
 import React from "react"
+import { ApplicationViews } from "./components/ApplicationViews"
+import { Route, Redirect } from "react-router-dom"
+import { Register } from "./components/auth/Register"
+import { Login } from "./components/auth/Login"
 import './App.css';
 
 

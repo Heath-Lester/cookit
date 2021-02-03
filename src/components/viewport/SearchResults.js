@@ -1,7 +1,7 @@
 
 import React, { useContext } from "react"
-import { SearchContext } from "../search/SearchProvider"
 import { ViewPortContext } from "./ViewPortContext"
+import { SearchContext } from "../search/SearchProvider"
 import { ViewPort } from "./ViewPort"
 import "./ViewPort.css"
 
