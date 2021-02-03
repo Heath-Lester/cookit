@@ -6,9 +6,8 @@ Cookit! is a single page application that allows user to save andreference recip
 
 The following instructions will get you a copy of the project up and running on your local machine for demonstration and testing purposes.
 
-### Prerequisites
+1. Download and install [Node.js](https://nodejs.org/en/)
 
-1. Download and install [Node.js](https://nodejs.org/en/), if not already installed on your local machine.
 2. Install React with the following terminal command:
 ```
 npm install --save react
@@ -28,7 +27,7 @@ npm install -g json-server
 
 6. Clone my [repository](https://github.com/Heath-Lester/cookit) to your local machine.
 
-7. Navigate to the project folder. In the ```src``` directory. Within that directory create a file ```.api_key.js```
+7. Navigate to the project folder. In the ```src``` directory. Within that directory, create a file ```.api_key.js```
 
 8. In said file, copy/paste ```export const apiKey = `paste_your_api_key_here` ```. This will prevent you from accidentally sharing your API key with other people.
 
@@ -92,11 +91,7 @@ json-server -p 8088 -w database.json
 ## Built With
 
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
-* [Spoonacular API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details//) - 
-
-## Version Control
-
-I use [Git](https://git-scm.com/) for version control.
+* [Spoonacular API](https://spoonacular.com/food-api//) - A recipe, nutrition, and ingredient API with over 5,000 recipes
 
 ## Authors
 
