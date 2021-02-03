@@ -67,20 +67,26 @@ json-server -p 8088 -w database.json
 
 7. From here you can use the search bar with keywords like "chicken" or "strawberries" and you will be presented with multiple recipes from the Spoonacular API. You can select any of these recipes and be presented with a detailed recipe including ingredients and cooking instructions. If you are looking to parse specific recipe you can click the "Search Bar" drop-down button and select the "Extract Bar". Here, you can paste in recipe URL's from other websites and the essential information will be provided to you. You can save these recipes for later or add them to the meal section. Once the meals are added you can selecte the "Build Grocery List" button and you will be presented with a grocery list of all the recipes selected. 
 
-8. Enjoy!
+8. Thank you for your time!
 
 
-### Login view
-![alt text](https://github.com/TheTechTravis/strain-brain/blob/main/public/Login.png?raw=true)
+### Login to Your Account
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/login.gif?raw=true)
 
-### Home view of a brand new user
-![alt text](https://github.com/TheTechTravis/strain-brain/blob/main/public/Home%20(New%20Account).png?raw=true)
+### Search and Save Recipes
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/search_and_save.gif?raw=true)
 
-### Setting up medical conditions
-![alt text](https://github.com/TheTechTravis/strain-brain/blob/main/public/Set%20Medical%20Conditions.png?raw=true)
+### Favorite and Removed Saved Recipes
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/edit_and_delete.gif?raw=true)
 
-### Home view after setting medical conditions
-![alt text](https://github.com/TheTechTravis/strain-brain/blob/main/public/Home%20(After%20Setting%20Medical%20Conditions).png?raw=true)
+### Extract Recipes from other Websites
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/extract_and_save.gif?raw=true)
+
+### Build a Grocery List
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/grocery_list.gif?raw=true)
+
+### Entity Relationship Diagram
+![alt text](https://github.com/Heath-Lester/cookit/tree/main/src/images/cookit_erd.png?raw=true)
 
 
 ## Built With
