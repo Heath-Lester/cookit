@@ -7,7 +7,7 @@ import "./SavedRecipes.css"
 
 export const SelectedSavedRecipe = recipeId => {
 
-    // let userId = parseInt(localStorage.getItem("app_user_id"))
+    // let userId = parseInt(localStorage.getItem("cookit_user"))
 
     const { detailedRecipe, getRecipeById, setRecipe } = useContext(SearchContext)
 

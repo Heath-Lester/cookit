@@ -10,7 +10,7 @@ import './App.css';
 export const App = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("app_user_id")) {
+            if (localStorage.getItem("cookit_user")) {
                 return (
                     <>
                         <Route render={props => <ApplicationViews {...props} />} />

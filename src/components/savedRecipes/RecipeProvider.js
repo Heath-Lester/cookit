@@ -12,7 +12,7 @@ export const RecipeProvider = props => {
 
     const [selectedRecipe, setSelectedRecipe] = useState({})
 
-    const userId = parseInt(localStorage.getItem("app_user_id"))
+    const userId = parseInt(localStorage.getItem("cookit_user"))
 
 
     /// Saved Recipe Requests ///

@@ -10,7 +10,7 @@ import "./ViewPort.css"
 
 export const DetailedResult = () => {
 
-    let userId = parseInt(localStorage.getItem("app_user_id"))
+    let userId = parseInt(localStorage.getItem("cookit_user"))
 
     const { detailedRecipe } = useContext(SearchContext)
 
