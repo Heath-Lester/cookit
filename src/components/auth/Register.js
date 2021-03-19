@@ -1,54 +1,46 @@
 import React, { useRef } from "react"
 import "./Login.css"
 
+
 export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()
+    const username = useRef()
     const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const conflictDialog = useRef()
 
-    const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
-            .then(_ => _.json())
-            .then(user => !!user.length)
-    }
 
     const handleRegister = (e) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
-            existingUserCheck()
-                .then((userExists) => {
-                    if (!userExists) {
-                        // If your json-server URL is different, please change it below!
-                        fetch("http://localhost:8088/users", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                email: email.current.value,
-                                password: password.current.value,
-                                name: `${firstName.current.value} ${lastName.current.value}`
-                            })
-                        })
-                            .then(_ => _.json())
-                            .then(createdUser => {
-                                if (createdUser.hasOwnProperty("id")) {
-                                    // The user id is saved under the key app_user_id in local Storage. Change below if needed!
-                                    localStorage.setItem("app_user_id", createdUser.id)
-                                    props.history.push("/")
-                                }
-                            })
-                    }
-                    else {
-                        conflictDialog.current.showModal()
+            const newUser = {
+                "firstName": firstName.current.value,
+                "lastName": lastName.current.value,
+                "username": username.current.value,
+                "email": email.current.value,
+                "password": password.current.value,
+            }
+
+            fetch("http://localhost:8000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then(res => res.json())
+                .then(createdUser => {
+                    if ("token" in createdUser) {
+                        localStorage.setItem("cookit_user", createdUser.token)
+                        props.history.push("/")
                     }
                 })
+                .catch(() => conflictDialog.current.showModal())
         } else {
             passwordDialog.current.showModal()
         }
@@ -64,12 +56,12 @@ export const Register = (props) => {
             </dialog>
 
             <dialog className="dialog dialog--password" ref={conflictDialog}>
-                <div>Account with that email address already exists</div>
+                <div>An account with that email or username already exists.</div>
                 <button className="button--close" onClick={e => conflictDialog.current.close()}>Close</button>
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Application Name</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register for Application</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
@@ -77,6 +69,10 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="username"> User Name </label>
+                    <input ref={username} type="text" name="username" className="form-control" placeholder="User Name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
@@ -91,10 +87,11 @@ export const Register = (props) => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Sign in </button>
+                    <button type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>
     )
 }
+
 

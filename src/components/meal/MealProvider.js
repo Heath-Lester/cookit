@@ -10,7 +10,7 @@ export const MealProvider = props => {
 
     const [meals, setMeals] = useState([])
 
-    const userId = parseInt(localStorage.getItem("app_user_id"))
+    const userId = parseInt(localStorage.getItem("cookit_user"))
 
 
     const getMeals = () => {

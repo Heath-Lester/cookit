@@ -1,35 +1,39 @@
 import React, { useRef } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom"
 import cookit_logo from "../../images/cookit_logo.png"
 import "./Login.css"
 
 
-export const Login = props => {
-    const email = useRef()
+export const Login = () => {
+    const username = useRef()
     const password = useRef()
     const existDialog = useRef()
-    const passwordDialog = useRef()
+    const invalidDialog = useRef()
+    const history = useHistory();
 
-    const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
-            .then(_ => _.json())
-            .then(user => user.length ? user[0] : false)
-    }
+    const handleLogin = (event) => {
+        event.preventDefault()
 
-    const handleLogin = (e) => {
-        e.preventDefault()
-
-        existingUserCheck()
-            .then(exists => {
-                if (exists && exists.password === password.current.value) {
-                    // The user id is saved under the key app_user_id in local Storage. Change below if needed!
-                    localStorage.setItem("app_user_id", exists.id)
-                    props.history.push("/")
-                } else if (exists && exists.password !== password.current.value) {
-                    passwordDialog.current.showModal()
-                } else if (!exists) {
-                    existDialog.current.showModal()
+        return fetch("http://localhost:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify({
+                username: username.current.value,
+                password: password.current.value,
+            }),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                if ("valid" in res && res.valid) {
+                    localStorage.setItem("cookit_user", res.token);
+                    console.log(res)
+                    history.push("/");
+                } else {
+                    invalidDialog.current.showModal();
                 }
             })
     }
@@ -41,20 +45,20 @@ export const Login = props => {
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
-            <dialog className="dialog dialog--password" ref={passwordDialog}>
+            <dialog className="dialog dialog--password" ref={invalidDialog}>
                 <div>Password does not match</div>
-                <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
+                <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <img className="logo" src={cookit_logo} alt={"Logo"} />
-                    <h2>Please sign in</h2>
+                    <h2>Please sign in!</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email"
-                            id="email"
+                        <label htmlFor="inputusername"> Username </label>
+                        <input ref={username} type="username"
+                            id="username"
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder="Username"
                             required autoFocus />
                     </fieldset>
                     <fieldset>

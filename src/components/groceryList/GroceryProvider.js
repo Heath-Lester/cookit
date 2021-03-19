@@ -11,7 +11,7 @@ export const GroceryProvider = props => {
 
     const [ingredientsList, setIngredientsList] = useState([])
 
-    const userId = parseInt(localStorage.getItem("app_user_id"))
+    const userId = parseInt(localStorage.getItem("cookit_user"))
     
     console.log("GroceryProvider", ingredientsList)
 
