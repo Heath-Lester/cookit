@@ -4,7 +4,7 @@ import cookit_logo from "../../images/cookit_logo.png"
 import "./Login.css"
 
 
-export const Login = props => {
+export const Login = () => {
     const username = useRef()
     const password = useRef()
     const existDialog = useRef()
@@ -29,7 +29,7 @@ export const Login = props => {
             .then((res) => {
                 console.log(res);
                 if ("valid" in res && res.valid) {
-                    localStorage.setItem("app_user_id", res.token);
+                    localStorage.setItem("cookit_user", res.token);
                     console.log(res)
                     history.push("/");
                 } else {
@@ -50,7 +50,7 @@ export const Login = props => {
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
-                <form className="form--login" onSubmit={Login}>
+                <form className="form--login" onSubmit={handleLogin}>
                     <img className="logo" src={cookit_logo} alt={"Logo"} />
                     <h2>Please sign in!</h2>
                     <fieldset>

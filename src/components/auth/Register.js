@@ -17,11 +17,10 @@ export const Register = (props) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
-
             const newUser = {
                 "firstName": firstName.current.value,
                 "lastName": lastName.current.value,
-                "username": email.current.value,
+                "username": username.current.value,
                 "email": email.current.value,
                 "password": password.current.value,
             }
@@ -41,7 +40,7 @@ export const Register = (props) => {
                         props.history.push("/")
                     }
                 })
-
+                .catch(() => conflictDialog.current.showModal())
         } else {
             passwordDialog.current.showModal()
         }
@@ -57,7 +56,7 @@ export const Register = (props) => {
             </dialog>
 
             <dialog className="dialog dialog--password" ref={conflictDialog}>
-                <div>Account with that email or username already exists</div>
+                <div>An account with that email or username already exists.</div>
                 <button className="button--close" onClick={e => conflictDialog.current.close()}>Close</button>
             </dialog>
 
