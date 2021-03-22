@@ -10,7 +10,7 @@ import "./ViewPort.css"
 
 export const DetailedResult = () => {
 
-    let userId = parseInt(localStorage.getItem("cookit_user"))
+    let userToken = localStorage.getItem("cookit_user")
 
     const { detailedRecipe } = useContext(SearchContext)
 
@@ -18,12 +18,7 @@ export const DetailedResult = () => {
 
     const { addGroceryRecipe } = useContext(GroceryContext)
 
-    const { savedRecipes,
-        saveRecipe,
-        // saveIngredients,
-        // saveInstructions,
-        // saveCookWear,
-        getSavedRecipes } = useContext(SavedRecipeContext)
+    const { savedRecipes, saveRecipe, getSavedRecipes } = useContext(SavedRecipeContext)
 
 
 
@@ -33,71 +28,55 @@ export const DetailedResult = () => {
     } else {
 
         let ingredientsArray = []
-        let equipmentArray = []
         let instructionsArray = []
+        let equipmentArray = []
 
         detailedRecipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
-        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
         detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => instructionsArray.push(step)))
+        detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => { if (item.hasOwnProperty("id") && equipmentArray.filter(e => e.id === item.id).length === 0) { equipmentArray.push(item) } })))
 
 
         const constructRecipe = () => {
 
-            if (savedRecipes.filter(r => r.recipeId === detailedRecipe.id).length > 0) {
-                window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userId})`)
+            if (savedRecipes.filter(r => r.spoonacular_id === detailedRecipe.id).length > 0) {
+                window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userToken})`)
 
-            } else if (detailedRecipe.id < 0) {
+            } else if (detailedRecipe.id < 1) {
 
                 window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
 
             } else {
-
+                debugger
                 saveRecipe({
-                    userId,
-                    recipeId: detailedRecipe.id,
+                    spoonacularId: detailedRecipe.id,
                     title: detailedRecipe.title,
                     image: detailedRecipe.image,
-                    favorite: false,
-                    edited: false
+                    sourceName: detailedRecipe.sourceName,
+                    sourceUrl: detailedRecipe.sourceUrl,
+                    servings: detailedRecipe.servings,
+                    readyInMinutes: detailedRecipe.readyInMinutes,
+                    summary: detailedRecipe.summary,
+                    ingredients: ingredientsArray,
+                    instructions: instructionsArray,
+                    equipment: equipmentArray
                 })
-                // .then(ingredientsArray.map(i => saveIngredients({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     ingredientId: i.id,
-                //     name: i.name,
-                //     unit: i.unit,
-                //     amount: i.unit,
-                //     aisle: i.aisle
-                // })))
-                // .then(equipmentArray.map(e => saveEquipment({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     equipmentId: e.id,
-                //     name: e.name,
-                // })))
-                // .then(instructionArray.map(i => saveInstructions({
-                //     userId,
-                //     recipeId: detailedRecipe.id,
-                //     number: i.number,
-                //     step: i.step
-                // })))
             }
         }
 
-        const constructIngredientList = () => {
-            console.log("Detailed Result", ingredientsArray)
-            ingredientsArray.map(ingredient => {
-                // debugger
-                return addGroceryRecipe({
-                    userId,
-                    recipeId: detailedRecipe.id,
-                    ingredientId: ingredient.id,
-                    amount: ingredient.amount,
-                    unit: ingredient.measures.us.unitLong,
-                    aquired: false
-                })
-            })
-        }
+        // const constructIngredientList = () => {
+        //     console.log("Detailed Result", ingredientsArray)
+        //     ingredientsArray.map(ingredient => {
+        //         // debugger
+        //         return addGroceryRecipe({
+        //             userId,
+        //             recipeId: detailedRecipe.id,
+        //             ingredientId: ingredient.id,
+        //             amount: ingredient.amount,
+        //             unit: ingredient.measures.us.unitLong,
+        //             aquired: false
+        //         })
+        //     })
+        // }
 
 
         let parsedEquipment = []
@@ -117,7 +96,7 @@ export const DetailedResult = () => {
                             }}>Save Recipe
                         </button>
 
-                        <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
+                        {/* <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
                                 if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
@@ -128,7 +107,7 @@ export const DetailedResult = () => {
                                     window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
                                 }
                             }}>Add to Meal
-                        </button>
+                        </button> */}
                     </div>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>

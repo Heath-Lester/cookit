@@ -10,7 +10,7 @@ import "./SavedRecipes.css"
 
 export const AllSavedRecipes = props => {
 
-    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite } = useContext(SavedRecipeContext)
+    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
 
     const [recipeId, setRecipeId] = useState()
 
@@ -19,7 +19,7 @@ export const AllSavedRecipes = props => {
 
     useEffect(() => {
         getSavedRecipes()
-    }, [selectedRecipe])
+    }, [])
 
 
     return (
@@ -37,26 +37,18 @@ export const AllSavedRecipes = props => {
                         sortedRecipes.map(recipe => {
                             return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
                                 onClick={() => {
-                                    // clickedRecipe(recipe.id)
-                                    setRecipeId(recipe.id)
-                                    console.log("Recipe Id", recipeId)
-                                    setSelectedRecipe(recipe.recipeId)
-                                    console.log("selectedRecipe", selectedRecipe)
-
+                                    getSingleRecipe(recipe.id)
                                 }}>
                                 <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
                                 {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
                                     <h4 className="recipe__name">{recipe.title}</h4>}
                                 {recipe.favorite ? <button className="recipe__favorite"
                                     onClick={() => {
-                                        favorite(recipe.id, { "favorite": false })
-                                        getSavedRecipes()
-                                        setSelectedRecipe(recipe.recipeId)
+                                        favorite(recipe.id)
+                                        setSelectedRecipe(recipe.id)
                                     }}>Unfavorite</button> : <button className="recipe__favorite"
                                         onClick={() => {
-                                            favorite(recipe.id, { "favorite": true })
-                                            getSavedRecipes()
-                                            setSelectedRecipe(recipe.recipeId)
+                                            favorite(recipe.id)
                                         }}>Favorite</button>
                                 }
 
@@ -67,7 +59,7 @@ export const AllSavedRecipes = props => {
                     }
                 </section>
                 <section className="container--right">
-                    {<SelectedSavedRecipe recipeId={recipeId} {...props} />}
+                    {<SelectedSavedRecipe {...props} />}
                 </section>
             </main>
         </>
