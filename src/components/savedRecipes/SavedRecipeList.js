@@ -2,7 +2,6 @@
 import React, { useEffect, useContext } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { ViewPortContext } from "../viewport/ViewPortContext"
-import { SearchContext } from "../search/SearchProvider"
 import { ViewPort } from "../viewport/ViewPort"
 import { Link } from "react-router-dom"
 import star_icon from "../../images/star_icon.png"
@@ -10,9 +9,7 @@ import star_icon from "../../images/star_icon.png"
 
 export const SavedRecipeList = props => {
 
-    const { savedRecipes, getSavedRecipes } = useContext(SavedRecipeContext)
-
-    const { getRecipeById } = useContext(SearchContext)
+    const { savedRecipes, getSavedRecipes, getSingleRecipe } = useContext(SavedRecipeContext)
 
     const { setViewPort } = useContext(ViewPortContext)
 
@@ -26,7 +23,7 @@ export const SavedRecipeList = props => {
     return (
         <>
             <header className="allSavedRecipes--header">
-                <h2><Link className="savedRecipe--link" to={`/savedRecipes/`}>Saved Recipes</Link></h2>
+                <h2><Link className="savedRecipe--link" to={`/savedRecipes/`}>{"<"} My Recipes</Link></h2>
             </header>
 
             <article className="savedRecipes">
@@ -35,8 +32,8 @@ export const SavedRecipeList = props => {
                     sortedRecipes.map(recipe => {
                         return <div className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
                             onClick={() => {
-                                getRecipeById(recipe.recipeId)
-                                setViewPort(2)
+                                getSingleRecipe(recipe.id)
+                                setViewPort(3)
                                 return <ViewPort {...props} />
                             }}>
                             <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>

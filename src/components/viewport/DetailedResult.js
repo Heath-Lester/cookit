@@ -27,8 +27,6 @@ export const DetailedResult = () => {
 
     } else {
 
-        debugger
-
         let ingredientsArray = []
         let instructionsArray = []
         let equipmentArray = []

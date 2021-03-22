@@ -1,13 +1,13 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
-import "./SavedRecipes.css"
+import "../savedRecipes/SavedRecipes.css"
 
 
-export const SelectedSavedRecipe = props => {
+export const DetailedSavedRecipe = props => {
 
 
-    const { selectedRecipe, setSelectedRecipe, deleteRecipe } = useContext(SavedRecipeContext)
+    const { selectedRecipe } = useContext(SavedRecipeContext)
 
 
     if (selectedRecipe.hasOwnProperty("id") === false) {
@@ -17,19 +17,25 @@ export const SelectedSavedRecipe = props => {
 
         return (
             <>
+                <div className="buttons">
+                    {/* <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
+                                    constructIngredientList()
+                                    addMeal({ userId, recipeId: detailedRecipe.id })
+                                    return <MealBuilder />
+                                } else {
+                                    window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
+                                }
+                            }}>Add to Meal
+                        </button> */}
+                </div>
+
                 <header className="selectedRecipe__title"><h2 className="selectedRecipe__name">{selectedRecipe.title}</h2></header>
                 <section className="selectedRecipe" id={selectedRecipe.id} autoFocus key={selectedRecipe.id}>
 
-                    {/* <h2 className="selectedRecipe__name">{selectedRecipe.title}</h2> */}
                     <img className="selectedRecipe__image" src={selectedRecipe.image} alt={`Recipe Image`}></img>
-
-                    <button className="selectedRecipe__deleteButton" id={`Delete--${selectedRecipe.id}`}
-                        onClick={event => {
-                            event.preventDefault()
-                            deleteRecipe(selectedRecipe.id)
-                            setSelectedRecipe({})
-                        }}>Delete Recipe
-                    </button>
 
                     <h3 className="selectedRecipe__author">Author: <a href={`http://www.google.com/search?q=${selectedRecipe.sourceName}&btnI`}>{selectedRecipe.sourceName}</a></h3>
                     <a className="selectedRecipe__webLink" href={selectedRecipe.source_url}>Original Recipe</a>
@@ -63,3 +69,4 @@ export const SelectedSavedRecipe = props => {
         )
     }
 }
+

@@ -29,7 +29,7 @@ export const RecipeProvider = props => {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
-            .then(setSavedRecipes)
+            .then(setSelectedRecipe)
     }
 
     const saveRecipe = recipeObj => {
@@ -54,7 +54,7 @@ export const RecipeProvider = props => {
 
     //// Favorite/Unfavorite Request ////
     const favorite = (recipeId) => {
-        return fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        return fetch(`http://localhost:8000/recipes/${recipeId}/favorite`, {
             headers: {
                 "Authorization": `Token ${userToken}`,
                 "Content-Type": "application/json"
