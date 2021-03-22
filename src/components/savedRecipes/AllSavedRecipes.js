@@ -10,9 +10,7 @@ import "./SavedRecipes.css"
 
 export const AllSavedRecipes = props => {
 
-    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
-
-    const [recipeId, setRecipeId] = useState()
+    const { savedRecipes, getSavedRecipes, setSelectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
 
     let alphabetical = savedRecipes.sort((a, b) => (b.title > a.title) ? 1 : -1)
     let sortedRecipes = alphabetical.sort((a, b) => (b.favorite > a.favorite) ? 1 : -1)
