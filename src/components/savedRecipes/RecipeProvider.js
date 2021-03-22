@@ -12,90 +12,69 @@ export const RecipeProvider = props => {
 
     const [selectedRecipe, setSelectedRecipe] = useState({})
 
-    const userId = parseInt(localStorage.getItem("cookit_user"))
+    const userToken = localStorage.getItem("cookit_user")
 
 
     /// Saved Recipe Requests ///
     const getSavedRecipes = () => {
-        return fetch(`http://localhost:8088/savedRecipes/?userId=${userId}`)
+        return fetch(`http://localhost:8000/recipes`, {
+            headers: { "Authorization": `Token ${userToken}` }
+        })
             .then(result => result.json())
             .then(setSavedRecipes)
     }
 
+    const getSingleRecipe = (recipeId) => {
+        return fetch(`http://localhost:8000/recipes/${recipeId}`, {
+            headers: { "Authorization": `Token ${userToken}` }
+        })
+            .then(result => result.json())
+            .then(setSavedRecipes)
+    }
 
     const saveRecipe = recipeObj => {
-        return fetch(`http://localhost:8088/savedRecipes`, {
+        return fetch(`http://localhost:8000/recipes`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Authorization": `Token ${userToken}`,
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(recipeObj)
         })
             .then(getSavedRecipes)
     }
 
     const deleteRecipe = recipeId => {
-        return fetch(`http://localhost:8088/savedRecipes/${recipeId}`, {
+        return fetch(`http://localhost:8000/recipes/${recipeId}`, {
             method: "DELETE",
+            headers: { "Authorization": `Token ${userToken}` }
         })
             .then(getSavedRecipes)
     }
 
     //// Favorite/Unfavorite Request ////
-    const favorite = (savedRecipeId, favorite) => {
-        return fetch(`http://localhost:8088/savedRecipes/${savedRecipeId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
+    const favorite = (recipeId) => {
+        return fetch(`http://localhost:8000/recipes/${recipeId}`, {
+            headers: {
+                "Authorization": `Token ${userToken}`,
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(favorite)
         })
             .then(getSavedRecipes)
     }
 
-    /// Saved Ingredients Requests ///
-    const getIngredients = recipeId => {
-        return fetch(`http://localhost:8088/ingredientsJoin/?recipeId=${recipeId}`)
-            .then(result => result.json())
-    }
-
-
-    const saveIngredients = ingredientsArray => {
-        return fetch(`http://localhost:8088/ingredientsJoin`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(ingredientsArray)
+    const editRecipe = (recipeObj, recipeId) => {
+        return fetch(`http://localhost:8000/recipe/${recipeId}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${userToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipeObj)
         })
+            .then(getSavedRecipes)
     }
-
-
-    /// Saved Instructions Requests ///
-    const getInstructions = recipeId => {
-        return fetch(`http://localhost:8088/instructions/?recipeId=${recipeId}`)
-            .then(result => result.json())
-    }
-
-
-    const saveInstructions = instructionsArray => {
-        return fetch(`http://localhost:8088/instructions`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(instructionsArray)
-        })
-
-    }
-
-
-    /// Saved Cook Wear Requests ///
-    // const getCookWear = recipeId => {
-    //     return fetch(`http://localhost:8088/cookWear/recipeId=${recipeId}`)
-    //         .then(result => result.json())
-    // }
-
-
-    // const saveCookWear = cookWearArray => {
-    //     return fetch(`http://localhost:8088/cookWear`, {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(cookWearArray)
-    //     })
-    // }
 
 
     return (
@@ -105,15 +84,11 @@ export const RecipeProvider = props => {
             selectedRecipe,
             setSelectedRecipe,
             getSavedRecipes,
+            getSingleRecipe,
             saveRecipe,
             deleteRecipe,
             favorite,
-            getIngredients,
-            saveIngredients,
-            getInstructions,
-            saveInstructions,
-            // getCookWear,
-            // saveCookWear
+            editRecipe
         }}>
             {props.children}
         </SavedRecipeContext.Provider>
