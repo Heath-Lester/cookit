@@ -1,26 +1,30 @@
 
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { GroceryContext } from "./GroceryProvider"
-import { MealContext } from "../meal/MealProvider"
 import "./GroceryList.css"
 
 
 export const GroceryRecipe = ({ ingredient }) => {
 
-    const { recipe, groceryList, getRecipeList, spoonacularRecipe } = useContext(GroceryContext)
+    const { ingredientAquired } = useContext(GroceryContext)
 
     let i = 0
-
+    i++
 
     return (
-        <>
-            {
-                <input type="checkbox" className="ingredient" id={ingredient.id + "--" + i} key={ingredient.id + "--" + i}
-                    name={ingredient.name} checked={ingredient.aquired}>
-                        <label className="ingredient">{ingredient.name} :  {ingredient.amount} {ingredient.unit}</label>
-                </input>
-            }
+        <div className="ingredient">
 
-        </>
+            <input type="checkbox"
+                id={ingredient.id + "--" + i}
+                key={ingredient.id + "--" + i}
+                name={ingredient.name + "--" + i}
+                checked={ingredient.aquired}
+                onChange={() => {
+                    ingredientAquired(ingredient.id)
+                }} />
+
+            <label for={ingredient.name + "--" + i}
+            >{ingredient.name} :  {ingredient.amount} {ingredient.unit} </label>
+        </div>
     )
 }

@@ -27,6 +27,7 @@ export const Meal = ({ meal }) => {
         return (
             <>
                 <div className="meal" id={"mealId--" + meal.id} key={"mealId--" + meal.id}>
+
                     <div className="meal__content">
                         <img className="meal__image" src={meal.saved_recipe.image} alt={`Meal`}
                             onClick={() => {
@@ -36,9 +37,10 @@ export const Meal = ({ meal }) => {
                             }} />
                         <div className="meal__details">
                             <h4 className="meal__name">{meal.saved_recipe.title}</h4>
-                            <dt className="meal__prepTime">Ready in {meal.saved_recipe.readyInMinutes} minutes</dt>
+                            <dt className="meal__prepTime">Ready in {meal.saved_recipe.ready_in_minutes} minutes</dt>
                         </div>
                     </div>
+
                     <button className="meal--delete_button"
                         onClick={() => {
                             deleteMeal(meal.id)

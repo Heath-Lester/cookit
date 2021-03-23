@@ -1,5 +1,8 @@
 
-.GroceryList {}
+.GroceryList {
+    display: flex;
+    flex-flow: column nowrap;
+}
 
 .recipe {
     display: flex;

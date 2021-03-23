@@ -16,7 +16,7 @@ export const GroceryProvider = props => {
 
 
     const getGroceryList = () => {
-        return fetch(`http://localhost:8088/grocerylist`, {
+        return fetch(`http://localhost:8000/grocerylist`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -24,7 +24,7 @@ export const GroceryProvider = props => {
     }
 
     const ingredientAquired = (ingredientId) => {
-        return fetch(`https://localhost:8088/grocerylist/${ingredientId}/aquired`, {
+        return fetch(`http://localhost:8000/grocerylist/${ingredientId}/aquired`, {
             headers: { "Authorization": `Token ${userToken}` },
         })
             .then(getGroceryList)
