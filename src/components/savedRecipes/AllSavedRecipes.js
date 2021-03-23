@@ -38,8 +38,10 @@ export const AllSavedRecipes = props => {
                                     getSingleRecipe(recipe.id)
                                 }}>
                                 <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
+
                                 {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
                                     <h4 className="recipe__name">{recipe.title}</h4>}
+                                    
                                 {recipe.favorite ? <button className="recipe__favorite"
                                     onClick={() => {
                                         favorite(recipe.id)

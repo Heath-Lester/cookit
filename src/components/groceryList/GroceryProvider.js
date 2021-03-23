@@ -9,67 +9,30 @@ export const GroceryProvider = props => {
 
     const [groceryList, setGroceryList] = useState([])
 
-    const [ingredientsList, setIngredientsList] = useState([])
+    const userToken = localStorage.getItem("cookit_user")
 
-    const userId = parseInt(localStorage.getItem("cookit_user"))
-    
-    console.log("GroceryProvider", ingredientsList)
 
     const getGroceryList = () => {
-        return fetch(`http://localhost:8088/groceryItems/?userId=${userId}`)
+        return fetch(`http://localhost:8088/grocerylist`, {
+            headers: { "Authorization": `Token ${userToken}` }
+        })
             .then(result => result.json())
             .then(setGroceryList)
     }
 
-
-    const addGroceryRecipe = groceryObj => {
-        return fetch(`http://localhost:8088/groceryItems`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(groceryObj)
+    const ingredientAquired = (ingredientId) => {
+        return fetch(`https://localhost:8088/grocerylist/${ingredientId}/aquired`, {
+            headers: { "Authorization": `Token ${userToken}` },
         })
             .then(getGroceryList)
     }
 
 
-    const getRecipeList = recipeId => {
-        // debugger
-        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
-        .then(result => result.json())
-        .then(result => setIngredientsList(result))
-}
-
-    const deleteGroceryRecipe= recipeId => {
-        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
-        .then(result => result.json())
-        .then(result => result.map(item => {
-            return fetch(`http://localhost:8088/groceryItems/${item.id}`, {
-                method: "DELETE",
-            })
-        }))
-        }
-
-
-    const ingredientAquired = (ingredientId, aquired) => {
-        return fetch(`https://localhost:8088/groceryItems/${ingredientId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(aquired)
-
-        })
-            .then(getGroceryList)
-    }
-
-    
     return (
         <GroceryContext.Provider value={{
             groceryList,
             setGroceryList,
-            ingredientsList,
-            setIngredientsList,
-            addGroceryRecipe,
-            getRecipeList,
-            deleteGroceryRecipe,
+            getGroceryList,
             ingredientAquired
         }}>
             {props.children}

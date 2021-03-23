@@ -1,8 +1,6 @@
 
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { ViewPortContext } from "../viewport/ViewPortContext"
-import { GroceryContext } from "../groceryList/GroceryProvider"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "./MealProvider"
 import { ViewPort } from "../viewport/ViewPort"
