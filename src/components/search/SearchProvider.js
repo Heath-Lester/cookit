@@ -23,7 +23,7 @@ export const SearchProvider = props => {
 
     //// Search Requests ////
     const searchRecipeByKeyword = keyword => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=10&instructionsRequired=true`, {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${keyword}&number=50&instructionsRequired=true`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-key": `${apiKey}`,

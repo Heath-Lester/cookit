@@ -39,7 +39,7 @@ export const SelectedSavedRecipe = props => {
                     <ul className="selectedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             selectedRecipe.ingredients.map(ingredient => {
-                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.name}</li>
+                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>
@@ -54,7 +54,7 @@ export const SelectedSavedRecipe = props => {
                     <ol className="selectedRecipe__instructions" key="instructions">Instructions
                         {
                             selectedRecipe.instructions.map(instruction => {
-                                return <li className="instruction" key={"step--" + instruction.instruction.id}>{instruction.instruction}</li>
+                                return <li className="instruction" key={"step--" + instruction.step_number}>{instruction.instruction}</li>
                             })
                         }
                     </ol>

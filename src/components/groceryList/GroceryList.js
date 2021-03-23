@@ -8,7 +8,7 @@ import "./GroceryList.css"
 
 export const GroceryList = props => {
 
-    const { recipe, groceryList, getGroceryList } = useContext(GroceryContext)
+    const { groceryList, getGroceryList } = useContext(GroceryContext)
 
     useEffect(() => {
         getGroceryList()

@@ -23,7 +23,7 @@ export const GroceryRecipe = ({ ingredient }) => {
                     ingredientAquired(ingredient.id)
                 }} />
 
-            <label for={ingredient.name + "--" + i}
+            <label htmlFor={ingredient.name + "--" + i}
             >{ingredient.name} :  {ingredient.amount} {ingredient.unit} </label>
         </div>
     )
