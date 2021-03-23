@@ -16,14 +16,17 @@ export const MealBuilder = (props) => {
     return (
         <>
             <h2>Meal Builder</h2>
-            <button className="groceryList--button" 
-                onClick={ () => {
+
+            <button className="groceryList--button"
+                onClick={() => {
                     props.history.push(`/groceryList`)
-                }}>Create Grocery List</button>
+                }}>Create Grocery List
+            </button>
+
             <article className="GropceryList">
                 {
                     meals.map(meal => {
-                        return <Meal meal={meal} key={"mealKey--"+meal.id}/>
+                        return <Meal meal={meal} key={"mealKey--" + meal.id} />
                     })
                 }
             </article>

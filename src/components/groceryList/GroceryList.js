@@ -1,6 +1,5 @@
 
 import React, { useContext, useEffect } from "react"
-import { SearchContext } from "../search/SearchProvider"
 import { GroceryRecipe } from "./GroceryRecipe"
 import { MealContext } from "../meal/MealProvider"
 import { Link } from "react-router-dom"

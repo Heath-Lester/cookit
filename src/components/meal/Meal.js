@@ -9,7 +9,7 @@ import "./Meal.css"
 
 export const Meal = ({ meal }) => {
 
-    const { getRecipe, deleteMeal } = useContext(MealContext)
+    const { deleteMeal } = useContext(MealContext)
 
     const { getRecipeById } = useContext(SearchContext)
 
@@ -21,8 +21,8 @@ export const Meal = ({ meal }) => {
 
 
     useEffect(() => {
-        getRecipe(meal.recipeId)
-            .then(setRecipe)
+        // getRecipe(meal.recipeId)
+        //     .then(setRecipe)
     }, [])
 
 

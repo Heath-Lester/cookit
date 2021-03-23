@@ -14,9 +14,7 @@ export const DetailedResult = () => {
 
     const { detailedRecipe } = useContext(SearchContext)
 
-    const { addMeal, meals } = useContext(MealContext)
-
-    const { addGroceryRecipe } = useContext(GroceryContext)
+    const { meals, addMeal } = useContext(MealContext)
 
     const { savedRecipes, saveRecipe, getSavedRecipes } = useContext(SavedRecipeContext)
 
@@ -46,7 +44,6 @@ export const DetailedResult = () => {
                 window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
 
             } else {
-                debugger
                 saveRecipe({
                     spoonacularId: detailedRecipe.id,
                     title: detailedRecipe.title,
@@ -63,20 +60,25 @@ export const DetailedResult = () => {
             }
         }
 
-        // const constructIngredientList = () => {
-        //     console.log("Detailed Result", ingredientsArray)
-        //     ingredientsArray.map(ingredient => {
-        //         // debugger
-        //         return addGroceryRecipe({
-        //             userId,
-        //             recipeId: detailedRecipe.id,
-        //             ingredientId: ingredient.id,
-        //             amount: ingredient.amount,
-        //             unit: ingredient.measures.us.unitLong,
-        //             aquired: false
-        //         })
-        //     })
-        // }
+        const makeMeal = (checkedRecipe, checkedMeal) => {
+
+            if (!checkedMeal) {
+
+                if (checkedRecipe) {
+                    addMeal({ spoonacularId: detailedRecipe.id, savedRecipeId: checkedRecipe.id })
+                } else if (!checkedRecipe) {
+                    addMeal({
+                        spoonacularId: detailedRecipe.id,
+                        savedRecipeId: null,
+                        ingredients: ingredientsArray,
+                        instructions: instructionsArray,
+                        equipment: equipmentArray
+                    })
+                }
+            } else if (checkedMeal) {
+                alert(`Recipe ${checkedMeal.id} has already been added to Meal queue!`)
+            }
+        }
 
 
         let parsedEquipment = []
@@ -96,18 +98,19 @@ export const DetailedResult = () => {
                             }}>Save Recipe
                         </button>
 
-                        {/* <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
+                        <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
                                 if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                    constructIngredientList()
-                                    addMeal({ userId, recipeId: detailedRecipe.id })
+                                    debugger
+                                    getSavedRecipes()
+                                    makeMeal(savedRecipes.find(r => r.spoonacular_id === detailedRecipe.id, meals.find(m => m.spoonacular_id === detailedRecipe.id)))
                                     return <MealBuilder />
                                 } else {
                                     window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
                                 }
                             }}>Add to Meal
-                        </button> */}
+                        </button>
                     </div>
 
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
