@@ -1,14 +1,26 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { MealContext } from "../meal/MealProvider"
+import { MealBuilder } from "../meal/MealBuilder"
 import "../savedRecipes/SavedRecipes.css"
 
 
 export const DetailedSavedRecipe = props => {
 
 
-    const { selectedRecipe } = useContext(SavedRecipeContext)
+    const { selectedRecipe, getSavedRecipes } = useContext(SavedRecipeContext)
 
+    const { meals, addMeal } = useContext(MealContext)
+
+    const makeMeal = (checkedMeal) => {
+        if (!checkedMeal) {
+            addMeal({ spoonacularId: selectedRecipe.spoonacular_id, savedRecipeId: selectedRecipe.id })
+        } else if (checkedMeal) {
+            alert(`Recipe ${checkedMeal.id} has already been added to Meal queue!`)
+        }
+
+    }
 
     if (selectedRecipe.hasOwnProperty("id") === false) {
         return <></>
@@ -18,18 +30,14 @@ export const DetailedSavedRecipe = props => {
         return (
             <>
                 <div className="buttons">
-                    {/* <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
-                            onClick={event => {
-                                event.preventDefault()
-                                if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                    constructIngredientList()
-                                    addMeal({ userId, recipeId: detailedRecipe.id })
-                                    return <MealBuilder />
-                                } else {
-                                    window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
-                                }
-                            }}>Add to Meal
-                        </button> */}
+                    <button className="selectedRecipe__addMeal" id={`Add--${selectedRecipe.id}`} type="submit"
+                        onClick={event => {
+                            event.preventDefault()
+                            getSavedRecipes()
+                            makeMeal(meals.find(m => m.id === selectedRecipe.id))
+                            return <MealBuilder />
+                        }}>Add to Meal
+                    </button>
                 </div>
 
                 <header className="selectedRecipe__title"><h2 className="selectedRecipe__name">{selectedRecipe.title}</h2></header>
@@ -45,7 +53,7 @@ export const DetailedSavedRecipe = props => {
                     <ul className="selectedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             selectedRecipe.ingredients.map(ingredient => {
-                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.name}</li>
+                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>

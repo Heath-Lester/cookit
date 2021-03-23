@@ -1,5 +1,6 @@
 
 import React, { useState } from "react"
+import { apiKey } from "../../.api_key.js"
 
 
 export const GroceryContext = React.createContext()
@@ -9,68 +10,47 @@ export const GroceryProvider = props => {
 
     const [groceryList, setGroceryList] = useState([])
 
-    const [ingredientsList, setIngredientsList] = useState([])
+    const [recipe, setRecipe] = useState({ title: null, image: null, extendedIngredients: [] })
 
-    const userId = parseInt(localStorage.getItem("cookit_user"))
-    
-    console.log("GroceryProvider", ingredientsList)
+    const userToken = localStorage.getItem("cookit_user")
+
 
     const getGroceryList = () => {
-        return fetch(`http://localhost:8088/groceryItems/?userId=${userId}`)
+        return fetch(`http://localhost:8000/grocerylist`, {
+            headers: { "Authorization": `Token ${userToken}` }
+        })
             .then(result => result.json())
             .then(setGroceryList)
     }
 
-
-    const addGroceryRecipe = groceryObj => {
-        return fetch(`http://localhost:8088/groceryItems`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(groceryObj)
+    const ingredientAquired = (ingredientId) => {
+        return fetch(`http://localhost:8000/grocerylist/${ingredientId}/aquired`, {
+            headers: { "Authorization": `Token ${userToken}` },
         })
             .then(getGroceryList)
     }
 
-
-    const getRecipeList = recipeId => {
-        // debugger
-        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
-        .then(result => result.json())
-        .then(result => setIngredientsList(result))
-}
-
-    const deleteGroceryRecipe= recipeId => {
-        return fetch(`http://localhost:8088/groceryItems/?recipeId=${recipeId}`)
-        .then(result => result.json())
-        .then(result => result.map(item => {
-            return fetch(`http://localhost:8088/groceryItems/${item.id}`, {
-                method: "DELETE",
-            })
-        }))
-        }
-
-
-    const ingredientAquired = (ingredientId, aquired) => {
-        return fetch(`https://localhost:8088/groceryItems/${ingredientId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(aquired)
-
+    const spoonacularRecipe = recipeId => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
         })
-            .then(getGroceryList)
+            .then(response => response.json())
+            .then(response => setRecipe(response))
     }
 
-    
+
     return (
         <GroceryContext.Provider value={{
+            recipe,
             groceryList,
             setGroceryList,
-            ingredientsList,
-            setIngredientsList,
-            addGroceryRecipe,
-            getRecipeList,
-            deleteGroceryRecipe,
-            ingredientAquired
+            getGroceryList,
+            ingredientAquired,
+            spoonacularRecipe
         }}>
             {props.children}
         </GroceryContext.Provider>

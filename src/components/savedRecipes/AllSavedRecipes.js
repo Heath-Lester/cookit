@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { Link } from "react-router-dom"
@@ -10,9 +10,7 @@ import "./SavedRecipes.css"
 
 export const AllSavedRecipes = props => {
 
-    const { savedRecipes, getSavedRecipes, setSelectedRecipe, selectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
-
-    const [recipeId, setRecipeId] = useState()
+    const { savedRecipes, getSavedRecipes, setSelectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
 
     let alphabetical = savedRecipes.sort((a, b) => (b.title > a.title) ? 1 : -1)
     let sortedRecipes = alphabetical.sort((a, b) => (b.favorite > a.favorite) ? 1 : -1)
@@ -40,8 +38,10 @@ export const AllSavedRecipes = props => {
                                     getSingleRecipe(recipe.id)
                                 }}>
                                 <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
+
                                 {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
                                     <h4 className="recipe__name">{recipe.title}</h4>}
+
                                 {recipe.favorite ? <button className="recipe__favorite"
                                     onClick={() => {
                                         favorite(recipe.id)

@@ -10,56 +10,73 @@ export const MealProvider = props => {
 
     const [meals, setMeals] = useState([])
 
-    const userId = parseInt(localStorage.getItem("cookit_user"))
+    const [recipe, setRecipe] = useState({title: null, image: null, readyInMinutes: null})
+
+    const userToken = localStorage.getItem("cookit_user")
 
 
     const getMeals = () => {
-        // debugger
-        return fetch(`http://localhost:8088/mealsToPrep/?userId=${userId}`)
+        return fetch(`http://localhost:8000/meals`, {
+            headers: { "Authorization": `Token ${userToken}` }
+        })
             .then(result => result.json())
             .then(setMeals)
     }
 
-
-    const addMeal = recipeObj => {
-        // debugger
-        return fetch(`http://localhost:8088/mealsToPrep`, {
+    const addMeal = mealObj => {
+        return fetch(`http://localhost:8000/meals`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(recipeObj)
+            headers: {
+                "Authorization": `Token ${userToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(mealObj)
         })
             .then(getMeals)
     }
-
 
     const deleteMeal = mealId => {
-        return fetch(`http://localhost:8088/mealsToPrep/${mealId}`, {
+        return fetch(`http://localhost:8000/meals/${mealId}`, {
             method: "DELETE",
+            headers: { "Authorization": `Token ${userToken}` }
         })
             .then(getMeals)
     }
 
+    //// Delete all meals for a given User ////
+    const resetMeals = () => {
+        return fetch(`http://localhost:8000/meals/complete`, {
+            method: "DELETE",
+            headers: { "Authorization": `Token ${userToken}` }
+        })
+            .then(result => result.json())
+            .then(setMeals)
+    }
 
-    const getRecipe = id => {
-        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-            method: "GET",
-            headers: {
+    const spoonacularRecipe = recipeId => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`, {
+            "method": "GET",
+            "headers": {
                 "x-rapidapi-key": `${apiKey}`,
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
             .then(response => response.json())
+            .then(response => setRecipe(response))
     }
 
-    
+
     return (
         <MealContext.Provider value={{
             meals,
             setMeals,
+            recipe,
+            setRecipe,
             getMeals,
+            addMeal,
             deleteMeal,
-            getRecipe,
-            addMeal
+            resetMeals,
+            spoonacularRecipe
         }}>
             {props.children}
         </MealContext.Provider>
