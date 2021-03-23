@@ -14,7 +14,6 @@ export const DetailedSavedRecipe = props => {
     const { meals, addMeal } = useContext(MealContext)
 
     const makeMeal = (checkedMeal) => {
-        debugger
         if (!checkedMeal) {
             addMeal({ spoonacularId: selectedRecipe.spoonacular_id, savedRecipeId: selectedRecipe.id })
         } else if (checkedMeal) {
@@ -34,7 +33,6 @@ export const DetailedSavedRecipe = props => {
                     <button className="selectedRecipe__addMeal" id={`Add--${selectedRecipe.id}`} type="submit"
                         onClick={event => {
                             event.preventDefault()
-                            debugger
                             getSavedRecipes()
                             makeMeal(meals.find(m => m.id === selectedRecipe.id))
                             return <MealBuilder />

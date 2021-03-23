@@ -1,5 +1,6 @@
 
 import React, { useState } from "react"
+import { apiKey } from "../../.api_key.js"
 
 
 export const MealContext = React.createContext()
@@ -8,6 +9,8 @@ export const MealContext = React.createContext()
 export const MealProvider = props => {
 
     const [meals, setMeals] = useState([])
+
+    const [recipe, setRecipe] = useState({title: null, image: null, readyInMinutes: null})
 
     const userToken = localStorage.getItem("cookit_user")
 
@@ -50,15 +53,30 @@ export const MealProvider = props => {
             .then(setMeals)
     }
 
+    const spoonacularRecipe = recipeId => {
+        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+            .then(response => setRecipe(response))
+    }
+
 
     return (
         <MealContext.Provider value={{
             meals,
             setMeals,
+            recipe,
+            setRecipe,
             getMeals,
             addMeal,
             deleteMeal,
-            resetMeals
+            resetMeals,
+            spoonacularRecipe
         }}>
             {props.children}
         </MealContext.Provider>

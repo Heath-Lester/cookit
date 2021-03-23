@@ -101,14 +101,9 @@ export const DetailedResult = () => {
                         <button className="detailedRecipe__addMeal" id={`Add--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
-                                if (meals.filter(m => m.recipeId === detailedRecipe.id).length === 0) {
-                                    debugger
-                                    getSavedRecipes()
-                                    makeMeal(savedRecipes.find(r => r.spoonacular_id === detailedRecipe.id, meals.find(m => m.spoonacular_id === detailedRecipe.id)))
-                                    return <MealBuilder />
-                                } else {
-                                    window.alert(`Recipe ${detailedRecipe.id} has already beed added`)
-                                }
+                                getSavedRecipes()
+                                makeMeal(savedRecipes.find(r => r.spoonacular_id === detailedRecipe.id, meals.find(m => m.spoonacular_id === detailedRecipe.id)))
+                                return <MealBuilder />
                             }}>Add to Meal
                         </button>
                     </div>
