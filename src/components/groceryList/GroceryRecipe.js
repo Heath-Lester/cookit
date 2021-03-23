@@ -1,58 +1,26 @@
 
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { GroceryContext } from "./GroceryProvider"
-import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import "./GroceryList.css"
 
 
-export const GroceryRecipe = ({ meal }) => {
+export const GroceryRecipe = ({ ingredient }) => {
 
-    const { getIngredientById, ingredient } = useContext(SearchContext)
-
-    const { getRecipe } = useContext(MealContext)
-
-    const { getRecipeList, ingredientsList } = useContext(GroceryContext)
-
-    const [recipe, setRecipe] = useState({ title: null, image: null, extendedIngredients: [] })
-
-    useEffect(() => {
-        getRecipe(meal.recipeId)
-            .then(setRecipe)
-    }, [])
-
-    let ingredientsArray = []
+    const { recipe, groceryList, getRecipeList, spoonacularRecipe } = useContext(GroceryContext)
 
     let i = 0
-
-    recipe.extendedIngredients.map(ingredient => ingredientsArray.push(ingredient))
-
-    console.log(ingredientsArray)
 
 
     return (
         <>
-            <section className="recipe">
+            {
+                <input type="checkbox" className="ingredient" id={ingredient.id + "--" + i} key={ingredient.id + "--" + i}
+                    name={ingredient.name} checked={ingredient.aquired}>
+                        <label className="ingredient">{ingredient.name} :  {ingredient.amount} {ingredient.unit}</label>
+                </input>
+            }
 
-                <div className="recipe__leftSide">
-                    <div className="recipe__information">
-                        <h2 className="recipe__name">{recipe.title}</h2>
-                        <img className="grocery--recipe__image" src={recipe.image} alt={`Meal`} />
-                    </div>
-                </div>
-
-                <ul className="recipe__ingredients">
-                    {
-                        ingredientsArray.map(ingredient => {
-                            i++
-                            return <li type="checkbox" className="ingredient" id={ingredient.id + "--" + i} key={ingredient.id + "--" + i}
-                                name={ingredient.originalName} value={ingredient.id + "--" + i}><h3 className="ingredient">{ingredient.name} :  {ingredient.amount} {ingredient.measures.us.unitLong}</h3>
-                            </li>
-                        })
-                    }
-                </ul>
-
-            </section>
         </>
     )
 }

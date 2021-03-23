@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { Link } from "react-router-dom"
@@ -41,7 +41,7 @@ export const AllSavedRecipes = props => {
 
                                 {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
                                     <h4 className="recipe__name">{recipe.title}</h4>}
-                                    
+
                                 {recipe.favorite ? <button className="recipe__favorite"
                                     onClick={() => {
                                         favorite(recipe.id)

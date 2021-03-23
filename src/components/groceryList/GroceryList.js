@@ -1,17 +1,17 @@
 
 import React, { useContext, useEffect } from "react"
 import { GroceryRecipe } from "./GroceryRecipe"
-import { MealContext } from "../meal/MealProvider"
+import { GroceryContext } from "./GroceryProvider"
 import { Link } from "react-router-dom"
 import cookit_logo from "../../images/cookit_logo.png"
 import "./GroceryList.css"
 
 export const GroceryList = props => {
 
-    const { meals, getMeals } = useContext(MealContext)
+    const { recipe, groceryList, getGroceryList } = useContext(GroceryContext)
 
     useEffect(() => {
-        getMeals()
+        getGroceryList()
     }, [])
 
 
@@ -23,13 +23,13 @@ export const GroceryList = props => {
                 <h3 className="link"><Link to={'/'}>Back</Link></h3>
             </header>
 
-            <article className="GroceryList">
+            <form className="GroceryList">
                 {
-                    meals.map(meal => {
-                        return <GroceryRecipe meal={meal} key={"groceryItem--"+meal.recipeId}/>
+                    groceryList.map(ingredient => {
+                        return <GroceryRecipe ingredient={ingredient} key={"groceryItem--"+ingredient.id}/>
                     })
                 }
-            </article>
+            </form>
         </>
     )
 

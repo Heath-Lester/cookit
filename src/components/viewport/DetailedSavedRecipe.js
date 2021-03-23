@@ -53,7 +53,7 @@ export const DetailedSavedRecipe = props => {
                     <ul className="selectedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             selectedRecipe.ingredients.map(ingredient => {
-                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.name}</li>
+                                return <li className="ingredient" key={"ingredient--" + ingredient.id}>{ingredient.original}</li>
                             })
                         }
                     </ul>
