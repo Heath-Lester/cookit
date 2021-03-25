@@ -7,6 +7,7 @@ import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
 import { MealProvider } from "./meal/MealProvider"
 import { GroceryList } from "./groceryList/GroceryList"
+import { NewRecipe} from "./savedRecipes/NewRecipe"
 import { HomeView } from "./Home"
 import { Route } from "react-router-dom"
 
@@ -19,11 +20,21 @@ export const ApplicationViews = (props) => {
 
             <RecipeProvider>
                 <SearchProvider>
-                    <Route path="/savedRecipes" render={
+                    <Route exact path="/savedRecipes" render={
                         props => <AllSavedRecipes {...props} />
                     } />
                 </SearchProvider>
             </RecipeProvider>
+
+            <GroceryProvider>
+                <MealProvider>
+                    <SearchProvider>
+                        <Route exact path="/newRecipe" render={
+                            props => <NewRecipe {...props} />
+                        } />
+                    </SearchProvider>
+                </MealProvider>
+            </GroceryProvider>
 
             <SearchProvider>
                 <RecipeProvider>

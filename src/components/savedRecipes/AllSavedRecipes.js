@@ -26,6 +26,11 @@ export const AllSavedRecipes = props => {
                 <img className="logo" src={cookit_logo} alt={"Logo"} />
                 <h1 className="title" >All Recipes</h1>
                 <h3 className="link"><Link to={'/'}>Back</Link></h3>
+                <button className="newRecipe" onClick={() => {
+                    props.history.push(`/newRecipe`)
+                }
+                }>Create New Recipe
+                </button>
             </header>
 
             <main className="container--main">
