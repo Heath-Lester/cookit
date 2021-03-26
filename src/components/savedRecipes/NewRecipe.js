@@ -35,6 +35,7 @@ export const NewRecipe = props => {
     
 
     const constructRecipe = () => {
+        debugger
         saveNewRecipe({
             title: newRecipe.title,
             image: newRecipe.image,
@@ -43,9 +44,9 @@ export const NewRecipe = props => {
             summary: newRecipe.summary,
             ingredients: ingredientArray,
             equipment: equipmentArray,
-            instructions: ingredientArray
+            instructions: instructionArray
         })
-        .then(props.history.push(`/savedRecipes`))
+        // .then(props.history.push(`/savedRecipes`))
     }
 
 
@@ -77,6 +78,7 @@ export const NewRecipe = props => {
         const newInstructionArray = [...instructionArray]
         newInstructionArray.splice(index, 1, newInstructionProperty)
         setInstructionArray(newInstructionArray)
+        console.log(instructionArray)
     }
 
 
@@ -127,8 +129,8 @@ export const NewRecipe = props => {
                         onChange={e => changeCurrentIngredient(e, i)}>
                         <option htmlFor="unit" value={null}>Select a Unit</option>
                         <option htmlFor="unit" value={null}>None</option>
-                        <option htmlFor="unit" value="teaspoon">Teaspoon</option>
-                        <option htmlFor="unit" value="tablespoon">Tablespoon</option>
+                        <option htmlFor="unit" value="teaspoon">Teaspoons</option>
+                        <option htmlFor="unit" value="tablespoon">Tablespoons</option>
                         <option htmlFor="unit" value="ounce">Ounces</option>
                         <option htmlFor="unit" value="cup">Cups</option>
                         <option htmlFor="unit" value="pint">Pints</option>
@@ -139,6 +141,10 @@ export const NewRecipe = props => {
                         <option htmlFor="unit" value="milligram">Milligrams</option>
                         <option htmlFor="unit" value="inch">Inch</option>
                         <option htmlFor="unit" value="centimeter">Centimeters</option>
+                        <option htmlFor="unit" value="slice">Slices</option>
+                        <option htmlFor="unit" value="piece">Pieces</option>
+                        <option htmlFor="unit" value="stick">Sticks</option>
+                        <option htmlFor="unit" value="pinch">Pinches</option>
                     </select>
                 </fieldset>
 
@@ -224,9 +230,9 @@ export const NewRecipe = props => {
         return (
             <>
                 <fieldset>
-                    <label htmlFor="title">Step {n} </label>
-                    <input type="text" className="recipeForm" name="title" required
-                        maxLength={50} placeholder="enter a name..." defaultValue={instruction.title}
+                    <label htmlFor="instruction">Step {n} </label>
+                    <textarea type="text" className="recipeForm" name="instruction" required
+                        maxLength={100} placeholder="enter an instruction..." defaultValue={instruction.instruction}
                         onBlur={e => changeCurrentInstruction(e, i)} />
                 </fieldset>
                 <button type="button"
@@ -283,7 +289,7 @@ export const NewRecipe = props => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="summary">Summary </label>
-                    <input type="text" className="recipeForm" name="summary" maxLength={500} required
+                    <textarea type="textArea" className="recipeForm" name="summary" maxLength={500} required
                         placeholder="briefly explain this recipe..." defaultValue={newRecipe.summary}
                         onBlur={changeCurrentRecipe} />
                 </fieldset>
@@ -329,7 +335,7 @@ export const NewRecipe = props => {
                     onClick={() => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.push({
-                            name: ""
+                            instruction: ""
                         })
                         setInstructionArray(newInstructionArray)
                         console.log(instructionArray)
