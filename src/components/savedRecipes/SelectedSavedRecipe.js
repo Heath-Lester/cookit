@@ -1,6 +1,6 @@
 
 import React, { useContext } from "react"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { SavedRecipeContext } from "./RecipeProvider"
 import "./SavedRecipes.css"
 
 
@@ -29,6 +29,15 @@ export const SelectedSavedRecipe = props => {
                             deleteRecipe(selectedRecipe.id)
                             setSelectedRecipe({})
                         }}>Delete Recipe
+                    </button>
+
+                    <button className="selectedRecipe__editButton" id={`Edit--${selectedRecipe.id}`}
+                        onClick={event => {
+                            event.preventDefault()
+                            console.log(props)
+                            props.history.push(`/editrecipe/${selectedRecipe.id}`)
+                            props.history.location.state = {recipeId: selectedRecipe.id}
+                        }}>Edit Recipe
                     </button>
 
                     {selectedRecipe.sourceName ? <h3 className="selectedRecipe__author">Author: <a href={`http://www.google.com/search?q=${selectedRecipe.sourceName}&btnI`}>{selectedRecipe.sourceName}</a></h3> :

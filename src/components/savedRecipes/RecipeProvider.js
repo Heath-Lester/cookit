@@ -77,7 +77,7 @@ export const RecipeProvider = props => {
     }
 
     const editRecipe = (recipeObj, recipeId) => {
-        return fetch(`http://localhost:8000/recipe/${recipeId}`, {
+        return fetch(`http://localhost:8000/recipes/${recipeId}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Token ${userToken}`,

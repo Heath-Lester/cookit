@@ -7,27 +7,30 @@ import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
 import { MealProvider } from "./meal/MealProvider"
 import { GroceryList } from "./groceryList/GroceryList"
-import { NewRecipe } from "./savedRecipes/NewRecipe"
+import { RecipeForm } from "./savedRecipes/RecipeForm"
 import { HomeView } from "./Home"
 import { Route } from "react-router-dom"
 
 
 
 
-export const ApplicationViews = (props) => {
+export const ApplicationViews = props => {
     return (
         <>
             <RecipeProvider>
                 <SearchProvider>
-                    <Route exact path="/savedRecipes" render={
+                    <Route exact path="/savedrecipes" render={
                         props => <AllSavedRecipes {...props} />
                     } />
                 </SearchProvider>
             </RecipeProvider>
 
             <RecipeProvider>
-                <Route exact path="/newRecipe" render={
-                    props => <NewRecipe {...props} />
+                <Route exact path="/newrecipe" render={
+                    props => <RecipeForm {...props} />
+                } />
+                <Route path="/editrecipe" render={
+                    props => <RecipeForm {...props} />
                 } />
             </RecipeProvider>
 
@@ -44,7 +47,7 @@ export const ApplicationViews = (props) => {
             </SearchProvider>
 
             <GroceryProvider>
-                <Route path="/groceryList" render={
+                <Route path="/grocerylist" render={
                     props => <GroceryList {...props} />
                 } />
             </GroceryProvider>
