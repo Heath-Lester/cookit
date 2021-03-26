@@ -26,7 +26,7 @@ export const GroceryList = props => {
             <form className="GroceryList">
                 {
                     groceryList.map(ingredient => {
-                        return <GroceryRecipe ingredient={ingredient} key={"groceryItem--"+ingredient.id}/>
+                        return <GroceryRecipe ingredient={ingredient} key={"groceryItem--" + ingredient.id} />
                     })
                 }
             </form>
