@@ -35,7 +35,6 @@ export const NewRecipe = props => {
     
 
     const constructRecipe = () => {
-        debugger
         saveNewRecipe({
             title: newRecipe.title,
             image: newRecipe.image,
@@ -46,7 +45,7 @@ export const NewRecipe = props => {
             equipment: equipmentArray,
             instructions: instructionArray
         })
-        // .then(props.history.push(`/savedRecipes`))
+        .then(props.history.push(`/savedRecipes`))
     }
 
 
@@ -78,7 +77,6 @@ export const NewRecipe = props => {
         const newInstructionArray = [...instructionArray]
         newInstructionArray.splice(index, 1, newInstructionProperty)
         setInstructionArray(newInstructionArray)
-        console.log(instructionArray)
     }
 
 
@@ -205,9 +203,9 @@ export const NewRecipe = props => {
         return (
             <>
                 <fieldset>
-                    <label htmlFor="title">Name </label>
-                    <input type="text" className="recipeForm" name="title" required
-                        maxLength={50} placeholder="enter a name..." defaultValue={equipment.title}
+                    <label htmlFor="name">Name </label>
+                    <input type="text" className="recipeForm" name="name" required
+                        maxLength={50} placeholder="enter a name..." defaultValue={equipment.name}
                         onBlur={e => { changeCurrentEquipment(e, i); console.log(e) }}
                     />
                 </fieldset>
@@ -216,7 +214,6 @@ export const NewRecipe = props => {
                         const newEquipmentArray = [...equipmentArray]
                         newEquipmentArray.splice(i, 1)
                         setEquipmentArray(newEquipmentArray)
-                        console.log(equipmentArray)
                     }}>-
                 </button>
             </>
@@ -240,7 +237,6 @@ export const NewRecipe = props => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.splice(i, 1)
                         setInstructionArray(newInstructionArray)
-                        console.log(instructionArray)
                     }}>-
                 </button>
             </>
@@ -309,7 +305,6 @@ export const NewRecipe = props => {
                             original: ""
                         })
                         setIngredientArray(newIngredientArray)
-                        console.log(ingredientArray)
                     }}>+
                 </button>
             </form>
@@ -324,7 +319,6 @@ export const NewRecipe = props => {
                             name: ""
                         })
                         setEquipmentArray(newEquipmentArray)
-                        console.log(equipmentArray)
                     }}>+
                 </button>
             </form>
@@ -338,7 +332,6 @@ export const NewRecipe = props => {
                             instruction: ""
                         })
                         setInstructionArray(newInstructionArray)
-                        console.log(instructionArray)
                     }}>+
                 </button>
             </form>

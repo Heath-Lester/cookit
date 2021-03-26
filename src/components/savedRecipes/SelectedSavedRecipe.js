@@ -31,7 +31,8 @@ export const SelectedSavedRecipe = props => {
                         }}>Delete Recipe
                     </button>
 
-                    <h3 className="selectedRecipe__author">Author: <a href={`http://www.google.com/search?q=${selectedRecipe.sourceName}&btnI`}>{selectedRecipe.sourceName}</a></h3>
+                    {selectedRecipe.sourceName ? <h3 className="selectedRecipe__author">Author: <a href={`http://www.google.com/search?q=${selectedRecipe.sourceName}&btnI`}>{selectedRecipe.sourceName}</a></h3> :
+                    <h3 className="selectedRecipe__author">Author: {selectedRecipe.source_name}</h3>}
                     <a className="selectedRecipe__webLink" href={selectedRecipe.source_url}>Original Recipe</a>
                     <p className="selectedRecipe__time">Serves {selectedRecipe.servings}</p>
                     <p className="selectedRecipe__time">Ready in {selectedRecipe.ready_in_minutes} minutes</p>
