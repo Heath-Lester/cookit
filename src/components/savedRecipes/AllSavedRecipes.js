@@ -27,7 +27,8 @@ export const AllSavedRecipes = props => {
                 <h1 className="title" >All Recipes</h1>
                 <h3 className="link"><Link to={'/'}>Back</Link></h3>
                 <button className="newRecipe" onClick={() => {
-                    props.history.push(`/newRecipe`)
+                    setSelectedRecipe({})
+                    .then(props.history.push(`/newrecipe`))
                 }
                 }>Create New Recipe
                 </button>

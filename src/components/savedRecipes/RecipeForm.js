@@ -1,14 +1,18 @@
-import React, { useContext, useState } from "react"
-import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import React, { useContext, useState, useEffect } from "react"
+import { SavedRecipeContext } from "./RecipeProvider"
 import { Link } from "react-router-dom"
 import cookit_logo from "../../images/cookit_logo.png"
 import "./SavedRecipes.css"
 
 
-export const NewRecipe = props => {
+export const RecipeForm = props => {
 
-    const { saveRecipe, saveNewRecipe } = useContext(SavedRecipeContext)
-    
+    const { selectedRecipe, getSingleRecipe, saveNewRecipe, editRecipe } = useContext(SavedRecipeContext)
+
+    const editmode = props.history.location.state.hasOwnProperty("recipeId")
+
+    const recipeId = props.history.location.state.recipeId
+
     const [newRecipe, setCurrentRecipe] = useState({
         title: "",
         image: "",
@@ -16,7 +20,7 @@ export const NewRecipe = props => {
         readyInMinutes: null,
         summary: ""
     })
-    
+
     const [ingredientArray, setIngredientArray] = useState([{
         title: "",
         amount: null,
@@ -24,28 +28,84 @@ export const NewRecipe = props => {
         aisle: "",
         original: ""
     }])
-    
+
     const [equipmentArray, setEquipmentArray] = useState([{
         name: ""
     }])
-    
+
     const [instructionArray, setInstructionArray] = useState([{
         instruction: ""
     }])
-    
+
+    useEffect(() => {
+        getSingleRecipe(recipeId)
+    }, [])
+
+    useEffect(() => {
+        if (editmode && selectedRecipe.id && selectedRecipe.id === recipeId) {
+            const oldIngredientArray = []
+            const oldEquipmentArray = []
+            const oldInstructionArray = []
+            setCurrentRecipe({
+                title: selectedRecipe.title,
+                image: selectedRecipe.image,
+                servings: selectedRecipe.servings,
+                readyInMinutes: selectedRecipe.servings,
+                summary: selectedRecipe.summary,
+                spoonacularId: selectedRecipe.spoonacular_id,
+                favorite: selectedRecipe.favorite,
+                sourceName: selectedRecipe.source_name,
+                sourceUrl: selectedRecipe.source_url,
+
+            })
+            for (const ingredient of selectedRecipe.ingredients) {
+                oldIngredientArray.push({
+                    title: ingredient.name,
+                    amount: ingredient.amount,
+                    unit: ingredient.unit,
+                    aisle: ingredient.aisle,
+                })
+            } setIngredientArray(oldIngredientArray)
+            for (const equipment of selectedRecipe.equipment) {
+                oldEquipmentArray.push({
+                    name: equipment.name
+                })
+            } setEquipmentArray(oldEquipmentArray)
+            for (const instruction of selectedRecipe.instructions) {
+                oldInstructionArray.push({
+                    instruction: instruction.instruction
+                })
+            } setInstructionArray(oldInstructionArray)
+        }
+    }, [selectedRecipe])
+
 
     const constructRecipe = () => {
-        saveNewRecipe({
-            title: newRecipe.title,
-            image: newRecipe.image,
-            servings: newRecipe.servings,
-            readyInMinutes: newRecipe.readyInMinutes,
-            summary: newRecipe.summary,
-            ingredients: ingredientArray,
-            equipment: equipmentArray,
-            instructions: instructionArray
-        })
-        .then(props.history.push(`/savedRecipes`))
+        if (editmode) {
+            editRecipe({
+                title: newRecipe.title,
+                image: newRecipe.image,
+                servings: newRecipe.servings,
+                readyInMinutes: newRecipe.readyInMinutes,
+                summary: newRecipe.summary,
+                ingredients: ingredientArray,
+                equipment: equipmentArray,
+                instructions: instructionArray
+            }, selectedRecipe.id)
+            .then(props.history.push(`/savedrecipes`))
+        } else if (!editmode) {
+            saveNewRecipe({
+                title: newRecipe.title,
+                image: newRecipe.image,
+                servings: newRecipe.servings,
+                readyInMinutes: newRecipe.readyInMinutes,
+                summary: newRecipe.summary,
+                ingredients: ingredientArray,
+                equipment: equipmentArray,
+                instructions: instructionArray
+            })
+            .then(props.history.push(`/savedrecipes`))
+        }
     }
 
 
@@ -121,29 +181,37 @@ export const NewRecipe = props => {
                     <label htmlFor="amount">Amount </label>
                     <input type="number" className="recipeForm" name="amount" required
                         placeholder="0.5..." defaultValue={ingredient.amount}
-                        onBlur={e => changeCurrentIngredient(e, i)} />
+                        onBlur={e => changeCurrentIngredient(e, i)}>
+                    </input>
+
                     <label htmlFor="unit">Unit </label>
-                    <select className="recipeForm" name="unit" required defaultValue={ingredient.unit}
-                        onChange={e => changeCurrentIngredient(e, i)}>
-                        <option htmlFor="unit" value={null}>Select a Unit</option>
-                        <option htmlFor="unit" value={null}>None</option>
-                        <option htmlFor="unit" value="teaspoon">Teaspoons</option>
-                        <option htmlFor="unit" value="tablespoon">Tablespoons</option>
-                        <option htmlFor="unit" value="ounce">Ounces</option>
-                        <option htmlFor="unit" value="cup">Cups</option>
-                        <option htmlFor="unit" value="pint">Pints</option>
-                        <option htmlFor="unit" value="quart">Quarts</option>
-                        <option htmlFor="unit" value="gallon">Gallons</option>
-                        <option htmlFor="unit" value="pound">Pounds</option>
-                        <option htmlFor="unit" value="gram">Grams</option>
-                        <option htmlFor="unit" value="milligram">Milligrams</option>
-                        <option htmlFor="unit" value="inch">Inch</option>
-                        <option htmlFor="unit" value="centimeter">Centimeters</option>
-                        <option htmlFor="unit" value="slice">Slices</option>
-                        <option htmlFor="unit" value="piece">Pieces</option>
-                        <option htmlFor="unit" value="stick">Sticks</option>
-                        <option htmlFor="unit" value="pinch">Pinches</option>
-                    </select>
+                    {editmode ?
+                        <input type="text" className="recipeForm" name="unit" required
+                            placeholder="choose a unit..." defaultValue={ingredient.unit}
+                            onBlur={e => changeCurrentIngredient(e, i)}>
+                        </input>
+                        :
+                        <select className="recipeForm" name="unit" required defaultValue={ingredient.unit}
+                            onChange={e => changeCurrentIngredient(e, i)}>
+                            <option htmlFor="unit" value={null}>Select a Unit</option>
+                            <option htmlFor="unit" value={null}>None</option>
+                            <option htmlFor="unit" value="teaspoon">Teaspoons</option>
+                            <option htmlFor="unit" value="tablespoon">Tablespoons</option>
+                            <option htmlFor="unit" value="ounce">Ounces</option>
+                            <option htmlFor="unit" value="cup">Cups</option>
+                            <option htmlFor="unit" value="pint">Pints</option>
+                            <option htmlFor="unit" value="quart">Quarts</option>
+                            <option htmlFor="unit" value="gallon">Gallons</option>
+                            <option htmlFor="unit" value="pound">Pounds</option>
+                            <option htmlFor="unit" value="gram">Grams</option>
+                            <option htmlFor="unit" value="milligram">Milligrams</option>
+                            <option htmlFor="unit" value="inch">Inch</option>
+                            <option htmlFor="unit" value="centimeter">Centimeters</option>
+                            <option htmlFor="unit" value="slice">Slices</option>
+                            <option htmlFor="unit" value="piece">Pieces</option>
+                            <option htmlFor="unit" value="stick">Sticks</option>
+                            <option htmlFor="unit" value="pinch">Pinches</option>
+                        </select>}
                 </fieldset>
 
                 <fieldset>
@@ -151,37 +219,37 @@ export const NewRecipe = props => {
                     <select className="recipeForm" name="aisle" required defaultValue={ingredient.aisle}
                         onChange={event => changeCurrentIngredient(event, i)}>
                         <option htmlFor="aisle" value={null}>Select an Aisle </option>
-                        <option htmlFor="aisle" value="alcoholic beverages">Alcoholic Beverages</option>
-                        <option htmlFor="aisle" value="baking">Baking</option>
-                        <option htmlFor="aisle" value="bakery/bread">Bakery/Bread</option>
-                        <option htmlFor="aisle" value="beverages">Beverages</option>
-                        <option htmlFor="aisle" value="bread">Bread</option>
-                        <option htmlFor="aisle" value="canned and jarred">Canned and Jarred</option>
-                        <option htmlFor="aisle" value="cereal">Cereal</option>
-                        <option htmlFor="aisle" value="cheese">Cheese</option>
-                        <option htmlFor="aisle" value="condiments">Condiments</option>
-                        <option htmlFor="aisle" value="dried fruits">Dried Fruits</option>
-                        <option htmlFor="aisle" value="ethnic foods">Ethic Foods</option>
-                        <option htmlFor="aisle" value="frozen">Frozen</option>
-                        <option htmlFor="aisle" value="gourmet">Gourmet</option>
-                        <option htmlFor="aisle" value="gluten free">Glueten Free</option>
-                        <option htmlFor="aisle" value="grilling supplies">Grilling Supplies</option>
-                        <option htmlFor="aisle" value="health foods">Health Foods</option>
-                        <option htmlFor="aisle" value="milk, eggs, other dairy">Milk, Eggs, Other Dairy</option>
-                        <option htmlFor="aisle" value="meat">Meat</option>
-                        <option htmlFor="aisle" value="nut butters, jams, and honey">Nut Butters, Jams, and Honey</option>
-                        <option htmlFor="aisle" value="nuts">Nuts</option>
-                        <option htmlFor="aisle" value="oil, vinegar, salad dressing">Oil, Vinegar, Salad Dressing</option>
-                        <option htmlFor="aisle" value="pasta and rice">Pasta and Rice</option>
-                        <option htmlFor="aisle" value="produce">Produce</option>
-                        <option htmlFor="aisle" value="refrigerated">Refrigerated</option>
-                        <option htmlFor="aisle" value="savory snacks">Savory Snacks</option>
-                        <option htmlFor="aisle" value="seafood">Seafood</option>
-                        <option htmlFor="aisle" value="spices and seasonings">Spices and Seasonings</option>
-                        <option htmlFor="aisle" value="sweet snacks">Sweet Snacks</option>
-                        <option htmlFor="aisle" value="tea and coffee">Tea and Coffee</option>
-                        <option htmlFor="aisle" value="online">Online</option>
-                        <option htmlFor="aisle" value="not in grocery store/homemade">Not in Grocery/Homemade</option>
+                        <option htmlFor="aisle" value="Alcoholic Beverages">Alcoholic Beverages</option>
+                        <option htmlFor="aisle" value="Baking">Baking</option>
+                        <option htmlFor="aisle" value="Bakery/Bread">Bakery/Bread</option>
+                        <option htmlFor="aisle" value="Beverages">Beverages</option>
+                        <option htmlFor="aisle" value="Bread">Bread</option>
+                        <option htmlFor="aisle" value="Canned and Jarred">Canned and Jarred</option>
+                        <option htmlFor="aisle" value="Cereal">Cereal</option>
+                        <option htmlFor="aisle" value="Cheese">Cheese</option>
+                        <option htmlFor="aisle" value="Condiments">Condiments</option>
+                        <option htmlFor="aisle" value="Dried Fruits">Dried Fruits</option>
+                        <option htmlFor="aisle" value="Ethnic Foods">Ethnic Foods</option>
+                        <option htmlFor="aisle" value="Frozen">Frozen</option>
+                        <option htmlFor="aisle" value="Gourmet">Gourmet</option>
+                        <option htmlFor="aisle" value="Gluten Free">Gluten Free</option>
+                        <option htmlFor="aisle" value="Grilling Supplies">Grilling Supplies</option>
+                        <option htmlFor="aisle" value="Health Foods">Health Foods</option>
+                        <option htmlFor="aisle" value="Milk, Eggs, Other Dairy">Milk, Eggs, Other Dairy</option>
+                        <option htmlFor="aisle" value="Meat">Meat</option>
+                        <option htmlFor="aisle" value="Nut Butters, Jams, and Honey">Nut Butters, Jams, and Honey</option>
+                        <option htmlFor="aisle" value="Nuts">Nuts</option>
+                        <option htmlFor="aisle" value="Oil, Vinegar, Salad Dressing">Oil, Vinegar, Salad Dressing</option>
+                        <option htmlFor="aisle" value="Pasta and Rice">Pasta and Rice</option>
+                        <option htmlFor="aisle" value="Produce">Produce</option>
+                        <option htmlFor="aisle" value="Refrigerated">Refrigerated</option>
+                        <option htmlFor="aisle" value="Savory Snacks">Savory Snacks</option>
+                        <option htmlFor="aisle" value="Seafood">Seafood</option>
+                        <option htmlFor="aisle" value="Spices and Seasonings">Spices and Seasonings</option>
+                        <option htmlFor="aisle" value="Sweet Snacks">Sweet Snacks</option>
+                        <option htmlFor="aisle" value="Tea and Coffee">Tea and Coffee</option>
+                        <option htmlFor="aisle" value="Online">Online</option>
+                        <option htmlFor="aisle" value="Not in Grocery Store/Homemade">Not in Grocery Store/Homemade</option>
                     </select>
                 </fieldset>
 
@@ -229,7 +297,7 @@ export const NewRecipe = props => {
                 <fieldset>
                     <label htmlFor="instruction">Step {n} </label>
                     <textarea type="text" className="recipeForm" name="instruction" required
-                        maxLength={100} placeholder="enter an instruction..." defaultValue={instruction.instruction}
+                        maxLength={500} placeholder="enter an instruction..." defaultValue={instruction.instruction}
                         onBlur={e => changeCurrentInstruction(e, i)} />
                 </fieldset>
                 <button type="button"
@@ -248,13 +316,20 @@ export const NewRecipe = props => {
             <header className="savedRecipe--header">
                 <img className="logo" src={cookit_logo} alt={"Logo"} />
                 <h1 className="title" >Create a New Recipe</h1>
-                <h3 className="link"><Link to={'/savedRecipes'}>Back</Link></h3></header>
+                <h3 className="link"><Link to={'/savedrecipes'}>Back</Link></h3></header>
 
-            <button type="button"
-                onClick={() => {
-                    constructRecipe()
-                }}>Save Recipe
+            {editmode ?
+                <button type="button"
+                    onClick={() => {
+                        constructRecipe()
+                    }}>Save Changes
                 </button>
+                :
+                <button type="button"
+                    onClick={() => {
+                        constructRecipe()
+                    }}>Save Recipe
+                </button>}
 
 
             <form className="recipeForm" key={"recipeForm"}>
