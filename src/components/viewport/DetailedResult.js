@@ -38,19 +38,18 @@ export const DetailedResult = () => {
             if (savedRecipes.filter(r => r.spoonacular_id === detailedRecipe.id).length > 0) {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userToken})`)
 
-            } else if (detailedRecipe.id < 1) {
-
-                window.alert(`Recipe has ID of ${detailedRecipe.id} and is currently unable to be saved`)
-
             } else {
+                
+                const currentServings = detailedRecipe.servings ? detailedRecipe.servings : null
+                const minutes = detailedRecipe.readyInMinutes ? detailedRecipe.readyInMinutes : null
                 saveRecipe({
                     spoonacularId: detailedRecipe.id,
                     title: detailedRecipe.title,
                     image: detailedRecipe.image,
                     sourceName: detailedRecipe.sourceName,
                     sourceUrl: detailedRecipe.sourceUrl,
-                    servings: detailedRecipe.servings,
-                    readyInMinutes: detailedRecipe.readyInMinutes,
+                    servings: currentServings,
+                    readyInMinutes: minutes,
                     summary: detailedRecipe.summary,
                     ingredients: ingredientsArray,
                     instructions: instructionsArray,
@@ -59,7 +58,11 @@ export const DetailedResult = () => {
             }
         }
 
-        const makeMeal = (checkedRecipe, checkedMeal) => {
+        
+
+        const makeMeal = (checkedRecipe) => {
+
+            const checkedMeal= meals.find(m => m.spoonacular_id === detailedRecipe.id)
 
             if (!checkedMeal) {
 
@@ -101,7 +104,7 @@ export const DetailedResult = () => {
                             onClick={event => {
                                 event.preventDefault()
                                 getSavedRecipes()
-                                makeMeal(savedRecipes.find(r => r.spoonacular_id === detailedRecipe.id, meals.find(m => m.spoonacular_id === detailedRecipe.id)))
+                                makeMeal(savedRecipes.find(r => r.spoonacular_id === detailedRecipe.id))
                                 return <MealBuilder />
                             }}>Add to Meal
                         </button>

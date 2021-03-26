@@ -7,6 +7,7 @@ import { SearchProvider } from "./search/SearchProvider"
 import { RecipeProvider } from "./savedRecipes/RecipeProvider"
 import { MealProvider } from "./meal/MealProvider"
 import { GroceryList } from "./groceryList/GroceryList"
+import { NewRecipe } from "./savedRecipes/NewRecipe"
 import { HomeView } from "./Home"
 import { Route } from "react-router-dom"
 
@@ -16,37 +17,36 @@ import { Route } from "react-router-dom"
 export const ApplicationViews = (props) => {
     return (
         <>
-
             <RecipeProvider>
                 <SearchProvider>
-                    <Route path="/savedRecipes" render={
+                    <Route exact path="/savedRecipes" render={
                         props => <AllSavedRecipes {...props} />
                     } />
                 </SearchProvider>
             </RecipeProvider>
 
+            <RecipeProvider>
+                <Route exact path="/newRecipe" render={
+                    props => <NewRecipe {...props} />
+                } />
+            </RecipeProvider>
+
             <SearchProvider>
                 <RecipeProvider>
                     <MealProvider>
-                        <GroceryProvider>
-                            <ViewPortDisplay>
-                                <Route exact path="/">
-                                    <HomeView {...props} />
-                                </Route>
-                            </ViewPortDisplay>
-                        </GroceryProvider>
+                        <ViewPortDisplay>
+                            <Route exact path="/">
+                                <HomeView {...props} />
+                            </Route>
+                        </ViewPortDisplay>
                     </MealProvider>
                 </RecipeProvider>
             </SearchProvider>
 
             <GroceryProvider>
-                <MealProvider>
-                    <SearchProvider>
-                        <Route path="/groceryList" render={
-                            props => <GroceryList {...props} />
-                        } />
-                    </SearchProvider>
-                </MealProvider>
+                <Route path="/groceryList" render={
+                    props => <GroceryList {...props} />
+                } />
             </GroceryProvider>
         </>
     )

@@ -34,7 +34,7 @@ export const DetailedSavedRecipe = props => {
                         onClick={event => {
                             event.preventDefault()
                             getSavedRecipes()
-                            makeMeal(meals.find(m => m.id === selectedRecipe.id))
+                            makeMeal(meals.find(m => m.saved_recipe.id === selectedRecipe.id))
                             return <MealBuilder />
                         }}>Add to Meal
                     </button>
@@ -68,7 +68,7 @@ export const DetailedSavedRecipe = props => {
                     <ol className="selectedRecipe__instructions" key="instructions">Instructions
                         {
                             selectedRecipe.instructions.map(instruction => {
-                                return <li className="instruction" key={"step--" + instruction.instruction.id}>{instruction.instruction}</li>
+                                return <li className="instruction" key={"step--" + instruction.step_number}>{instruction.instruction}</li>
                             })
                         }
                     </ol>

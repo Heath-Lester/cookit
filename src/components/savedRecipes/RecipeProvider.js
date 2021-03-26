@@ -44,6 +44,18 @@ export const RecipeProvider = props => {
             .then(getSavedRecipes)
     }
 
+    const saveNewRecipe = (recipeObj) => {
+        return fetch(`http://localhost:8000/recipes/new`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${userToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipeObj)
+        })
+            .then(getSavedRecipes)
+    }
+
     const deleteRecipe = recipeId => {
         return fetch(`http://localhost:8000/recipes/${recipeId}`, {
             method: "DELETE",
@@ -86,6 +98,7 @@ export const RecipeProvider = props => {
             getSavedRecipes,
             getSingleRecipe,
             saveRecipe,
+            saveNewRecipe,
             deleteRecipe,
             favorite,
             editRecipe

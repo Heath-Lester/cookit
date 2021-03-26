@@ -8,7 +8,7 @@ import "./GroceryList.css"
 
 export const GroceryList = props => {
 
-    const { recipe, groceryList, getGroceryList } = useContext(GroceryContext)
+    const { groceryList, getGroceryList } = useContext(GroceryContext)
 
     useEffect(() => {
         getGroceryList()
@@ -26,7 +26,7 @@ export const GroceryList = props => {
             <form className="GroceryList">
                 {
                     groceryList.map(ingredient => {
-                        return <GroceryRecipe ingredient={ingredient} key={"groceryItem--"+ingredient.id}/>
+                        return <GroceryRecipe ingredient={ingredient} key={"groceryItem--" + ingredient.id} />
                     })
                 }
             </form>
