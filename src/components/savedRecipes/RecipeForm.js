@@ -9,9 +9,15 @@ export const RecipeForm = props => {
 
     const { selectedRecipe, getSingleRecipe, saveNewRecipe, editRecipe } = useContext(SavedRecipeContext)
 
-    const editmode = props.history.location.state.hasOwnProperty("recipeId")
+    let editmode
+    let recipeId
 
-    const recipeId = props.history.location.state.recipeId
+    if (!props.history.location.state) {
+        editmode = false
+    } else {
+        editmode = props.history.location.state.hasOwnProperty("recipeId") 
+        recipeId = props.history.location.state.recipeId}
+
 
     const [newRecipe, setCurrentRecipe] = useState({
         title: "",

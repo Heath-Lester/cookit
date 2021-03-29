@@ -4,7 +4,7 @@ import { GroceryContext } from "./GroceryProvider"
 import "./GroceryList.css"
 
 
-export const GroceryRecipe = ({ ingredient }) => {
+export const GroceryIngredient = ({ ingredient }) => {
 
     const { ingredientAquired } = useContext(GroceryContext)
 
