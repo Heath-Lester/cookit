@@ -214,6 +214,7 @@ export const RecipeForm = props => {
                             <option htmlFor="unit" value="inch">Inch</option>
                             <option htmlFor="unit" value="centimeter">Centimeters</option>
                             <option htmlFor="unit" value="slice">Slices</option>
+                            <option htmlFor="unit" value="serving">Servings</option>
                             <option htmlFor="unit" value="piece">Pieces</option>
                             <option htmlFor="unit" value="stick">Sticks</option>
                             <option htmlFor="unit" value="pinch">Pinches</option>
