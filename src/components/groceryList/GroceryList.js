@@ -50,36 +50,43 @@ export const GroceryList = props => {
 
     if (groceryList.length > 0) {
         for (const item of groceryList) {
-            if (item.aisle === "Alcoholic Beverages") { AlcoholicBeverages.push(item); i++ }
-            else if (item.aisle === "Baking") { Baking.push(item); i++ }
-            else if (item.aisle === "Bakery/Bread") { BakeryBread.push(item); i++ }
-            else if (item.aisle === "Beverages") { Beverages.push(item); i++ }
-            else if (item.aisle === "Bread") { Bread.push(item); i++ }
-            else if (item.aisle === "Canned and Jarred") { CannedAndJarred.push(item); i++ }
-            else if (item.aisle === "Cereal") { Cereal.push(item); i++ }
-            else if (item.aisle === "Cheese") { Cheese.push(item); i++ }
-            else if (item.aisle === "Condiments") { Condiments.push(item); i++ }
-            else if (item.aisle === "Dried Fruits") { DriedFruits.push(item); i++ }
-            else if (item.aisle === "Ethnic Foods") { EthnicFoods.push(item); i++ }
-            else if (item.aisle === "Frozen") { Frozen.push(item); i++ }
-            else if (item.aisle === "Gourmet") { Gourmet.push(item); i++ }
-            else if (item.aisle === "Gluten Free") { GlutenFree.push(item); i++ }
-            else if (item.aisle === "Grilling Supplies") { GrillingSupplies.push(item); i++ }
-            else if (item.aisle === "Health Foods") { HealthFoods.push(item); i++ }
-            else if (item.aisle === "Milk, Eggs, Other Dairy") { MilkEggsOtherDairy.push(item); i++ }
-            else if (item.aisle === "Meat") { Meat.push(item); i++ }
-            else if (item.aisle === "Nut Butters, Jams, and Honey") { NutButtersJamsAndHoney.push(item); i++ }
-            else if (item.aisle === "Nuts") { Nuts.push(item); i++ }
-            else if (item.aisle === "Oil, Vinegar, Salad Dressing") { OilVinegarSaladDressing.push(item); i++ }
-            else if (item.aisle === "Pasta and Rice") { PastaAndRice.push(item); i++ }
-            else if (item.aisle === "Produce") { Produce.push(item); i++ }
-            else if (item.aisle === "Refrigerated") { Refrigerated.push(item); i++ }
-            else if (item.aisle === "Savory Snacks") { SavorySnacks.push(item); i++ }
-            else if (item.aisle === "Seafood") { Seafood.push(item); i++ }
-            else if (item.aisle === "Spices and Seasonings") { SpicesAndSeasonings.push(item); i++ }
-            else if (item.aisle === "Sweet Snacks") { SweetSnacks.push(item); i++ }
-            else if (item.aisle === "Tea and Coffee") { TeaAndCoffee.push(item); i++ }
-            else if (item.aisle === "Online") { Online.push(item); i++ }
+            let aisle = item.aisle
+            if (aisle !== null) {
+                if (aisle.includes(";")) {
+                    const [firstAisle, secondAisle] = aisle.split(";")
+                    aisle = firstAisle
+                }
+            }
+            if (aisle === "Alcoholic Beverages") { AlcoholicBeverages.push(item); i++ }
+            else if (aisle === "Baking") { Baking.push(item); i++ }
+            else if (aisle === "Bakery/Bread") { BakeryBread.push(item); i++ }
+            else if (aisle === "Beverages") { Beverages.push(item); i++ }
+            else if (aisle === "Bread") { Bread.push(item); i++ }
+            else if (aisle === "Canned and Jarred") { CannedAndJarred.push(item); i++ }
+            else if (aisle === "Cereal") { Cereal.push(item); i++ }
+            else if (aisle === "Cheese") { Cheese.push(item); i++ }
+            else if (aisle === "Condiments") { Condiments.push(item); i++ }
+            else if (aisle === "Dried Fruits") { DriedFruits.push(item); i++ }
+            else if (aisle === "Ethnic Foods") { EthnicFoods.push(item); i++ }
+            else if (aisle === "Frozen") { Frozen.push(item); i++ }
+            else if (aisle === "Gourmet") { Gourmet.push(item); i++ }
+            else if (aisle === "Gluten Free") { GlutenFree.push(item); i++ }
+            else if (aisle === "Grilling Supplies") { GrillingSupplies.push(item); i++ }
+            else if (aisle === "Health Foods") { HealthFoods.push(item); i++ }
+            else if (aisle === "Milk, Eggs, Other Dairy") { MilkEggsOtherDairy.push(item); i++ }
+            else if (aisle === "Meat") { Meat.push(item); i++ }
+            else if (aisle === "Nut Butters, Jams, and Honey") { NutButtersJamsAndHoney.push(item); i++ }
+            else if (aisle === "Nuts") { Nuts.push(item); i++ }
+            else if (aisle === "Oil, Vinegar, Salad Dressing") { OilVinegarSaladDressing.push(item); i++ }
+            else if (aisle === "Pasta and Rice") { PastaAndRice.push(item); i++ }
+            else if (aisle === "Produce") { Produce.push(item); i++ }
+            else if (aisle === "Refrigerated") { Refrigerated.push(item); i++ }
+            else if (aisle === "Savory Snacks") { SavorySnacks.push(item); i++ }
+            else if (aisle === "Seafood") { Seafood.push(item); i++ }
+            else if (aisle === "Spices and Seasonings") { SpicesAndSeasonings.push(item); i++ }
+            else if (aisle === "Sweet Snacks") { SweetSnacks.push(item); i++ }
+            else if (aisle === "Tea and Coffee") { TeaAndCoffee.push(item); i++ }
+            else if (aisle === "Online") { Online.push(item); i++ }
             else { NotInGroceryStoreHomemade.push(item); i++ }
         }
 
@@ -141,7 +148,7 @@ export const GroceryList = props => {
                 {HealthFoods.length > 0 ? <section className="ingredientCategory"><h3>Health Foods</h3>{HealthFoods.map(i => {
                     return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
                 })}</section> : <> </>}
-                {MilkEggsOtherDairy.length > 0 ? <section className="ingredientCategory"><h3>Milk, Eggs, Other</h3>{MilkEggsOtherDairy.map(i => {
+                {MilkEggsOtherDairy.length > 0 ? <section className="ingredientCategory"><h3>Milk, Eggs, and other Dairy</h3>{MilkEggsOtherDairy.map(i => {
                     return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
                 })}</section> : <> </>}
                 {Meat.length > 0 ? <section className="ingredientCategory"><h3>Meat</h3>{Meat.map(i => {
@@ -183,7 +190,7 @@ export const GroceryList = props => {
                 {Online.length > 0 ? <section className="ingredientCategory"><h3>Online</h3>{Online.map(i => {
                     return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
                 })}</section> : <> </>}
-                {NotInGroceryStoreHomemade.length > 0 ? <section className="ingredientCategory"><h3>Not in Grocery Store/Homemade</h3>{NotInGroceryStoreHomemade.map(i => {
+                {NotInGroceryStoreHomemade.length > 0 ? <section className="ingredientCategory"><h3>Other/Homemade</h3>{NotInGroceryStoreHomemade.map(i => {
                     return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
                 })}</section> : <> </>}
             </>

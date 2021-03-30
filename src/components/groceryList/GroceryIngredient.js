@@ -24,7 +24,7 @@ export const GroceryIngredient = ({ ingredient }) => {
                 }} />
 
             <label htmlFor={ingredient.name + "--" + i}
-            >{ingredient.name} :  {ingredient.amount} {ingredient.unit} </label>
+            >{ingredient.original} </label>
         </div>
     )
 }
