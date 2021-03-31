@@ -10,7 +10,7 @@ export const RecipeProvider = props => {
 
     const [savedRecipes, setSavedRecipes] = useState([])
 
-    const [selectedRecipe, setSelectedRecipe] = useState({})
+    const [selectedRecipe, setSelectedRecipe] = useState({id: null})
 
     const userToken = localStorage.getItem("cookit_user")
 

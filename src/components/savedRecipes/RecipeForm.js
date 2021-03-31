@@ -7,7 +7,7 @@ import "./SavedRecipes.css"
 
 export const RecipeForm = props => {
 
-    const { selectedRecipe, getSingleRecipe, saveNewRecipe, editRecipe } = useContext(SavedRecipeContext)
+    const { selectedRecipe, getSingleRecipe, saveNewRecipe, editRecipe, setSelectedRecipe } = useContext(SavedRecipeContext)
 
     let editmode
     let recipeId

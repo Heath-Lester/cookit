@@ -15,7 +15,7 @@ export const MealBuilder = (props) => {
 
     return (
         <>
-            <h2>Meal Builder</h2>
+            <h2>Meal Queue</h2>
 
             <button className="groceryList--button"
                 onClick={() => {

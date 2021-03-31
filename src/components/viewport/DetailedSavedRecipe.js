@@ -1,6 +1,7 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { ViewPortContext } from "./ViewPortContext"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
 import "../savedRecipes/SavedRecipes.css"
@@ -10,6 +11,8 @@ export const DetailedSavedRecipe = props => {
 
 
     const { selectedRecipe, getSavedRecipes } = useContext(SavedRecipeContext)
+
+    const { setViewPort } = useContext(ViewPortContext)
 
     const { meals, addMeal } = useContext(MealContext)
 
@@ -22,7 +25,7 @@ export const DetailedSavedRecipe = props => {
 
     }
 
-    if (selectedRecipe.hasOwnProperty("id") === false) {
+    if (!selectedRecipe || selectedRecipe.id === null) {
         return <></>
 
     } else {
@@ -30,6 +33,12 @@ export const DetailedSavedRecipe = props => {
         return (
             <>
                 <div className="buttons">
+                    <button className="detailedRecipe__returnButton" id={`Return--${selectedRecipe.id}`} type="submit"
+                        onClick={event => {
+                            event.preventDefault()
+                            setViewPort(1)
+                        }}>Back to Search Results
+                        </button>
                     <button className="selectedRecipe__addMeal" id={`Add--${selectedRecipe.id}`} type="submit"
                         onClick={event => {
                             event.preventDefault()

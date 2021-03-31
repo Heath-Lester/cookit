@@ -1,6 +1,7 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
+import { ViewPortContext } from "./ViewPortContext"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
@@ -10,6 +11,8 @@ import "./ViewPort.css"
 export const DetailedResult = () => {
 
     let userToken = localStorage.getItem("cookit_user")
+
+    const { setViewPort } = useContext(ViewPortContext)
 
     const { detailedRecipe } = useContext(SearchContext)
 
@@ -92,6 +95,13 @@ export const DetailedResult = () => {
             <>
                 <section className="detailedRecipe" id={"detailedRecipe" + detailedRecipe.id} key={"detailedRecipe" + detailedRecipe.id}>
                     <div className="buttons">
+                        <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                setViewPort(1)
+                            }}>Back to Search Results
+                        </button>
+
                         <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
