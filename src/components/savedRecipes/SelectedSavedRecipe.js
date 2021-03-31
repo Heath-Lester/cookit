@@ -9,8 +9,7 @@ export const SelectedSavedRecipe = props => {
 
     const { selectedRecipe, setSelectedRecipe, deleteRecipe } = useContext(SavedRecipeContext)
 
-
-    if (selectedRecipe.hasOwnProperty("id") === false) {
+    if (!selectedRecipe || selectedRecipe.id === null || selectedRecipe.hasOwnProperty("id") === false) {
         return <></>
 
     } else {

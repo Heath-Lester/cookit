@@ -14,17 +14,19 @@ export const GroceryIngredient = ({ ingredient }) => {
     return (
         <div className="ingredient">
 
-            <input type="checkbox"
-                id={ingredient.id + "--" + i}
-                key={ingredient.id + "--" + i}
-                name={ingredient.name + "--" + i}
-                checked={ingredient.aquired}
-                onChange={() => {
-                    ingredientAquired(ingredient.id)
-                }} />
-
+            <button onClick={() => ingredientAquired(ingredient.id)}>
+                <input type="checkbox"
+                    id={ingredient.id + "--" + i}
+                    key={ingredient.id + "--" + i}
+                    name={ingredient.name + "--" + i}
+                    checked={ingredient.aquired}
+                // onChange={() => {
+                //     ingredientAquired(ingredient.id)
+                // }}
+                />
             <label htmlFor={ingredient.name + "--" + i}
             >{ingredient.original} </label>
+            </button>
         </div>
     )
 }

@@ -10,7 +10,7 @@ import "./SavedRecipes.css"
 
 export const AllSavedRecipes = props => {
 
-    const { savedRecipes, getSavedRecipes, setSelectedRecipe, favorite, getSingleRecipe } = useContext(SavedRecipeContext)
+    const { savedRecipes, getSavedRecipes, setSelectedRecipe, favorite, getSingleRecipe, selectedRecipe } = useContext(SavedRecipeContext)
 
     let alphabetical = savedRecipes.sort((a, b) => (b.title > a.title) ? 1 : -1)
     let sortedRecipes = alphabetical.sort((a, b) => (b.favorite > a.favorite) ? 1 : -1)
@@ -19,6 +19,11 @@ export const AllSavedRecipes = props => {
         getSavedRecipes()
     }, [])
 
+    useEffect(() => {
+        if (sortedRecipes.length !== 0 && selectedRecipe.id === null) {
+            setSelectedRecipe(sortedRecipes[0])
+        }
+    }, [savedRecipes])
 
     return (
         <>
@@ -57,10 +62,8 @@ export const AllSavedRecipes = props => {
                                             favorite(recipe.id)
                                         }}>Favorite</button>
                                 }
-
                             </section>
                         }
-
                         )
                     }
                 </section>
