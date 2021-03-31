@@ -14,12 +14,6 @@
 
 .container--right {
     flex: 2;
-    margin-top: -2%;
-}
-
-.link {
-    margin-top: -1%;
-    margin-bottom: 1%;
 }
 
 .title {
@@ -36,7 +30,6 @@
 
 .detailedRecipe__name {
     color: #33032F;
-    
     margin-top: 1%;
     font-size: xx-large;
     letter-spacing: 0.05em;

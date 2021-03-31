@@ -13,8 +13,6 @@
 .container--home {
     display: flex;
     justify-content: space-between;
-    margin-top: -3%;
-    
 }
 
 .container--left {
@@ -25,9 +23,6 @@
 .container--center{
     flex: 4;
     margin:1%;
-    
-    
-    
 }
 
 .container--right {
@@ -35,7 +30,6 @@
     flex-flow: column nowrap;
     flex: 1;
     margin: 1%
-
 }
 
 
@@ -49,8 +43,8 @@
     max-height: 1500px; 
 }
 
-.savedRecipe {
-
+.section--title {
+    margin-top: 0;
 }
 
 .searchBar {
@@ -73,9 +67,9 @@
     max-height: 850px;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     appearance: none;
-}
+} */
 
 .results__recipe {
     background-color: #531253;

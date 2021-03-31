@@ -16,9 +16,17 @@ export const DetailedSavedRecipe = props => {
 
     const { meals, addMeal } = useContext(MealContext)
 
-    const makeMeal = (checkedMeal) => {
+    const makeMeal = (recipe) => {
+        debugger
+        
+        let checkedMeal = meals.find(m => {
+            if (m.saved_recipe !== null) {
+                return m.saved_recipe.id === recipe.id
+            }
+        })
+
         if (!checkedMeal) {
-            addMeal({ spoonacularId: selectedRecipe.spoonacular_id, savedRecipeId: selectedRecipe.id })
+            addMeal({ spoonacularId: recipe.spoonacular_id, savedRecipeId: recipe.id })
         } else if (checkedMeal) {
             alert(`Recipe ${checkedMeal.id} has already been added to Meal queue!`)
         }
@@ -29,7 +37,6 @@ export const DetailedSavedRecipe = props => {
         return <></>
 
     } else {
-
         return (
             <>
                 <div className="buttons">
@@ -43,7 +50,7 @@ export const DetailedSavedRecipe = props => {
                         onClick={event => {
                             event.preventDefault()
                             getSavedRecipes()
-                            makeMeal(meals.find(m => m.saved_recipe.id === selectedRecipe.id))
+                            makeMeal(selectedRecipe)
                             return <MealBuilder />
                         }}>Add to Meal
                     </button>

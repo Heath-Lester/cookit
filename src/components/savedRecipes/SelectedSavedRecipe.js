@@ -19,7 +19,6 @@ export const SelectedSavedRecipe = props => {
                 <header className="selectedRecipe__title"><h2 className="selectedRecipe__name">{selectedRecipe.title}</h2></header>
                 <section className="selectedRecipe" id={selectedRecipe.id} autoFocus key={selectedRecipe.id}>
 
-                    {/* <h2 className="selectedRecipe__name">{selectedRecipe.title}</h2> */}
                     <img className="selectedRecipe__image" src={selectedRecipe.image} alt={`Recipe Image`}></img>
 
                     <button className="selectedRecipe__deleteButton" id={`Delete--${selectedRecipe.id}`}

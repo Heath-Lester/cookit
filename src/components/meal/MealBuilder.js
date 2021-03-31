@@ -15,13 +15,7 @@ export const MealBuilder = (props) => {
 
     return (
         <>
-            <h2>Meal Queue</h2>
-
-            <button className="groceryList--button"
-                onClick={() => {
-                    props.history.push(`/grocerylist`)
-                }}>Create Grocery List
-            </button>
+            <h2 className="section--title">Meal Queue</h2>
 
             <article className="GropceryList">
                 {

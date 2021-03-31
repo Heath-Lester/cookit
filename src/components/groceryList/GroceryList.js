@@ -93,13 +93,6 @@ export const GroceryList = props => {
         console.log("Pushing is done!")
         return (
             <>
-                <header className="GroceryList--header">
-                    <img className="logo" src={cookit_logo} alt={"Logo"} />
-                    <h1 className="groceryList__title">Grocery List</h1>
-                    <h3 className="link"><Link to={'/'}>Back</Link></h3>
-                </header>
-
-
                 {AlcoholicBeverages.length > 0 ? <section className="ingredientCategory"><h3>Alcoholic Beverages</h3>{AlcoholicBeverages.map(i => {
                     return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
                 })}</section> : <> </>}
@@ -196,12 +189,6 @@ export const GroceryList = props => {
             </>
         )
     } else {
-        return <>
-            <header className="GroceryList--header">
-                <img className="logo" src={cookit_logo} alt={"Logo"} />
-                <h1 className="groceryList__title">Grocery List</h1>
-                <h3 className="link"><Link to={'/'}>Back</Link></h3>
-            </header>
-        </>
+        return <></>
     }
 }

@@ -1,0 +1,20 @@
+.navbar--header {
+    background: linear-gradient(to bottom right, #7b1b7b, #531253);
+    border-bottom: 3px #97D8B2 solid;
+}
+
+ul.navbar{
+    padding-left: 0;
+}
+
+.navbar {
+    background: linear-gradient(#531253, #771a77, #531253);
+    margin: 0;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar__link {
+    color: white;
+}
