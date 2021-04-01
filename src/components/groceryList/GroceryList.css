@@ -1,7 +1,8 @@
 
-.GroceryList {
+article.GroceryList {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
 }
 
 .recipe {
@@ -25,7 +26,6 @@
 
 .grocery--recipe__image {
     display: block;
-    /* margin-left: auto; */
     margin-right: none;
     width: 15em;
     height: auto;

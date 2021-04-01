@@ -13,8 +13,13 @@ ul.navbar{
     padding-bottom: 5px;
     display: flex;
     justify-content: space-around;
+    border-bottom: 3px #97D8B2 solid;
 }
 
 .navbar__link {
     color: white;
+}
+
+a.navbar__link:hover {
+    color: rgba(255, 238, 0, 0.768);
 }

@@ -17,7 +17,7 @@ export const MealBuilder = (props) => {
         <>
             <h2 className="section--title">Meal Queue</h2>
 
-            <article className="GropceryList">
+            <article className="GroceryList">
                 {
                     meals.map(meal => {
                         return <Meal meal={meal} key={"mealKey--" + meal.id} />

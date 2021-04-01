@@ -17,7 +17,6 @@ export const DetailedSavedRecipe = props => {
     const { meals, addMeal } = useContext(MealContext)
 
     const makeMeal = (recipe) => {
-        debugger
         
         let checkedMeal = meals.find(m => {
             if (m.saved_recipe !== null) {
