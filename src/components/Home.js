@@ -3,7 +3,6 @@ import { SavedRecipeList } from "./savedRecipes/SavedRecipeList"
 import { MealBuilder } from "./meal/MealBuilder"
 import { ViewPort } from "./viewport/ViewPort"
 import { SearchBar } from "./search/SearchBar"
-import cookit_logo from "../images/cookit_logo.png"
 import "./Home.css"
 
 

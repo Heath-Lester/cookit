@@ -4,7 +4,10 @@
 }
 
 ul.navbar{
+    display: flex;
+    flex-wrap: nowrap;
     padding-left: 0;
+    min-width: max-content;
 }
 
 .navbar {

@@ -2,8 +2,6 @@
 import React, { useContext, useEffect } from "react"
 import { GroceryIngredient } from "./GroceryIngredient"
 import { GroceryContext } from "./GroceryProvider"
-import { Link } from "react-router-dom"
-import cookit_logo from "../../images/cookit_logo.png"
 import "./GroceryList.css"
 
 export const GroceryList = props => {
@@ -90,102 +88,103 @@ export const GroceryList = props => {
             else { NotInGroceryStoreHomemade.push(item); i++ }
         }
 
-        console.log("Pushing is done!")
         return (
             <>
-                {AlcoholicBeverages.length > 0 ? <section className="ingredientCategory"><h3>Alcoholic Beverages</h3>{AlcoholicBeverages.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Baking.length > 0 ? <section className="ingredientCategory"><h3>Baking</h3>{Baking.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {BakeryBread.length > 0 ? <section className="ingredientCategory"> <h3>Bakery/Bread</h3>{BakeryBread.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Beverages.length > 0 ? <section className="ingredientCategory"><h3>Beverages</h3>{Beverages.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Bread.length > 0 ? <section className="ingredientCategory"><h3>Bread</h3>{Bread.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {CannedAndJarred.length > 0 ? <section className="ingredientCategory"><h3>Canned and Jarred</h3>{CannedAndJarred.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Cereal.length > 0 ? <section className="ingredientCategory"><h3>Cereal</h3>{Cereal.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Cheese.length > 0 ? <section className="ingredientCategory"><h3>Cheese</h3>{Cheese.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Condiments.length > 0 ? <section className="ingredientCategory"><h3>Condiments</h3>{Condiments.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {DriedFruits.length > 0 ? <section className="ingredientCategory"><h3>Dried Fruits</h3>{DriedFruits.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {EthnicFoods.length > 0 ? <section className="ingredientCategory"> <h3>Ethnic Foods</h3>{EthnicFoods.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Frozen.length > 0 ? <section className="ingredientCategory"><h3>Frozen</h3>{Frozen.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Gourmet.length > 0 ? <section className="ingredientCategory"><h3>Gourmet</h3>{Gourmet.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {GlutenFree.length > 0 ? <section className="ingredientCategory"><h3>Gluten Free</h3>{GlutenFree.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {GrillingSupplies.length > 0 ? <section className="ingredientCategory"><h3>Grilling Supplies</h3>{GrillingSupplies.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {HealthFoods.length > 0 ? <section className="ingredientCategory"><h3>Health Foods</h3>{HealthFoods.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {MilkEggsOtherDairy.length > 0 ? <section className="ingredientCategory"><h3>Milk, Eggs, and other Dairy</h3>{MilkEggsOtherDairy.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Meat.length > 0 ? <section className="ingredientCategory"><h3>Meat</h3>{Meat.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {NutButtersJamsAndHoney.length > 0 ? <section className="ingredientCategory"><h3>Nut Butters, Jams,</h3>{NutButtersJamsAndHoney.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Nuts.length > 0 ? <section className="ingredientCategory"><h3>Nuts</h3>{Nuts.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {OilVinegarSaladDressing.length > 0 ? <section className="ingredientCategory"><h3>Oil, Vinegar, Salad</h3>{OilVinegarSaladDressing.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {PastaAndRice.length > 0 ? <section className="ingredientCategory"><h3>Pasta and Rice</h3>{PastaAndRice.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Produce.length > 0 ? <section className="ingredientCategory"><h3>Produce</h3>{Produce.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Refrigerated.length > 0 ? <section className="ingredientCategory"><h3>Refrigerated</h3>{Refrigerated.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {SavorySnacks.length > 0 ? <section className="ingredientCategory"><h3>Savory Snacks</h3>{SavorySnacks.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Seafood.length > 0 ? <section className="ingredientCategory"><h3>Seafood</h3>{Seafood.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {SpicesAndSeasonings.length > 0 ? <section className="ingredientCategory"><h3>Spices and Seasonings</h3>{SpicesAndSeasonings.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {SweetSnacks.length > 0 ? <section className="ingredientCategory"><h3>Sweet Snacks</h3>{SweetSnacks.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {TeaAndCoffee.length > 0 ? <section className="ingredientCategory"><h3>Tea and Coffee</h3>{TeaAndCoffee.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {Online.length > 0 ? <section className="ingredientCategory"><h3>Online</h3>{Online.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
-                {NotInGroceryStoreHomemade.length > 0 ? <section className="ingredientCategory"><h3>Other/Homemade</h3>{NotInGroceryStoreHomemade.map(i => {
-                    return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
-                })}</section> : <> </>}
+                <main className="groceryList--container">
+                    {AlcoholicBeverages.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Alcoholic Beverages</h3><div className="categoryList">{AlcoholicBeverages.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Baking.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Baking</h3><div className="categoryList">{Baking.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {BakeryBread.length > 0 ? <section className="ingredientCategory"> <h3 className="categoryTitle">Bakery/Bread</h3><div className="categoryList">{BakeryBread.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Beverages.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Beverages</h3><div className="categoryList">{Beverages.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Bread.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Bread</h3><div className="categoryList">{Bread.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {CannedAndJarred.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Canned and Jarred</h3><div className="categoryList">{CannedAndJarred.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Cereal.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Cereal</h3><div className="categoryList">{Cereal.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Cheese.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Cheese</h3><div className="categoryList">{Cheese.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Condiments.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Condiments</h3><div className="categoryList">{Condiments.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {DriedFruits.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Dried Fruits</h3><div className="categoryList">{DriedFruits.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {EthnicFoods.length > 0 ? <section className="ingredientCategory"> <h3 className="categoryTitle">Ethnic Foods</h3><div className="categoryList">{EthnicFoods.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Frozen.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Frozen</h3><div className="categoryList">{Frozen.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Gourmet.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Gourmet</h3><div className="categoryList">{Gourmet.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {GlutenFree.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Gluten Free</h3><div className="categoryList">{GlutenFree.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {GrillingSupplies.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Grilling Supplies</h3><div className="categoryList">{GrillingSupplies.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {HealthFoods.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Health Foods</h3><div className="categoryList">{HealthFoods.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {MilkEggsOtherDairy.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Milk, Eggs, and other Dairy</h3><div className="categoryList">{MilkEggsOtherDairy.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Meat.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Meat</h3><div className="categoryList">{Meat.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {NutButtersJamsAndHoney.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Nut Butters, Jams,</h3><div className="categoryList">{NutButtersJamsAndHoney.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Nuts.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Nuts</h3><div className="categoryList">{Nuts.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {OilVinegarSaladDressing.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Oil, Vinegar, Salad</h3><div className="categoryList">{OilVinegarSaladDressing.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {PastaAndRice.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Pasta and Rice</h3><div className="categoryList">{PastaAndRice.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Produce.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Produce</h3><div className="categoryList">{Produce.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Refrigerated.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Refrigerated</h3><div className="categoryList">{Refrigerated.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {SavorySnacks.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Savory Snacks</h3><div className="categoryList">{SavorySnacks.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Seafood.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Seafood</h3><div className="categoryList">{Seafood.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {SpicesAndSeasonings.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Spices and Seasonings</h3><div className="categoryList">{SpicesAndSeasonings.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {SweetSnacks.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Sweet Snacks</h3><div className="categoryList">{SweetSnacks.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {TeaAndCoffee.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Tea and Coffee</h3><div className="categoryList">{TeaAndCoffee.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {Online.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Online</h3><div className="categoryList">{Online.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                    {NotInGroceryStoreHomemade.length > 0 ? <section className="ingredientCategory"><h3 className="categoryTitle">Other/Homemade</h3><div className="categoryList">{NotInGroceryStoreHomemade.map(i => {
+                        return <GroceryIngredient ingredient={i} key={"groceryItem--" + i.id} />
+                    })}</div></section> : <></>}
+                </main>
             </>
         )
     } else {

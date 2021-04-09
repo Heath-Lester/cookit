@@ -1,59 +1,49 @@
+.groceryList--container {
+    /* display: flex;
+    flex-flow: column nowrap; */
+}
 
-article.GroceryList {
+.ingredientCategory {
+    /* display: flex;
+    flex-flow: column nowrap; */
+}
+
+.categoryTitle {
+    padding: 1% 0% 1% 15%;
+    background: linear-gradient(to bottom right, #3fcc7a, #33a261);
+    margin: 0% 0% 5px;
+}
+
+.categoryList {
+    /* display: flex;
+    flex-flow: column nowrap; */
+    padding: 0% 15%;
+}
+
+.ingredient{
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
 }
 
-.recipe {
+.ingredientButton {
     display: flex;
-    max-height: min-content;
-    border-bottom: #97D8B2 solid;
-}
-
-.recipe__leftSide {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-.recipe__information {
-    display: flex;
-    flex-flow: column nowrap;
-    width: fit-content;
-    align-items: flex-end;
-}
-
-.grocery--recipe__image {
-    display: block;
-    margin-right: none;
-    width: 15em;
-    height: auto;
-    overflow: hidden;
+    align-items: center;
+    flex-flow: row nowrap;
+    min-width: min-content;
+    padding: 1% 0% 1% 5%;
+    margin-bottom: 5px;
     border-radius: 10px;
+    background: linear-gradient(#771a77, #531253, #771a77);
+    color: white;
 }
 
-.recipe__ingredients {
+.ingredientLabel {
     display: flex;
-    flex-flow: column nowrap;
-    margin: 0%;
-    justify-content: center;
-    flex: 1
-}
-
-.groceryList--button {
-    margin-bottom: 10px;
-}
-
-h3.ingredient {
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-}
-
-h2.recipe__name {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: end;
-    color: #531253;
-    margin-top: 0%;
+    flex-flow: row wrap;
+    justify-self: center;
+    margin: 0% auto;
+} 
+.checkbox {
+    border: 3px;
+    border-color: #97D8B2;
 }
