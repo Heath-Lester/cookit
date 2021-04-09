@@ -9,9 +9,10 @@
 }
 
 .categoryTitle {
-    padding: 1% 0% 1% 15%;
-    background: linear-gradient(to bottom right, #3fcc7a, #33a261);
-    margin: 0% 0% 5px;
+    padding: 0.5% 0% 0.5% 5%;
+    background: linear-gradient(to bottom right, #7b297b, #551a55);
+    margin: 5px 10% 5px;
+    border-radius: 5px;
 }
 
 .categoryList {
@@ -33,8 +34,8 @@
     padding: 1% 0% 1% 5%;
     margin-bottom: 5px;
     border-radius: 10px;
-    background: linear-gradient(#771a77, #531253, #771a77);
-    color: white;
+    background: linear-gradient(#54ce87, #4dbb7b, #54ce87);
+    color: black;
 }
 
 .ingredientLabel {
