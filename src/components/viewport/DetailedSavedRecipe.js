@@ -17,7 +17,7 @@ export const DetailedSavedRecipe = props => {
     const { meals, addMeal } = useContext(MealContext)
 
     const makeMeal = (recipe) => {
-        
+
         let checkedMeal = meals.find(m => {
             if (m.saved_recipe !== null) {
                 return m.saved_recipe.id === recipe.id
@@ -38,25 +38,25 @@ export const DetailedSavedRecipe = props => {
     } else {
         return (
             <>
-                <div className="buttons">
-                    <button className="detailedRecipe__returnButton" id={`Return--${selectedRecipe.id}`} type="submit"
-                        onClick={event => {
-                            event.preventDefault()
-                            setViewPort(1)
-                        }}>Back to Search Results
-                        </button>
-                    <button className="selectedRecipe__addMeal" id={`Add--${selectedRecipe.id}`} type="submit"
-                        onClick={event => {
-                            event.preventDefault()
-                            getSavedRecipes()
-                            makeMeal(selectedRecipe)
-                            return <MealBuilder />
-                        }}>Add to Meal
-                    </button>
-                </div>
-
-                <header className="selectedRecipe__title"><h2 className="selectedRecipe__name">{selectedRecipe.title}</h2></header>
                 <section className="selectedRecipe" id={selectedRecipe.id} autoFocus key={selectedRecipe.id}>
+                    <div className="buttons">
+                        <button className="detailedRecipe__returnButton" id={`Return--${selectedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                setViewPort(1)
+                            }}>Back to Search Results
+                        </button>
+                        <button className="selectedRecipe__addMeal" id={`Add--${selectedRecipe.id}`} type="submit"
+                            onClick={event => {
+                                event.preventDefault()
+                                getSavedRecipes()
+                                makeMeal(selectedRecipe)
+                                return <MealBuilder />
+                            }}>Add to Meal
+                    </button>
+                    </div>
+
+                    <header className="selectedRecipe__title"><h2 className="selectedRecipe__name">{selectedRecipe.title}</h2></header>
 
                     <img className="selectedRecipe__image" src={selectedRecipe.image} alt={`Recipe Image`}></img>
 

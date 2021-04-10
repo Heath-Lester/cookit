@@ -1,16 +1,35 @@
+/******* Saved Recipe List ********/
+
 .savedContainer--main {
     display: flex;
 }
 
 .savedContainer--left {
-    flex: 3;
     display: flex;
-    flex-flow: row wrap;
-    align-content: flex-start;
+    flex-flow: column wrap;
+    flex: 3;
+}
+
+.savedRecipe--buttons {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.5% 10%;
 }
 
 .savedContainer--right {
+    display: flex;
+    flex-flow: column nowrap;
     flex: 2;
+    background-color: #663a66;
+    border-left: 3px solid #97D8B2;
+    
+}
+
+.savedRecipe--list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    overflow: auto;
 }
 
 .title {
@@ -39,7 +58,10 @@
 }
 
 .myRecipe__name {
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
+    justify-content: center;
 }
 
 .myRecipeFavorite__icon {
@@ -69,4 +91,115 @@
 
 .savedRecipe--link:hover {
     color: #97D8B2;
+}
+
+
+/******** Selected Saved Recipe *******/
+
+.selectedSavedRecipe {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__title {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#170312, #33032F, #170312);
+}
+
+.selectedSavedRecipe__image {
+    max-width: 80%;
+    align-self: center;
+    margin: 5% 0%;
+    border-radius: 5px;
+}
+
+/* Buttons */
+
+.selectedSavedRecipe__buttons {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    padding: 0% 10%;
+    justify-content: space-between;
+}
+
+.selectedSavedRecipe__deleteButton {
+    flex: 1;
+}
+
+.selectedSavedRecipe__editButton {
+    flex: 1;
+}
+
+/****** Information ******/
+
+/* Basic */
+.selectedSavedRecipe__basicInfo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 3%;
+    background-color:#531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__leftside {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__rightside {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__webLink {
+    margin: 16px 0px 16px;
+}
+
+/* summary  */
+
+.selectedSavedRecipe__summary {
+    font-size: small;
+    padding: 1%;
+    margin: 3%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+/* ingredients, cookware, and instructions */
+
+.selectedSavedRecipe__ingredients {
+    font-size: small;
+    padding: 1%;
+    margin: 3%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__equipment {
+    font-size: small;
+    padding: 1%;
+    margin: 3%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__instructions {
+    font-size: small;
+    padding: 1%;
+    margin: 3%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+/* markers */
+
+.equipment::marker {
+    margin-left: 20%;
 }
