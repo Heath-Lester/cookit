@@ -125,10 +125,12 @@
 
 .selectedSavedRecipe__deleteButton {
     flex: 1;
+    flex-wrap: nowrap;
 }
 
 .selectedSavedRecipe__editButton {
     flex: 1;
+    flex-wrap: nowrap;
 }
 
 /****** Information ******/
@@ -163,10 +165,11 @@
 .selectedSavedRecipe__summary {
     font-size: small;
     padding: 1%;
-    margin: 3%;
+    margin: 2%;
     background-color: #531253;
     border: solid 2px white;
     border-radius: 5px;
+    line-height: 1.5em;
 }
 
 /* ingredients, cookware, and instructions */
@@ -174,7 +177,7 @@
 .selectedSavedRecipe__ingredients {
     font-size: small;
     padding: 1%;
-    margin: 3%;
+    margin: 2%;
     background-color: #531253;
     border: solid 2px white;
     border-radius: 5px;
@@ -183,7 +186,7 @@
 .selectedSavedRecipe__equipment {
     font-size: small;
     padding: 1%;
-    margin: 3%;
+    margin: 2%;
     background-color: #531253;
     border: solid 2px white;
     border-radius: 5px;
@@ -192,7 +195,8 @@
 .selectedSavedRecipe__instructions {
     font-size: small;
     padding: 1%;
-    margin: 3%;
+    padding-left: 1.5em;
+    margin: 2%;
     background-color: #531253;
     border: solid 2px white;
     border-radius: 5px;
@@ -200,6 +204,12 @@
 
 /* markers */
 
-.equipment::marker {
-    margin-left: 20%;
+.equipment {
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+
+.instruction {
+    margin-bottom: 1em;
 }

@@ -52,7 +52,10 @@ export const SelectedSavedRecipe = props => {
                             <p className="selectedSavedRecipe__time">Ready in {selectedRecipe.ready_in_minutes} minutes</p>
                         </div>
                     </div>
-                    <p className="selectedSavedRecipe__summary" dangerouslySetInnerHTML={{ __html: selectedRecipe.summary }}></p>
+                    {selectedRecipe.summary ?
+                        <p className="selectedSavedRecipe__summary" dangerouslySetInnerHTML={{ __html: selectedRecipe.summary }}></p>
+                        :
+                        <></>}
                     <ul className="selectedSavedRecipe__ingredients" key="ingredients">Ingredients
                         {
                             selectedRecipe.ingredients.map(ingredient => {
