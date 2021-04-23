@@ -213,3 +213,40 @@
 .instruction {
     margin-bottom: 1em;
 }
+
+/************* Recipe Form *************/
+.recipeCategory {
+    margin: 0% 12%;
+    padding: 0% 3% 2% 3%;
+    background-color: #663a66;
+    border-radius: 5px;
+    min-width: min-content;
+}
+
+.recipeForm {
+    min-width: 90%;
+    display: flex;
+    /* flex-flow: row nowrap; */
+}
+
+textarea.recipeForm {
+    max-width: min-content;
+    min-height: 7em;
+}
+
+.recipeFieldset {
+    /* display: flex; */
+    background-color: #663a66;
+}
+
+.formSection {
+    padding-top: 2%;
+}
+
+.save-editButton {
+    /* display: flex; */
+    width: 60%;
+    justify-self: center;
+    margin-left: 20%;
+    margin-top: 2%;
+}
