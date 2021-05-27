@@ -1,25 +1,35 @@
+/******* Saved Recipe List ********/
 
-.container--main {
+.savedContainer--main {
     display: flex;
 }
 
 .savedContainer--left {
+    display: flex;
+    flex-flow: column wrap;
     flex: 3;
+}
+
+.savedRecipe--buttons {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.5% 10%;
+}
+
+.savedContainer--right {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 2;
+    background-color: #663a66;
+    border-left: 3px solid #97D8B2;
+    
+}
+
+.savedRecipe--list {
     display: flex;
     flex-flow: row wrap;
-    align-content: flex-start;
-    /* overflow: auto; */
-    /* max-height: 800px; */
-}
-
-.container--right {
-    flex: 2;
-    margin-top: -2%;
-}
-
-.link {
-    margin-top: -1%;
-    margin-bottom: 1%;
+    justify-content: center;
+    overflow: auto;
 }
 
 .title {
@@ -27,56 +37,7 @@
     margin-bottom: 1%;
 }
 
-.detailedRecipe {
-    /* overflow: auto; */
-    /* max-height: 800px; */
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-.detailedRecipe__name {
-    color: #33032F;
-    
-    margin-top: 1%;
-    font-size: xx-large;
-    letter-spacing: 0.05em;
-    align-self: center;
-}
-
-.detailedRecipe__image {
-    display: block;
-    margin-left: auto;
-    border-radius: 2%;
-    margin-right: auto;
-    min-width: 70%;
-    max-width: 1200px;
-    max-height: 1200px;
-    overflow: hidden;
-
-}
-
-.detailedRecipe__author a {
-    color: #531253;
-}
-
-.detailedRecipe__webLink {
-    color: #531253;
-}
-
-.buttons {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.detailedRecipe__saveButton {
-    flex: 1;
-}
-
-.detailedRecipe__addMeal {
-    flex: 1;
-}
-
-.savedRecipe {
+.myRecipe {
     display: flex;
     flex-flow: column;
     width: 30%;
@@ -85,47 +46,254 @@
     max-height: 3000px;
     margin: 1%;
     text-size-adjust: smaller;
-    border-radius: 5%;
+    border-radius: 10px;
     border: #531253 solid;
     background-color: #170312;
 }
 
-.savedRecipe:hover {
-    color: #170312; 
+.myRecipe:hover {
+    color: #170312;
     background-color: white;
     border: #A0ACAD solid;
 }
 
-.recipe__name {
-    /* justify-content: center; */
+.myRecipe__name {
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
+    justify-content: center;
 }
 
-.favorite__icon {
+.myRecipeFavorite__icon {
     width: 2em;
     height: 2em;
 }
 
-.recipe__image{
+.myRecipe__image {
     height: 50%;
- }
+}
 
- .recipe__image{
+.myRecipe__image {
     width: 100%;
-    border-radius: 5% 5% 0% 0%;
- }
+    border-radius: 8px 8px 0% 0%;
+}
 
- .recipe__favorite {
-     box-sizing: unset;
-     border-radius: 0em 0em 1em 1em;
-     border: none;
-     background-color: #97D8B2;
- }
+.myRecipe__favorite {
+    box-sizing: unset;
+    border-radius: 0em 0em 8px 8px;
+    border: none;
+    background-color: #97D8B2;
+}
 
- .link a:hover {
-     color: #33032F;
- }
+.link a:hover {
+    color: #33032F;
+}
 
- .savedRecipe--link:hover {
-     color: #97D8B2;
- }
+.savedRecipe--link:hover {
+    color: #97D8B2;
+}
+
+
+/******** Selected Saved Recipe *******/
+
+.selectedSavedRecipe {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__title {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#170312, #33032F, #170312);
+}
+
+.selectedSavedRecipe__image {
+    max-width: 80%;
+    align-self: center;
+    margin: 5% 0%;
+    border-radius: 5px;
+}
+
+/* Buttons */
+
+.selectedSavedRecipe__buttons {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    padding: 0% 10%;
+    justify-content: space-between;
+}
+
+.selectedSavedRecipe__editButton {
+    background: rgb(247, 183, 64);
+    border-radius: 10px 0 0 10px;
+    flex: 1;
+    flex-wrap: nowrap;
+}
+
+.selectedSavedRecipe__deleteButton {
+    background: rgb(247, 183, 64);
+    flex: 1;
+    border-radius: 0 10px 10px 0;
+    flex-wrap: nowrap;
+}
+
+.selectedSavedRecipe__basicInfo > p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.newRecipe {
+    color: white;
+    border-radius: 5px;
+    background: rgb(59, 181, 11);
+}
+
+
+/****** Information ******/
+
+/* Basic */
+.selectedSavedRecipe__basicInfo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 3%;
+    background-color:#531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__leftside {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__rightside {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.selectedSavedRecipe__webLink {
+    margin: 16px 0px 16px;
+}
+
+/* summary  */
+
+.selectedSavedRecipe__summary {
+    font-size: small;
+    padding: 1%;
+    margin: 2%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+    line-height: 1.5em;
+}
+
+/* ingredients, cookware, and instructions */
+
+.selectedSavedRecipe__ingredients {
+    font-size: small;
+    padding: 1%;
+    margin: 2%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__equipment {
+    font-size: small;
+    padding: 1%;
+    margin: 2%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.selectedSavedRecipe__instructions {
+    font-size: small;
+    padding: 1%;
+    padding-left: 1.5em;
+    margin: 2%;
+    background-color: #531253;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+/* markers */
+
+.equipment {
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+
+.instruction {
+    margin-bottom: 1em;
+}
+
+/************* Recipe Form *************/
+.recipeCategory {
+    margin: 10px 12%;
+    padding: 0% 3% 2% 3%;
+    background-color: #663a66;
+    border-radius: 5px;
+    min-width: min-content;
+}
+
+.recipeForm {
+    min-width: 90%;
+    display: flex;
+    /* flex-flow: row nowrap; */
+}
+
+textarea.recipeForm {
+    max-width: min-content;
+    min-height: 8em;
+}
+
+.recipeFieldset {
+    /* display: flex; */
+    background-color: #663a66;
+}
+
+.formSection {
+    padding-top: 2%;
+}
+
+.save-editButton {
+    /* display: flex; */
+    color: white;
+    border-radius: 5px;
+    background: rgb(59, 181, 11);
+    margin-bottom: 15px;
+    width: 60%;
+    justify-self: center;
+    margin-left: 20%;
+    margin-top: 15px;
+}
+
+.selectedSavedRecipe__basicInfo > p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.selectedSavedRecipe__author, .selectedSavedRecipe__servings, .selectedSavedRecipe__time {
+    margin-top: 16px;
+}
+
+.recipe__addButton {
+    background: rgb(59, 181, 11);
+    border-radius: 100px;
+    border: none;
+    height: 25px;
+    width: 25px;
+    color: white;
+}
+
+.recipe__minusButton {
+    background: rgba(253, 17, 0, 0.802);
+    border-radius: 100px;
+    border: none;
+    height: 25px;
+    width: 25px;
+    color: white;
+}

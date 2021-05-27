@@ -176,14 +176,14 @@ export const RecipeForm = props => {
         const ingredient = props.ingredient
         return (
             <>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="title">Name </label>
                     <input type="text" className="recipeForm" name="title" required
                         maxLength={100} placeholder="enter a name..." defaultValue={ingredient.title}
                         onBlur={e => changeCurrentIngredient(e, i)} />
                 </fieldset>
 
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="amount">Amount </label>
                     <input type="number" className="recipeForm" name="amount" required
                         placeholder="0.5..." defaultValue={ingredient.amount}
@@ -221,7 +221,7 @@ export const RecipeForm = props => {
                         </select>}
                 </fieldset>
 
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="aisle">Grocery Aisle </label>
                     <select className="recipeForm" name="aisle" required defaultValue={ingredient.aisle}
                         onChange={event => changeCurrentIngredient(event, i)}>
@@ -260,7 +260,7 @@ export const RecipeForm = props => {
                     </select>
                 </fieldset>
 
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newIngredientArray = [...ingredientArray]
                         newIngredientArray.splice(i, 1)
@@ -277,14 +277,14 @@ export const RecipeForm = props => {
         const equipment = props.equipment
         return (
             <>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="name">Name </label>
                     <input type="text" className="recipeForm" name="name" required
                         maxLength={50} placeholder="enter a name..." defaultValue={equipment.name}
                         onBlur={e => { changeCurrentEquipment(e, i); console.log(e) }}
                     />
                 </fieldset>
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newEquipmentArray = [...equipmentArray]
                         newEquipmentArray.splice(i, 1)
@@ -301,13 +301,13 @@ export const RecipeForm = props => {
         const instruction = props.instruction
         return (
             <>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="instruction">Step {n} </label>
                     <textarea type="text" className="recipeForm" name="instruction" required
                         maxLength={500} placeholder="enter an instruction..." defaultValue={instruction.instruction}
                         onBlur={e => changeCurrentInstruction(e, i)} />
                 </fieldset>
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.splice(i, 1)
@@ -320,52 +320,47 @@ export const RecipeForm = props => {
 
     return (
         <>
-            <header className="savedRecipe--header">
-                <img className="logo" src={cookit_logo} alt={"Logo"} />
-                <h1 className="title" >Create a New Recipe</h1>
-                <h3 className="link"><Link to={'/savedrecipes'}>Back</Link></h3></header>
-
             {editmode ?
-                <button type="button"
+                <button className="save-editButton" type="button"
                     onClick={() => {
                         constructRecipe()
                     }}>Save Changes
                 </button>
                 :
-                <button type="button"
+                <button className="save-editButton" type="button"
                     onClick={() => {
                         constructRecipe()
                     }}>Save Recipe
                 </button>}
 
 
-            <form className="recipeForm" key={"recipeForm"}>
+            <form className="recipeCategory" key={"recipeForm"}>
                 <h3 className="formSection">Recipe</h3>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="title">Name </label>
                     <input type="text" className="recipeForm" name="title" required
                         maxLength={100} placeholder="enter a name..." defaultValue={newRecipe.title}
                         onBlur={changeCurrentRecipe} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="image">Image </label>
                     <input type="url" className="recipeForm" name="image" required
                         placeholder="https://..." defaultValue={newRecipe.image}
                         onBlur={changeCurrentRecipe} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="servings">Servings </label>
                     <input type="number" className="recipeForm" name="servings" required
                         placeholder="2..." defaultValue={newRecipe.servings}
                         onBlur={changeCurrentRecipe} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="readyInMinutes">Ready in Minutes </label>
                     <input type="number" className="recipeForm" name="readyInMinutes" required
                         placeholder="120..." defaultValue={newRecipe.readyInMinutes}
                         onBlur={changeCurrentRecipe} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="recipeFieldset">
                     <label htmlFor="summary">Summary </label>
                     <textarea type="textArea" className="recipeForm" name="summary" maxLength={500} required
                         placeholder="briefly explain this recipe..." defaultValue={newRecipe.summary}
@@ -373,10 +368,10 @@ export const RecipeForm = props => {
                 </fieldset>
             </form>
 
-            <form className="recipeForm">
+            <form className="recipeCategory">
                 <h3 className="formSection">Ingredients</h3>
                 <IngredientForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newIngredientArray = [...ingredientArray]
                         newIngredientArray.push({
@@ -391,10 +386,10 @@ export const RecipeForm = props => {
                 </button>
             </form>
 
-            <form className="recipeForm">
+            <form className="recipeCategory">
                 <h3 className="formSection">Equipment</h3>
                 <EquipmentForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newEquipmentArray = [...equipmentArray]
                         newEquipmentArray.push({
@@ -404,10 +399,10 @@ export const RecipeForm = props => {
                     }}>+
                 </button>
             </form>
-            <form className="recipeForm">
+            <form className="recipeCategory">
                 <h3 className="formSection">Instructions</h3>
                 <InstructionForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.push({

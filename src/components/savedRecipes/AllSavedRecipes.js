@@ -2,8 +2,6 @@
 import React, { useContext, useEffect } from "react"
 import { SelectedSavedRecipe } from "./SelectedSavedRecipe"
 import { SavedRecipeContext } from "./RecipeProvider"
-import { Link } from "react-router-dom"
-import cookit_logo from "../../images/cookit_logo.png"
 import star_icon from "../../images/star_icon.png"
 import "./SavedRecipes.css"
 
@@ -27,47 +25,46 @@ export const AllSavedRecipes = props => {
 
     return (
         <>
-            <header className="savedRecipe--header">
-                <img className="logo" src={cookit_logo} alt={"Logo"} />
-                <h1 className="title" >All Recipes</h1>
-                <h3 className="link"><Link to={'/'}>Back</Link></h3>
-                <button className="newRecipe" onClick={() => {
-                    setSelectedRecipe({})
-                    props.history.push(`/newrecipe`)
-                }
-                }>Create New Recipe
-                </button>
-            </header>
-
-            <main className="container--main">
-
+            <main className="savedContainer--main">
                 <section className="savedContainer--left">
-                    {
-                        sortedRecipes.map(recipe => {
-                            return <section className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
-                                onClick={() => {
-                                    getSingleRecipe(recipe.id)
-                                }}>
-                                <img className="recipe__image" src={recipe.image} alt={`Recipe`}></img>
 
-                                {recipe.favorite ? <h4 className="recipe__name">{recipe.title}<img className="favorite__icon" src={star_icon} /></h4> :
-                                    <h4 className="recipe__name">{recipe.title}</h4>}
-
-                                {recipe.favorite ? <button className="recipe__favorite"
+                    <header className="savedRecipe--buttons">
+                        <button className="newRecipe" onClick={() => {
+                            setSelectedRecipe({})
+                            props.history.push(`/newrecipe`)
+                        }
+                        }>Create New Recipe
+                        </button>
+                    </header>
+                    
+                    <article className="savedRecipe--list">
+                        {
+                            sortedRecipes.map(recipe => {
+                                return <div className="myRecipe" id={recipe.id} key={"myRecipe--" + recipe.id}
                                     onClick={() => {
-                                        favorite(recipe.id)
-                                        setSelectedRecipe(recipe.id)
-                                    }}>Unfavorite</button> : <button className="recipe__favorite"
+                                        getSingleRecipe(recipe.id)
+                                    }}>
+                                    <img className="myRecipe__image" src={recipe.image} alt={`Recipe`}></img>
+
+                                    {recipe.favorite ? <h4 className="myRecipe__name">{recipe.title}<img className="myRecipeFavorite__icon" src={star_icon} /></h4> :
+                                        <h4 className="myRecipe__name">{recipe.title}</h4>}
+
+                                    {recipe.favorite ? <button className="myRecipe__favorite"
                                         onClick={() => {
                                             favorite(recipe.id)
-                                        }}>Favorite</button>
-                                }
-                            </section>
+                                            setSelectedRecipe(recipe.id)
+                                        }}>Unfavorite</button> : <button className="myRecipe__favorite"
+                                            onClick={() => {
+                                                favorite(recipe.id)
+                                            }}>Favorite</button>
+                                    }
+                                </div>
+                            }
+                            )
                         }
-                        )
-                    }
+                    </article>
                 </section>
-                <section className="container--right">
+                <section className="savedContainer--right">
                     {<SelectedSavedRecipe {...props} />}
                 </section>
             </main>

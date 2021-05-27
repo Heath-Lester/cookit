@@ -1,0 +1,29 @@
+.navbar--header {
+    background: linear-gradient(to bottom right, #7b1b7b, #531253);
+    border-bottom: 3px #97D8B2 solid;
+}
+
+ul.navbar{
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: max-content;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.navbar {
+    background: linear-gradient(#531253, #771a77, #531253);
+    margin: 0;
+    padding-bottom: 5px;
+    justify-content: space-around;
+    display: flex;
+    border-bottom: 3px #97D8B2 solid;
+}
+
+.navbar__link {
+    color: white;
+}
+
+a.navbar__link:hover {
+    color: rgba(255, 238, 0, 0.768);
+}

@@ -5,6 +5,7 @@ import { ViewPortContext } from "./ViewPortContext"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
+import Spinner from 'react-bootstrap/Spinner'
 import "./ViewPort.css"
 
 
@@ -23,7 +24,7 @@ export const DetailedResult = () => {
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
-        return <></>
+        return <Spinner className="search__spinner" animation="border" size="lg" role="status" variant="warning" />
 
     } else {
 
@@ -42,7 +43,7 @@ export const DetailedResult = () => {
                 window.alert(`Recipe ID of ${detailedRecipe.id} already exists for this user. (ID ${userToken})`)
 
             } else {
-                
+
                 const currentServings = detailedRecipe.servings ? detailedRecipe.servings : null
                 const minutes = detailedRecipe.readyInMinutes ? detailedRecipe.readyInMinutes : null
                 saveRecipe({
@@ -61,11 +62,11 @@ export const DetailedResult = () => {
             }
         }
 
-        
+
 
         const makeMeal = (checkedRecipe) => {
 
-            const checkedMeal= meals.find(m => m.spoonacular_id === detailedRecipe.id)
+            const checkedMeal = meals.find(m => m.spoonacular_id === detailedRecipe.id)
 
             if (!checkedMeal) {
 
@@ -94,8 +95,9 @@ export const DetailedResult = () => {
         return (
             <>
                 <section className="detailedRecipe" id={"detailedRecipe" + detailedRecipe.id} key={"detailedRecipe" + detailedRecipe.id}>
-                    <div className="buttons">
-                        <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
+                    <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
+                    <div className="detailedRecipe__buttons">
+                        <button className="detailedRecipe__returnButton" id={`Save--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
                                 setViewPort(1)
@@ -119,15 +121,18 @@ export const DetailedResult = () => {
                             }}>Add to Meal
                         </button>
                     </div>
-
-                    <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <img className="detailedRecipe__image" src={detailedRecipe.image} alt={`Recipe Image`}></img>
-                    <h3 className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></h3>
-                    <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
-                    <p className="detailedRecipe__servings">Serves {detailedRecipe.servings}</p>
-                    <p className="detailedRecipe__time">Ready in {detailedRecipe.readyInMinutes} minutes</p>
-                    <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: detailedRecipe.summary }}></p>
-                    <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients
+                    <div className="selectedSavedRecipe__basicInfo">
+                        <p className="detailedRecipe__author">Author: <a href={`http://www.google.com/search?q=${detailedRecipe.sourceName}&btnI`}>{detailedRecipe.sourceName}</a></p>
+                        <a className="detailedRecipe__webLink" href={detailedRecipe.sourceUrl}>Original Recipe</a>
+                        <p className="detailedRecipe__servings">Serves {detailedRecipe.servings}</p>
+                        <p className="detailedRecipe__time">Ready in {detailedRecipe.readyInMinutes} minutes</p>
+                    </div>
+                    {detailedRecipe.summary ?
+                        <p className="detailedRecipe__summary" dangerouslySetInnerHTML={{ __html: detailedRecipe.summary }}></p>
+                        :
+                        <></>}
+                    <ul className="detailedRecipe__ingredients" key="ingredients">Ingredients:
                         {
                             detailedRecipe.extendedIngredients.map(ingredient => {
                                 i++
@@ -135,7 +140,7 @@ export const DetailedResult = () => {
                             })
                         }
                     </ul>
-                    <ul className="detailedRecipe__equipment" key="equipment">Cook Ware
+                    <ul className="detailedRecipe__equipment" key="equipment">Cook Ware:
                         {
                             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => step.equipment.map(item => {
                                 if (item.hasOwnProperty("id") && parsedEquipment.filter(e => e.id === item.id).length === 0) {
@@ -146,7 +151,7 @@ export const DetailedResult = () => {
                         }
 
                     </ul>
-                    <ol className="detailedRecipe__instructions" key="instructions">Instructions
+                    <ol className="detailedRecipe__instructions" key="instructions">Instructions:
                         {
                             detailedRecipe.analyzedInstructions.map(instruction => instruction.steps.map(step => {
                                 return <li className="instruction" key={"step--" + step.number}>{step.step}</li>

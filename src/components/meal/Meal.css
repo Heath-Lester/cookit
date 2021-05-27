@@ -5,11 +5,11 @@
     border: #97D8B2 solid;
     border-radius:15px;
     margin-bottom: 2%;
-    width: 30%;
-    min-width: 250px;
+    width: 90%;
+    min-width: 225px;
     height: min-content;
     max-height: 3000px;
-    margin: 1%;
+    margin-bottom: 2%;
     padding: 2%;
     font-size: smaller;
     border: #97D8B2 solid;
@@ -23,11 +23,12 @@
 }
 
 .meal__image {
+    object-fit: cover;
     width: 30%;
     min-width: 30%;
     height: auto;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .meal__details {
@@ -53,3 +54,11 @@
     color: #97D8B2;
 }
 
+article.GroceryList {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
