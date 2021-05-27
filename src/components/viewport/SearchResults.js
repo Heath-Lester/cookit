@@ -9,7 +9,7 @@ import "./ViewPort.css"
 
 export const SearchResults = (props) => {
 
-    const { searchResults, getRecipeById } = useContext(SearchContext)
+    const { searchResults, getRecipeById, setRecipe } = useContext(SearchContext)
 
     const { setViewPort } = useContext(ViewPortContext)
 
@@ -25,6 +25,7 @@ export const SearchResults = (props) => {
                     searchResults.map(result => {
                         return <div className="results__recipe" id={"recipe" + result.id} autoFocus key={"recipe" + result.id}
                             onClick={() => {
+                                setRecipe({})
                                 getRecipeById(result.id)
                                 setViewPort(2)
                                 return <ViewPort {...props} />

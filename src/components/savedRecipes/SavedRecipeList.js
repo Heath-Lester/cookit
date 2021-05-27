@@ -5,11 +5,12 @@ import { ViewPortContext } from "../viewport/ViewPortContext"
 import { ViewPort } from "../viewport/ViewPort"
 import { Link } from "react-router-dom"
 import star_icon from "../../images/star_icon.png"
+import "./SavedRecipes.css"
 
 
 export const SavedRecipeList = props => {
 
-    const { savedRecipes, getSavedRecipes, getSingleRecipe } = useContext(SavedRecipeContext)
+    const { savedRecipes, getSavedRecipes, getSingleRecipe, setSelectedRecipe } = useContext(SavedRecipeContext)
 
     const { setViewPort } = useContext(ViewPortContext)
 
@@ -29,6 +30,7 @@ export const SavedRecipeList = props => {
                     sortedRecipes.map(recipe => {
                         return <div className="savedRecipe" id={recipe.id} key={"savedRecipe--" + recipe.id}
                             onClick={() => {
+                                setSelectedRecipe()
                                 getSingleRecipe(recipe.id)
                                 setViewPort(3)
                                 return <ViewPort {...props} />

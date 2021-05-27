@@ -13,9 +13,8 @@
     width: 30%;
     min-width: 250px;
     height: min-content;
-    max-height: 200px;
+    max-height: max-content;
     margin: 1%;
-    text-size-adjust: smaller;
     border:#170312 2px solid;
     border-radius: 10px;
 }
@@ -56,6 +55,7 @@ a {
 }
 
 .detailedRecipe__name {
+    padding: 10px;
     display: flex;
     justify-content: center;
     background: linear-gradient(#170312, #33032F, #170312);
@@ -73,22 +73,27 @@ a {
 .detailedRecipe__buttons {
     display: flex;
     flex-flow: row nowrap;
-    padding: 0% 10%;
+    padding: 10px 10%;
     justify-content: space-between;
 }
 
 .detailedRecipe__saveButton {
+    background: rgb(247, 183, 64);
     flex: 1;
     flex-wrap: nowrap;
 }
 
 .detailedRecipe__addMeal {
+    background: rgb(247, 183, 64);
     flex: 1;
+    border-radius: 0 10px 10px 0;
     flex-wrap: nowrap;
 }
 
 .detailedRecipe__returnButton {
+    background: rgb(247, 183, 64);
     flex: 1;
+    border-radius: 10px 0 0 10px;
     flex-wrap: nowrap;
 }
 
@@ -181,6 +186,7 @@ a {
 }
 
 .selectedRecipe__title {
+    padding: 10px;
     display: flex;
     justify-content: center;
     background: linear-gradient(#170312, #33032F, #170312);
@@ -198,17 +204,21 @@ a {
 .selectedRecipe__buttons {
     display: flex;
     flex-flow: row nowrap;
-    padding: 0% 10%;
+    padding: 10px 10%;
     justify-content: space-between;
 }
 
 .selectedRecipe__addMeal {
+    background: rgb(247, 183, 64);
+    border-radius: 0 10px 10px 0;
     flex: 1;
     flex-wrap: nowrap;
 }
 
 .selectedRecipe__returnButton {
+    background: rgb(247, 183, 64);
     flex: 1;
+    border-radius: 10px 0 0 10px;
     flex-wrap: nowrap;
 }
 

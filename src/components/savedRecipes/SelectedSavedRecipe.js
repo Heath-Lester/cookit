@@ -1,6 +1,7 @@
 
 import React, { useContext } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
+import Spinner from 'react-bootstrap/Spinner'
 import "./SavedRecipes.css"
 
 
@@ -10,7 +11,7 @@ export const SelectedSavedRecipe = props => {
     const { selectedRecipe, setSelectedRecipe, deleteRecipe } = useContext(SavedRecipeContext)
 
     if (!selectedRecipe || selectedRecipe.id === null || selectedRecipe.hasOwnProperty("id") === false) {
-        return <></>
+        return <Spinner className="search__spinner" animation="border" size="lg" role="status" variant="warning" />
 
     } else {
 

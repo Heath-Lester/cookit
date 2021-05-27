@@ -6,7 +6,6 @@ import { SearchResults } from "./SearchResults"
 import { DetailedSavedRecipe } from "./DetailedSavedRecipe"
 import "./ViewPort.css"
 
-
 export const ViewPort = props => {
     
     const {viewPort} = useContext(ViewPortContext)

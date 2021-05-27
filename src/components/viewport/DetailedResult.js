@@ -5,6 +5,7 @@ import { ViewPortContext } from "./ViewPortContext"
 import { SearchContext } from "../search/SearchProvider"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
+import Spinner from 'react-bootstrap/Spinner'
 import "./ViewPort.css"
 
 
@@ -23,7 +24,7 @@ export const DetailedResult = () => {
 
 
     if (detailedRecipe.hasOwnProperty("id") === false) {
-        return <></>
+        return <Spinner className="search__spinner" animation="border" size="lg" role="status" variant="warning" />
 
     } else {
 
@@ -96,7 +97,7 @@ export const DetailedResult = () => {
                 <section className="detailedRecipe" id={"detailedRecipe" + detailedRecipe.id} key={"detailedRecipe" + detailedRecipe.id}>
                     <h2 className="detailedRecipe__name">{detailedRecipe.title}</h2>
                     <div className="detailedRecipe__buttons">
-                        <button className="detailedRecipe__saveButton" id={`Save--${detailedRecipe.id}`} type="submit"
+                        <button className="detailedRecipe__returnButton" id={`Save--${detailedRecipe.id}`} type="submit"
                             onClick={event => {
                                 event.preventDefault()
                                 setViewPort(1)

@@ -4,6 +4,7 @@ import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { ViewPortContext } from "./ViewPortContext"
 import { MealContext } from "../meal/MealProvider"
 import { MealBuilder } from "../meal/MealBuilder"
+import Spinner from 'react-bootstrap/Spinner'
 import "../savedRecipes/SavedRecipes.css"
 
 
@@ -33,8 +34,7 @@ export const DetailedSavedRecipe = props => {
     }
 
     if (!selectedRecipe || selectedRecipe.id === null) {
-        return <></>
-
+        return <Spinner className="search__spinner" animation="border" size="lg" role="status" variant="warning" />
     } else {
         return (
             <>

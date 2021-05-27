@@ -260,7 +260,7 @@ export const RecipeForm = props => {
                     </select>
                 </fieldset>
 
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newIngredientArray = [...ingredientArray]
                         newIngredientArray.splice(i, 1)
@@ -284,7 +284,7 @@ export const RecipeForm = props => {
                         onBlur={e => { changeCurrentEquipment(e, i); console.log(e) }}
                     />
                 </fieldset>
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newEquipmentArray = [...equipmentArray]
                         newEquipmentArray.splice(i, 1)
@@ -307,7 +307,7 @@ export const RecipeForm = props => {
                         maxLength={500} placeholder="enter an instruction..." defaultValue={instruction.instruction}
                         onBlur={e => changeCurrentInstruction(e, i)} />
                 </fieldset>
-                <button type="button"
+                <button className="recipe__minusButton" type="button"
                     onClick={() => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.splice(i, 1)
@@ -371,7 +371,7 @@ export const RecipeForm = props => {
             <form className="recipeCategory">
                 <h3 className="formSection">Ingredients</h3>
                 <IngredientForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newIngredientArray = [...ingredientArray]
                         newIngredientArray.push({
@@ -389,7 +389,7 @@ export const RecipeForm = props => {
             <form className="recipeCategory">
                 <h3 className="formSection">Equipment</h3>
                 <EquipmentForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newEquipmentArray = [...equipmentArray]
                         newEquipmentArray.push({
@@ -402,7 +402,7 @@ export const RecipeForm = props => {
             <form className="recipeCategory">
                 <h3 className="formSection">Instructions</h3>
                 <InstructionForms />
-                <button type="button"
+                <button className="recipe__addButton" type="button"
                     onClick={() => {
                         const newInstructionArray = [...instructionArray]
                         newInstructionArray.push({

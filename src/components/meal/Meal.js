@@ -11,9 +11,9 @@ export const Meal = ({ meal }) => {
 
     const { deleteMeal, spoonacularRecipe, recipe } = useContext(MealContext)
 
-    const { getRecipeById } = useContext(SearchContext)
+    const { getRecipeById, setRecipe } = useContext(SearchContext)
 
-    const { getSingleRecipe } = useContext(SavedRecipeContext)
+    const { getSingleRecipe, setSelectedRecipe } = useContext(SavedRecipeContext)
 
     const { setViewPort } = useContext(ViewPortContext)
 
@@ -32,6 +32,7 @@ export const Meal = ({ meal }) => {
                     <div className="meal__content">
                         <img className="meal__image" src={meal.saved_recipe.image} alt={`Meal`}
                             onClick={() => {
+                                setRecipe()
                                 getSingleRecipe(meal.saved_recipe.id)
                                 setViewPort(3)
                                 return <ViewPort />
@@ -56,7 +57,7 @@ export const Meal = ({ meal }) => {
                     <div className="meal__content">
                         <img className="meal__image" src={recipe.image} alt={`Meal`}
                             onClick={() => {
-                                debugger
+                                setRecipe({})
                                 getRecipeById(recipe.id)
                                 setViewPort(2)
                                 return <ViewPort />
