@@ -3,7 +3,6 @@ import React, { useEffect, useContext } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
 import { ViewPortContext } from "../viewport/ViewPortContext"
 import { ViewPort } from "../viewport/ViewPort"
-import { Link } from "react-router-dom"
 import star_icon from "../../images/star_icon.png"
 import "./SavedRecipes.css"
 

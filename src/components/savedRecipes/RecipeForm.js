@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
 import { SavedRecipeContext } from "./RecipeProvider"
-import { Link } from "react-router-dom"
-import cookit_logo from "../../images/cookit_logo.png"
 import "./SavedRecipes.css"
 
 

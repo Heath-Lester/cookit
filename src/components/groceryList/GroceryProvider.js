@@ -1,6 +1,6 @@
 
 import React, { useState } from "react"
-import { apiKey } from "../../.api_key.js"
+// import { apiKey } from "../../.api_key.js"
 
 
 export const GroceryContext = React.createContext()
@@ -34,7 +34,7 @@ export const GroceryProvider = props => {
         return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": `${apiKey}`,
+                "x-rapidapi-key": `${process.env.apiKey}`,
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             }
         })
