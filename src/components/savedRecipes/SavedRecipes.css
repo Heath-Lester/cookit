@@ -46,7 +46,7 @@
     max-height: 3000px;
     margin: 1%;
     text-size-adjust: smaller;
-    border-radius: 5%;
+    border-radius: 10px;
     border: #531253 solid;
     background-color: #170312;
 }
@@ -75,12 +75,12 @@
 
 .myRecipe__image {
     width: 100%;
-    border-radius: 5% 5% 0% 0%;
+    border-radius: 8px 8px 0% 0%;
 }
 
 .myRecipe__favorite {
     box-sizing: unset;
-    border-radius: 0em 0em 1em 1em;
+    border-radius: 0em 0em 8px 8px;
     border: none;
     background-color: #97D8B2;
 }
@@ -126,6 +126,11 @@
 .selectedSavedRecipe__deleteButton {
     flex: 1;
     flex-wrap: nowrap;
+}
+
+.selectedSavedRecipe__basicInfo > p {
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .selectedSavedRecipe__editButton {
@@ -231,7 +236,7 @@
 
 textarea.recipeForm {
     max-width: min-content;
-    min-height: 7em;
+    min-height: 8em;
 }
 
 .recipeFieldset {

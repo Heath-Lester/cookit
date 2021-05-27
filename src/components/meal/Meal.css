@@ -23,11 +23,12 @@
 }
 
 .meal__image {
+    object-fit: cover;
     width: 30%;
     min-width: 30%;
     height: auto;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .meal__details {

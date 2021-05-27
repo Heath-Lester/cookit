@@ -13,11 +13,11 @@
     width: 30%;
     min-width: 250px;
     height: min-content;
-    max-height: 250px;
+    max-height: 200px;
     margin: 1%;
     text-size-adjust: smaller;
-    border:#170312 solid;
-    border-radius: 5%;
+    border:#170312 2px solid;
+    border-radius: 10px;
 }
 .results__recipe:hover {
     background-color: #97D8B2;
@@ -30,11 +30,12 @@ a {
     color: #531253;
 }
 .results__image {
+    object-fit: cover;
     max-width: 60%;
-    width: auto;
+    /* width: auto; */
     height: auto;
     overflow: hidden;
-    border-radius: 5% 0% 0% 5%;
+    border-radius: 8px 0% 0% 8px;
 }
 .results__details {
     padding: 1%;
