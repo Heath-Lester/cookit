@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react"
 import { ViewPortContext } from "../viewport/ViewPortContext"
 import { SearchContext } from "../search/SearchProvider"
+import { SavedRecipeContext } from "../savedRecipes/RecipeProvider"
 import { MealContext } from "./MealProvider"
 import { ViewPort } from "../viewport/ViewPort"
 import "./Meal.css"
@@ -12,7 +13,7 @@ export const Meal = ({ meal }) => {
 
     const { getRecipeById } = useContext(SearchContext)
 
-    const { getSingleRecipe } = useContext(SearchContext)
+    const { getSingleRecipe } = useContext(SavedRecipeContext)
 
     const { setViewPort } = useContext(ViewPortContext)
 
@@ -55,6 +56,7 @@ export const Meal = ({ meal }) => {
                     <div className="meal__content">
                         <img className="meal__image" src={recipe.image} alt={`Meal`}
                             onClick={() => {
+                                debugger
                                 getRecipeById(recipe.id)
                                 setViewPort(2)
                                 return <ViewPort />
