@@ -1,6 +1,8 @@
 
 import React, { useState } from "react"
 // import { apiKey } from "../../.api_key.js"
+// http://localhost:8000/
+// http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/
 
 
 export const GroceryContext = React.createContext()
@@ -16,7 +18,7 @@ export const GroceryProvider = props => {
 
 
     const getGroceryList = () => {
-        return fetch(`http://localhost:8000/grocerylist`, {
+        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/grocerylist`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -24,7 +26,7 @@ export const GroceryProvider = props => {
     }
 
     const ingredientAquired = (ingredientId) => {
-        return fetch(`http://localhost:8000/grocerylist/${ingredientId}/aquired`, {
+        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/grocerylist/${ingredientId}/aquired`, {
             headers: { "Authorization": `Token ${userToken}` },
         })
             .then(getGroceryList)
