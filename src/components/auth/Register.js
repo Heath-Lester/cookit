@@ -25,7 +25,7 @@ export const Register = (props) => {
                 "password": password.current.value,
             }
 
-            fetch("http://localhost:8000/register", {
+            fetch("http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
