@@ -25,7 +25,7 @@ export const Register = (props) => {
                 "password": password.current.value,
             }
 
-            fetch("http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//register", {
+            fetch("http://cookit-server-dev2.us-east-1.elasticbeanstalk.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -18,7 +18,7 @@ export const GroceryProvider = props => {
 
 
     const getGroceryList = () => {
-        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//grocerylist`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com/grocerylist`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -26,7 +26,7 @@ export const GroceryProvider = props => {
     }
 
     const ingredientAquired = (ingredientId) => {
-        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//grocerylist/${ingredientId}/aquired`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com/grocerylist/${ingredientId}/aquired`, {
             headers: { "Authorization": `Token ${userToken}` },
         })
             .then(getGroceryList)
