@@ -16,7 +16,7 @@ export const MealProvider = props => {
 
 
     const getMeals = () => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/meals`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//meals`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -24,7 +24,7 @@ export const MealProvider = props => {
     }
 
     const addMeal = mealObj => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/meals`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//meals`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${userToken}`,
@@ -36,7 +36,7 @@ export const MealProvider = props => {
     }
 
     const deleteMeal = mealId => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/meals/${mealId}`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//meals/${mealId}`, {
             method: "DELETE",
             headers: { "Authorization": `Token ${userToken}` }
         })
@@ -45,7 +45,7 @@ export const MealProvider = props => {
 
     //// Delete all meals for a given User ////
     const resetMeals = () => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/meals/complete`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//meals/complete`, {
             method: "DELETE",
             headers: { "Authorization": `Token ${userToken}` }
         })

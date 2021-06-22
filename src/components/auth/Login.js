@@ -14,7 +14,7 @@ export const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault()
 
-        return fetch("http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/login", {
+        return fetch("http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

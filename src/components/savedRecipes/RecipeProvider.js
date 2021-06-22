@@ -17,7 +17,7 @@ export const RecipeProvider = props => {
 
     /// Saved Recipe Requests ///
     const getSavedRecipes = () => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -25,7 +25,7 @@ export const RecipeProvider = props => {
     }
 
     const getSingleRecipe = (recipeId) => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes/${recipeId}`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes/${recipeId}`, {
             headers: { "Authorization": `Token ${userToken}` }
         })
             .then(result => result.json())
@@ -33,7 +33,7 @@ export const RecipeProvider = props => {
     }
 
     const saveRecipe = recipeObj => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${userToken}`,
@@ -45,7 +45,7 @@ export const RecipeProvider = props => {
     }
 
     const saveNewRecipe = (recipeObj) => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes/new`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes/new`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${userToken}`,
@@ -57,7 +57,7 @@ export const RecipeProvider = props => {
     }
 
     const deleteRecipe = recipeId => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes/${recipeId}`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes/${recipeId}`, {
             method: "DELETE",
             headers: { "Authorization": `Token ${userToken}` }
         })
@@ -66,7 +66,7 @@ export const RecipeProvider = props => {
 
     //// Favorite/Unfavorite Request ////
     const favorite = (recipeId) => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes/${recipeId}/favorite`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes/${recipeId}/favorite`, {
             headers: {
                 "Authorization": `Token ${userToken}`,
                 "Content-Type": "application/json"
@@ -77,7 +77,7 @@ export const RecipeProvider = props => {
     }
 
     const editRecipe = (recipeObj, recipeId) => {
-        return fetch(`http://django-env.eba-ssefm7mw.us-east-1.elasticbeanstalk.com/recipes/${recipeId}`, {
+        return fetch(`http://cookit-server-dev2.us-east-1.elasticbeanstalk.com//recipes/${recipeId}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Token ${userToken}`,
